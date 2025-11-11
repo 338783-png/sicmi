@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}SICMI Sarl - {% trans "Société d'Ingénierie de Construction et de Maintenance Industrielle" %}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-80">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-primary mb-4">SICMI Sarl</h1>
+                <h2 class="h3 mb-4">{% trans "Société d'Ingénierie de Construction et de Maintenance Industrielle" %}</h2>
+                <p class="lead mb-4">{% trans "Votre partenaire de confiance pour tous vos projets de construction industrielle et de maintenance au Cameroun." %}</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'services' %}" class="btn btn-primary btn-lg">{% trans "Nos Services" %}</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg">{% trans "Nous Contacter" %}</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/hero-image.jpg' %}" alt="SICMI Sarl" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Valeurs Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">{% trans "Nos Valeurs" %}</h2>
+            <p class="lead">{% trans "L'excellence au service de votre réussite" %}</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Excellence Opérationnelle" %}</h5>
+                        <p class="card-text">{% trans "Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets." %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Innovation" %}</h5>
+                        <p class="card-text">{% trans "Nous adoptons les dernières technologies et méthodes pour optimiser vos projets." %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Sécurité" %}</h5>
+                        <p class="card-text">{% trans "La sécurité de nos équipes et de vos installations est notre priorité absolue." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">{% trans "Nos Domaines d'Expertise" %}</h2>
+            <p class="lead">{% trans "Découvrez nos services spécialisés" %}</p>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 service-card">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 service-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-industry fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Constructions Neuves" %}</h5>
+                        <p class="card-text">{% trans "Structures métalliques, charpentes, tuyauterie industrielle et installation d'équipements." %}</p>
+                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 service-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Maintenance Industrielle" %}</h5>
+                        <p class="card-text">{% trans "Maintenance préventive et curative, dépannage et remplacement de pièces." %}</p>
+                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 service-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-building fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">{% trans "Travaux de Façade" %}</h5>
+                        <p class="card-text">{% trans "Pose de revêtements muraux, peinture et décoration numérique." %}</p>
+                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'services' %}" class="btn btn-primary">{% trans "Voir tous nos services" %}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Projets Récents -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">{% trans "Nos Réalisations" %}</h2>
+            <p class="lead">{% trans "Découvrez quelques-uns de nos projets récents" %}</p>
+        </div>
+        <div class="row g-4">
+            {% for project in recent_projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 project-card">
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text"><strong>{% trans "Client" %}:</strong> {{ project.client }}</p>
+                        <p class="card-text">{{ project.description|truncatewords:15 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 project-card">
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-industry fa-3x text-primary"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Projet SONARA" %}</h5>
+                        <p class="card-text"><strong>{% trans "Client" %}:</strong> SONARA-LIMBE</p>
+                        <p class="card-text">{% trans "Conception et installation de structures métalliques complexes." %}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'projects' %}" class="btn btn-primary">{% trans "Voir tous nos projets" %}</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">{% trans "Prêt à démarrer votre projet ?" %}</h3>
+                <p class="mb-0">{% trans "Contactez-nous dès aujourd'hui pour une consultation gratuite et un devis personnalisé." %}</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">{% trans "Nous Contacter" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

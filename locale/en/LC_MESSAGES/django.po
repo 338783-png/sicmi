@@ -1,0 +1,141 @@
+'EOF'
+# English translations for SICMI Sarl
+msgid ""
+msgstr ""
+"Project-Id-Version: SICMI Sarl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Navigation
+msgid "Accueil"
+msgstr "Home"
+
+msgid "À Propos"
+msgstr "About"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Réalisations"
+msgstr "Projects"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Tous nos services"
+msgstr "All our services"
+
+msgid "Constructions neuves"
+msgstr "New constructions"
+
+msgid "Maintenance industrielle"
+msgstr "Industrial maintenance"
+
+msgid "Accompagnement"
+msgstr "Support"
+
+msgid "Travaux de façade"
+msgstr "Facade works"
+
+msgid "Rénovation"
+msgstr "Renovation"
+
+# Page d'accueil
+msgid "Société d'Ingénierie de Construction et de Maintenance Industrielle"
+msgstr "Industrial Construction and Maintenance Engineering Company"
+
+msgid "Votre partenaire de confiance pour tous vos projets de construction industrielle et de maintenance au Cameroun."
+msgstr "Your trusted partner for all your industrial construction and maintenance projects in Cameroon."
+
+msgid "Nos Services"
+msgstr "Our Services"
+
+msgid "Nous Contacter"
+msgstr "Contact Us"
+
+msgid "Nos Valeurs"
+msgstr "Our Values"
+
+msgid "L'excellence au service de votre réussite"
+msgstr "Excellence at the service of your success"
+
+msgid "Excellence Opérationnelle"
+msgstr "Operational Excellence"
+
+msgid "Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets."
+msgstr "We are committed to providing high quality services in all our projects."
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Nous adoptons les dernières technologies et méthodes pour optimiser vos projets."
+msgstr "We adopt the latest technologies and methods to optimize your projects."
+
+msgid "Sécurité"
+msgstr "Safety"
+
+msgid "La sécurité de nos équipes et de vos installations est notre priorité absolue."
+msgstr "The safety of our teams and your facilities is our absolute priority."
+
+msgid "Nos Domaines d'Expertise"
+msgstr "Our Areas of Expertise"
+
+msgid "Découvrez nos services spécialisés"
+msgstr "Discover our specialized services"
+
+msgid "En savoir plus"
+msgstr "Learn more"
+
+msgid "Constructions Neuves"
+msgstr "New Constructions"
+
+msgid "Structures métalliques, charpentes, tuyauterie industrielle et installation d'équipements."
+msgstr "Metal structures, frameworks, industrial piping and equipment installation."
+
+msgid "Maintenance Industrielle"
+msgstr "Industrial Maintenance"
+
+msgid "Maintenance préventive et curative, dépannage et remplacement de pièces."
+msgstr "Preventive and corrective maintenance, troubleshooting and parts replacement."
+
+msgid "Travaux de Façade"
+msgstr "Facade Works"
+
+msgid "Pose de revêtements muraux, peinture et décoration numérique."
+msgstr "Wall covering installation, painting and digital decoration."
+
+msgid "Voir tous nos services"
+msgstr "View all our services"
+
+msgid "Nos Réalisations"
+msgstr "Our Projects"
+
+msgid "Découvrez quelques-uns de nos projets récents"
+msgstr "Discover some of our recent projects"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "Projet SONARA"
+msgstr "SONARA Project"
+
+msgid "Conception et installation de structures métalliques complexes."
+msgstr "Design and installation of complex metal structures."
+
+msgid "Voir tous nos projets"
+msgstr "View all our projects"
+
+msgid "Prêt à démarrer votre projet ?"
+msgstr "Ready to start your project?"
+
+msgid "Contactez-nous dès aujourd'hui pour une consultation gratuite et un devis personnalisé."
+msgstr "Contact us today for a free consultation and personalized quote."
+EOF

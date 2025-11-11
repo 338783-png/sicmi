@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}À Propos - SICMI Sarl{% endblock %}
+
+{% block breadcrumb %}
+{% if request.path == '/a-propos/' %}
+    <li class="breadcrumb-item active" aria-current="page">À Propos</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-light">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-primary mb-4">À Propos de SICMI</h1>
+                <p class="lead mb-4">
+                    Société d'Ingénierie de Construction et de Maintenance Industrielle, 
+                    SICMI Sarl est votre partenaire de confiance pour tous vos projets industriels au Cameroun.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary text-white rounded p-4">
+                    <h4 class="mb-3">Notre Mission</h4>
+                    <p class="mb-0">
+                        Satisfaire nos clients sur les aspects liés à la qualité, au respect des délais 
+                        et aux coûts des prestations, tout en garantissant la sécurité et l'innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Présentation de l'entreprise -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title text-center mb-5">Notre Histoire</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h5>Création de SICMI Sarl</h5>
+                            <p>
+                                Fondée par un groupe de techniciens et d'ingénieurs chevronnés dans les métiers 
+                                de la construction et la maintenance industrielle.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-content">
+                            <h5>Premiers projets majeurs</h5>
+                            <p>
+                                Réalisation de plusieurs projets pour des clients industriels de renom, 
+                                consolidation de notre expertise.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h5>Démarche qualité</h5>
+                            <p>
+                                Engagement dans une démarche de certification de nos processus aux référentiels 
+                                ISO 9001 v2015 et ISO 45001 v2018.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2030</div>
+                        <div class="timeline-content">
+                            <h5>Notre vision</h5>
+                            <p>
+                                Nous ambitionnons de nous positionner parmi les leaders de notre secteur 
+                                au Cameroun à l'horizon 2030.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Valeurs -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Nos Valeurs</h2>
+            <p class="lead">Les piliers de notre succès</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Excellence Opérationnelle</h5>
+                        <p class="card-text">
+                            Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets, 
+                            en optimisant nos processus pour une efficacité maximale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Innovation</h5>
+                        <p class="card-text">
+                            Nous adoptons les dernières technologies et méthodes pour optimiser vos projets 
+                            et vous offrir des solutions modernes et efficaces.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Sécurité</h5>
+                        <p class="card-text">
+                            La sécurité de nos équipes et de vos installations est notre priorité absolue. 
+                            Nous respectons strictement toutes les normes de sécurité.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Respect des Délais</h5>
+                        <p class="card-text">
+                            Nous nous engageons à respecter les délais convenus, garantissant ainsi 
+                            le bon déroulement de vos projets et votre satisfaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Qualité</h5>
+                        <p class="card-text">
+                            Notre engagement qualité se traduit par un contrôle rigoureux à chaque étape 
+                            de nos interventions et l'utilisation de matériaux de première qualité.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Fiabilité</h5>
+                        <p class="card-text">
+                            Nous construisons des relations durables avec nos clients basées sur la confiance, 
+                            la transparence et la fiabilité de nos services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Équipe -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Notre Équipe</h2>
+            <p class="lead">Des experts passionnés à votre service</p>
+        </div>
+        <div class="row g-4">
+            {% for member in team_members %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card team-card border-0 shadow-sm">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" class="card-img-top" alt="{{ member.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                        <i class="fas fa-user fa-3x text-muted"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-1">{{ member.name }}</h5>
+                        <p class="text-primary fw-bold mb-1">{{ member.position }}</p>
+                        <p class="card-text small text-muted">{{ member.specialization }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">Notre équipe sera bientôt présentée ici.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Engagement Qualité & Sécurité</h3>
+                <p class="mb-0">
+                    SICMI Sarl est engagée dans une démarche de certification de ses processus 
+                    aux référentiels ISO 9001 v2015 et ISO 45001 v2018, garantissant ainsi 
+                    l'excellence de nos services et la sécurité de nos interventions.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <div class="d-flex justify-content-lg-end gap-3">
+                    <div class="certification-badge bg-white text-dark rounded p-3 text-center">
+                        <i class="fas fa-certificate fa-2x text-primary mb-2"></i>
+                        <div>ISO 9001</div>
+                        <small>Qualité</small>
+                    </div>
+                    <div class="certification-badge bg-white text-dark rounded p-3 text-center">
+                        <i class="fas fa-certificate fa-2x text-primary mb-2"></i>
+                        <div>ISO 45001</div>
+                        <small>Sécurité</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

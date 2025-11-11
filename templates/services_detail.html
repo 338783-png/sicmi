@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.name }} - SICMI Sarl{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{% url 'services' %}" class="text-decoration-none">Services</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">{{ service.name }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- En-tête du service -->
+            <div class="mb-4">
+                <span class="badge bg-primary mb-2">{{ service.get_category_display }}</span>
+                <h1 class="display-5 fw-bold text-primary mb-3">{{ service.name }}</h1>
+                {% if service.image %}
+                <img src="{{ service.image.url }}" class="img-fluid rounded mb-4" alt="{{ service.name }}">
+                {% endif %}
+                <div class="service-description">
+                    <p class="lead">{{ service.description }}</p>
+                </div>
+            </div>
+
+            <!-- Détails spécifiques selon la catégorie -->
+            <div class="service-details mb-5">
+                <h3 class="h4 mb-4">Détails du Service</h3>
+                
+                {% if service.category == 'construction' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">🛠️ Équipements Utilisés</h5>
+                                <ul class="list-unstyled">
+                                    <li>✓ Postes de soudage avancés</li>
+                                    <li>✓ Grues et équipements de levage</li>
+                                    <li>✓ Matériel de mesure de précision</li>
+                                    <li>✓ Outillage spécialisé</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">📋 Processus</h5>
+                                <ul class="list-unstyled">
+                                    <li>✓ Étude technique préalable</li>
+                                    <li>✓ Conception sur mesure</li>
+                                    <li>✓ Fabrication en atelier</li>
+                                    <li>✓ Montage et installation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% elif service.category == 'maintenance' %}
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">🔧 Types d'Intervention</h5>
+                                <ul class="list-unstyled">
+                                    <li>✓ Maintenance préventive</li>
+                                    <li>✓ Maintenance curative</li>
+                                    <li>✓ Dépannage urgent</li>
+                                    <li>✓ Contrôle et diagnostic</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">⏱️ Réactivité</h5>
+                                <ul class="list-unstyled">
+                                    <li>✓ Intervention sous 5h</li>
+                                    <li>✓ Équipes disponibles 24h/24</li>
+                                    <li>✓ Pièces de rechange en stock</li>
+                                    <li>✓ Reporting en temps réel</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Projets liés -->
+            {% if related_projects %}
+            <div class="related-projects">
+                <h3 class="h4 mb-4">Projets Associés</h3>
+                <div class="row g-4">
+                    {% for project in related_projects %}
+                    <div class="col-md-6">
+                        <div class="card project-card h-100">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text"><strong>Client:</strong> {{ project.client }}</p>
+                                <p class="card-text small">{{ project.description|truncatewords:15 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 100px;">
+                <!-- CTA Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Intéressé par ce service ?</h5>
+                        <p class="card-text">Obtenez un devis gratuit et personnalisé</p>
+                        <a href="{% url 'contact' %}?service={{ service.name }}" class="btn btn-primary w-100 mb-2">
+                            Demander un Devis
+                        </a>
+                        <a href="tel:+237675948524" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-phone me-2"></i>Nous Appeler
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Informations service -->
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h6 class="card-title">📞 Contact Rapide</h6>
+                        <p class="small mb-2">
+                            <i class="fas fa-phone text-primary me-2"></i>
+                            +237 675948524
+                        </p>
+                        <p class="small mb-2">
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            sicmisarl@gmail.com
+                        </p>
+                        <p class="small mb-0">
+                            <i class="fas fa-clock text-primary me-2"></i>
+                            Réponse sous 24h
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Autres services -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Autres Services</h2>
+            <p class="lead">Découvrez notre gamme complète de services</p>
+        </div>
+        <div class="row g-4">
+            {% for other_service in service.get_category_services %}
+            {% if other_service.id != service.id %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ other_service.name }}</h5>
+                        <p class="card-text">{{ other_service.description|truncatewords:20 }}</p>
+                        <a href="{% url 'service_detail' other_service.id %}" class="btn btn-outline-primary btn-sm">
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-lg-none" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="SICMI" style="height: 30px; width: auto;">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
+                        <i class="fas fa-home me-1"></i>{% trans "Accueil" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
+                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                    </a>
+                </li>
+                
+                <!-- Menu déroulant Services -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
+                       href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cogs me-1"></i>{% trans "Services" %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}">
+                                <i class="fas fa-list me-2"></i>{% trans "Tous nos services" %}
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}#construction">
+                                <i class="fas fa-industry me-2"></i>{% trans "Constructions neuves" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}#maintenance">
+                                <i class="fas fa-tools me-2"></i>{% trans "Maintenance industrielle" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}#accompagnement">
+                                <i class="fas fa-hands-helping me-2"></i>{% trans "Accompagnement" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}#facade">
+                                <i class="fas fa-building me-2"></i>{% trans "Travaux de façade" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'services' %}#renovation">
+                                <i class="fas fa-paint-roller me-2"></i>{% trans "Rénovation" %}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/projets/' %}active{% endif %}" href="{% url 'projects' %}">
+                        <i class="fas fa-project-diagram me-1"></i>{% trans "Réalisations" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
+                        <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Sélecteur de langue -->
+            <div class="navbar-nav">
+                {% include 'includes/language_switcher.html' %}
+            </div>
+            
+            <!-- Informations légales dans la navigation -->
+            <div class="navbar-text d-none d-lg-block ms-3">
+                <small class="text-light opacity-75">
+                    RCCM: RC/DLA/2020/B/2383 | NIU: M042014422700O
+                </small>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="bg-light border-bottom">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="py-2">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}" class="text-decoration-none">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                {% block breadcrumb %}
+                {% if request.path == '/a-propos/' %}
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "À Propos" %}</li>
+                {% elif request.path == '/services/' %}
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Services" %}</li>
+                {% elif 'services' in request.path and request.path != '/services/' %}
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'services' %}" class="text-decoration-none">{% trans "Services" %}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Détail" %}</li>
+                {% elif request.path == '/projets/' %}
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Réalisations" %}</li>
+                {% elif request.path == '/contact/' %}
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Contact" %}</li>
+                {% endif %}
+                {% endblock %}
+            </ol>
+        </nav>
+    </div>
+</div>

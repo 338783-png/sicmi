@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nos Réalisations - SICMI Sarl{% endblock %}
+
+{% block breadcrumb %}
+{% if request.path == '/projets/' %}
+    <li class="breadcrumb-item active" aria-current="page">Réalisations</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-4">Nos Réalisations</h1>
+        <p class="lead">Découvrez nos projets récents et notre expertise en action</p>
+    </div>
+
+    <!-- Filtres par catégorie -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                <button class="btn btn-outline-primary active filter-btn" data-filter="all">Tous les projets</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="sonara">SONARA</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="addax">ADDAX</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="construction">Construction</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="maintenance">Maintenance</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liste des projets -->
+    <div class="row g-4" id="projects-container">
+        <!-- Projet SONARA -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="sonara construction">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-industry fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Structures Métalliques Complexes</h5>
+                    <p class="card-text"><strong>Client:</strong> SONARA-LIMBE</p>
+                    <p class="card-text"><strong>Date:</strong> 2023</p>
+                    <p class="card-text">Conception, fabrication et montage de structures métalliques complexes pour l'extension des installations industrielles.</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Structures métalliques</span>
+                            <span class="badge bg-secondary">Charpentes</span>
+                            <span class="badge bg-secondary">Tuyauterie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projet ADDAX -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="addax maintenance">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-tools fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Maintenance Industrielle</h5>
+                    <p class="card-text"><strong>Client:</strong> ADDAX PETROLEUM</p>
+                    <p class="card-text"><strong>Date:</strong> 2024</p>
+                    <p class="card-text">Maintenance préventive et curative des équipements de production avec soudage spécialisé sur acier inoxydable.</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Soudage TIG/MIG</span>
+                            <span class="badge bg-secondary">Maintenance</span>
+                            <span class="badge bg-secondary">Tuyauterie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projet Construction -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="construction">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-building fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Bâtiment Industriel</h5>
+                    <p class="card-text"><strong>Client:</strong> Société Industrielle</p>
+                    <p class="card-text"><strong>Date:</strong> 2024</p>
+                    <p class="card-text">Construction complète d'un bâtiment industriel avec charpente métallique et installation des équipements.</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Construction</span>
+                            <span class="badge bg-secondary">Charpente</span>
+                            <span class="badge bg-secondary">Équipements</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projet Maintenance -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="maintenance">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-cogs fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Optimisation Ligne Production</h5>
+                    <p class="card-text"><strong>Client:</strong> Entreprise Manufacturière</p>
+                    <p class="card-text"><strong>Date:</strong> 2023</p>
+                    <p class="card-text">Transfert et optimisation d'une ligne de production complète avec maintenance préventive des équipements.</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Transfert industriel</span>
+                            <span class="badge bg-secondary">Maintenance</span>
+                            <span class="badge bg-secondary">Optimisation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projet Façade -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="construction">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-paint-roller fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Rénovation Façade</h5>
+                    <p class="card-text"><strong>Client:</strong> Complexe Commercial</p>
+                    <p class="card-text"><strong>Date:</strong> 2024</p>
+                    <p class="card-text">Rénovation complète de façade avec pose de revêtement Alucobon et décoration murale numérique.</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Revêtement mural</span>
+                            <span class="badge bg-secondary">Décoration</span>
+                            <span class="badge bg-secondary">Rénovation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projet Équipements -->
+        <div class="col-lg-4 col-md-6 project-item" data-categories="sonara construction">
+            <div class="card h-100 project-card">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-oil-well fa-3x text-primary"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Équipements de Stockage</h5>
+                    <p class="card-text"><strong>Client:</strong> SONARA-LIMBE</p>
+                    <p class="card-text"><strong>Date:</strong> 2023</p>
+                    <p class="card-text">Fabrication et installation d'équipements de stockage pour produits pétroliers (cuves, citernes, bacs).</p>
+                    
+                    <div class="mt-3">
+                        <h6 class="text-primary">Services réalisés:</h6>
+                        <div class="d-flex flex-wrap gap-1">
+                            <span class="badge bg-secondary">Équipements stockage</span>
+                            <span class="badge bg-secondary">Installation</span>
+                            <span class="badge bg-secondary">Fabrication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination (cachée pour l'instant car données statiques) -->
+    <nav aria-label="Pagination des projets" class="mt-5 d-none">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <span class="page-link">Précédent</span>
+            </li>
+            <li class="page-item active">
+                <span class="page-link">1</span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Suivant</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Section Clients -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Ils nous font confiance</h2>
+            <p class="lead">Nos clients et partenaires</p>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">SONARA</h5>
+                    <small class="text-muted">Limbe</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">ADDAX</h5>
+                    <small class="text-muted">Petroleum</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">SNH</h5>
+                    <small class="text-muted">Cameroun</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">PERENCO</h5>
+                    <small class="text-muted">Cameroun</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Vous avez un projet similaire ?</h3>
+                <p class="mb-0">Contactez-nous pour discuter de vos besoins et obtenir un devis personnalisé.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Démarrer un projet</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filtrage des projets
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Mettre à jour les boutons actifs
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filtrer les projets
+            projectItems.forEach(item => {
+                const categories = item.getAttribute('data-categories').split(' ');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    item.style.display = 'block';
+                    // Animation d'apparition
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    }, 100);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observer les cartes de projets
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+});
+</script>
+{% endblock %}

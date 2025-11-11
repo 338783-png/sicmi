@@ -1,0 +1,141 @@
+'EOF'
+# French translations for SICMI Sarl
+msgid ""
+msgstr ""
+"Project-Id-Version: SICMI Sarl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# Navigation
+msgid "Accueil"
+msgstr "Accueil"
+
+msgid "À Propos"
+msgstr "À Propos"
+
+msgid "Services"
+msgstr "Services"
+
+msgid "Réalisations"
+msgstr "Réalisations"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Tous nos services"
+msgstr "Tous nos services"
+
+msgid "Constructions neuves"
+msgstr "Constructions neuves"
+
+msgid "Maintenance industrielle"
+msgstr "Maintenance industrielle"
+
+msgid "Accompagnement"
+msgstr "Accompagnement"
+
+msgid "Travaux de façade"
+msgstr "Travaux de façade"
+
+msgid "Rénovation"
+msgstr "Rénovation"
+
+# Page d'accueil
+msgid "Société d'Ingénierie de Construction et de Maintenance Industrielle"
+msgstr "Société d'Ingénierie de Construction et de Maintenance Industrielle"
+
+msgid "Votre partenaire de confiance pour tous vos projets de construction industrielle et de maintenance au Cameroun."
+msgstr "Votre partenaire de confiance pour tous vos projets de construction industrielle et de maintenance au Cameroun."
+
+msgid "Nos Services"
+msgstr "Nos Services"
+
+msgid "Nous Contacter"
+msgstr "Nous Contacter"
+
+msgid "Nos Valeurs"
+msgstr "Nos Valeurs"
+
+msgid "L'excellence au service de votre réussite"
+msgstr "L'excellence au service de votre réussite"
+
+msgid "Excellence Opérationnelle"
+msgstr "Excellence Opérationnelle"
+
+msgid "Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets."
+msgstr "Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets."
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Nous adoptons les dernières technologies et méthodes pour optimiser vos projets."
+msgstr "Nous adoptons les dernières technologies et méthodes pour optimiser vos projets."
+
+msgid "Sécurité"
+msgstr "Sécurité"
+
+msgid "La sécurité de nos équipes et de vos installations est notre priorité absolue."
+msgstr "La sécurité de nos équipes et de vos installations est notre priorité absolue."
+
+msgid "Nos Domaines d'Expertise"
+msgstr "Nos Domaines d'Expertise"
+
+msgid "Découvrez nos services spécialisés"
+msgstr "Découvrez nos services spécialisés"
+
+msgid "En savoir plus"
+msgstr "En savoir plus"
+
+msgid "Constructions Neuves"
+msgstr "Constructions Neuves"
+
+msgid "Structures métalliques, charpentes, tuyauterie industrielle et installation d'équipements."
+msgstr "Structures métalliques, charpentes, tuyauterie industrielle et installation d'équipements."
+
+msgid "Maintenance Industrielle"
+msgstr "Maintenance Industrielle"
+
+msgid "Maintenance préventive et curative, dépannage et remplacement de pièces."
+msgstr "Maintenance préventive et curative, dépannage et remplacement de pièces."
+
+msgid "Travaux de Façade"
+msgstr "Travaux de Façade"
+
+msgid "Pose de revêtements muraux, peinture et décoration numérique."
+msgstr "Pose de revêtements muraux, peinture et décoration numérique."
+
+msgid "Voir tous nos services"
+msgstr "Voir tous nos services"
+
+msgid "Nos Réalisations"
+msgstr "Nos Réalisations"
+
+msgid "Découvrez quelques-uns de nos projets récents"
+msgstr "Découvrez quelques-uns de nos projets récents"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "Projet SONARA"
+msgstr "Projet SONARA"
+
+msgid "Conception et installation de structures métalliques complexes."
+msgstr "Conception et installation de structures métalliques complexes."
+
+msgid "Voir tous nos projets"
+msgstr "Voir tous nos projets"
+
+msgid "Prêt à démarrer votre projet ?"
+msgstr "Prêt à démarrer votre projet ?"
+
+msgid "Contactez-nous dès aujourd'hui pour une consultation gratuite et un devis personnalisé."
+msgstr "Contactez-nous dès aujourd'hui pour une consultation gratuite et un devis personnalisé."
+EOF

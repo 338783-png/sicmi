@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Nos Services - SICMI Sarl{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-4">Nos Services</h1>
+        <p class="lead">Découvrez l'étendue de notre expertise industrielle</p>
+    </div>
+
+    {% for category_name, services in services_by_category.items %}
+    <section class="mb-5">
+        <h2 class="h3 text-primary mb-4">{{ category_name }}</h2>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-6">
+                <div class="card h-100 service-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description }}</p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</div>
+{% endblock %}
