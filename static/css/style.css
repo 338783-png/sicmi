@@ -301,6 +301,42 @@ footer a:hover {
     z-index: 10;
 }
 
+/* Header carousel styles */
+.header-with-carousel {
+    min-height: 180px; /* adjust as needed */
+}
+
+.header-with-carousel .header-carousel {
+    z-index: 0;
+}
+
+.header-with-carousel .header-carousel .carousel-item {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    transition: opacity 0.8s ease;
+}
+
+.header-overlay {
+    background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28));
+    z-index: 1;
+}
+
+.header-with-carousel .container h1,
+.header-with-carousel .container p,
+.header-with-carousel .contact-info small,
+.header-with-carousel .contact-info strong {
+    color: #fff !important;
+}
+
+/* Hide carousel controls/indicators to keep header clean on small screens */
+.header-with-carousel .carousel-indicators,
+.header-with-carousel .carousel-control-prev,
+.header-with-carousel .carousel-control-next {
+    display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .timeline {

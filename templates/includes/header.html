@@ -1,33 +1,48 @@
 {% load static %}
-<header class="bg-white shadow-sm">
-    <div class="container">
+<!-- Header with carousel background -->
+<header class="header-with-carousel position-relative overflow-hidden shadow-sm">
+
+    <!-- Carousel placed behind header content. Replace the URLs below with your own images in /static/images/ if you prefer local images. -->
+    <div id="headerCarousel" class="carousel slide header-carousel position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel">
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100" style="background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1950&q=80');"></div>
+            <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80');"></div>
+            <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1950&q=80');"></div>
+        </div>
+    </div>
+
+    <!-- subtle overlay to improve text contrast -->
+    <div class="header-overlay position-absolute top-0 start-0 w-100 h-100" aria-hidden="true"></div>
+
+    <!-- Header content sits above carousel -->
+    <div class="container position-relative" style="z-index: 2;">
         <div class="row align-items-center py-3">
             <div class="col-md-6">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center text-white">
                     <div class="logo me-3">
                         <!-- Logo SICMI -->
-                        <img src="{% static 'images/logo.png' %}" alt="SICMI Sarl" class="logo-img" style="height: 60px; width: auto;">
+                        <img src="{% static 'images/logo.png' %}" alt="SICMI Sarl" class="logo-img" style="height: 60px; width: auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));">
                     </div>
                     <div>
-                        <h1 class="h4 mb-0 fw-bold text-primary">SICMI Sarl</h1>
-                        <p class="text-muted small mb-0">Société d'Ingénierie de Construction et de Maintenance Industrielle</p>
+                        <h1 class="h4 mb-0 fw-bold">SICMI Sarl</h1>
+                        <p class="small mb-0">Société d'Ingénierie de Construction et de Maintenance Industrielle</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-md-end">
+            <div class="col-md-6 text-md-end text-white">
                 <div class="contact-info">
                     <div class="d-flex flex-wrap justify-content-md-end gap-3">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-phone-alt text-primary me-2"></i>
+                            <i class="fas fa-phone-alt me-2"></i>
                             <div>
-                                <small class="text-muted d-block">Téléphone</small>
+                                <small class="d-block">Téléphone</small>
                                 <strong>+237 675948524</strong>
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-envelope text-primary me-2"></i>
+                            <i class="fas fa-envelope me-2"></i>
                             <div>
-                                <small class="text-muted d-block">Email</small>
+                                <small class="d-block">Email</small>
                                 <strong>sicmisarl@gmail.com</strong>
                             </div>
                         </div>
