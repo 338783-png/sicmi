@@ -64,3 +64,23 @@ class ContactRequest(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+
+class SiteSetting(models.Model):
+    """Singleton-style model to store editable site-wide settings.
+
+    Admin can edit these values from a small frontend dashboard.
+    """
+    site_name = models.CharField(max_length=200, default='SICMI Sarl')
+    tagline = models.CharField(max_length=300, blank=True)
+    contact_email = models.EmailField(blank=True)
+    contact_phone = models.CharField(max_length=50, blank=True)
+    address = models.CharField(max_length=300, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Paramètres du site'
+        verbose_name_plural = 'Paramètres du site'
+
+    def __str__(self):
+        return 'Paramètres du site'

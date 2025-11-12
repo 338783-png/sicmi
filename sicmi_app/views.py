@@ -3,6 +3,10 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Service, Project, TeamMember
 from .forms import ContactForm
+from .forms import SiteSettingForm
+from .models import SiteSetting
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404
 
 
 
@@ -72,3 +76,25 @@ def contact(request):
         'form': form,
     }
     return render(request, 'contact.html', context)
+
+
+@staff_member_required
+def manage_dashboard(request):
+    """Simple admin dashboard landing page."""
+    return render(request, 'admin/dashboard.html')
+
+
+@staff_member_required
+def manage_site_settings(request):
+    # Ensure singleton: get or create the single SiteSetting row
+    setting, _ = SiteSetting.objects.get_or_create(id=1)
+    if request.method == 'POST':
+        form = SiteSettingForm(request.POST, instance=setting)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Paramètres du site mis à jour.')
+            return redirect('manage_dashboard')
+    else:
+        form = SiteSettingForm(instance=setting)
+
+    return render(request, 'admin/settings_form.html', {'form': form})

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Paramètres du site{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Paramètres du site</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+            <label class="form-label">Nom du site</label>
+            {{ form.site_name }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tagline</label>
+            {{ form.tagline }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email de contact</label>
+            {{ form.contact_email }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Téléphone</label>
+            {{ form.contact_phone }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Adresse</label>
+            {{ form.address }}
+        </div>
+
+        <button class="btn btn-primary" type="submit">Enregistrer</button>
+        <a href="{% url 'manage_dashboard' %}" class="btn btn-link">Annuler</a>
+    </form>
+</div>
+{% endblock %}
