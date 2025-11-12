@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Service, Project, TeamMember
+from .models import Service, Project, TeamMember, ContactRequest
 from .forms import ContactForm
-from .forms import SiteSettingForm
-from .models import SiteSetting
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import get_object_or_404
+
 
 
 
@@ -80,21 +78,19 @@ def contact(request):
 
 @staff_member_required
 def manage_dashboard(request):
-    """Simple admin dashboard landing page."""
-    return render(request, 'admin/dashboard.html')
+    """Frontend admin dashboard: show quick stats and recent contact requests."""
+    services_count = Service.objects.count()
+    projects_count = Project.objects.count()
+    team_count = TeamMember.objects.count()
+    contacts_count = ContactRequest.objects.count()
 
+    recent_contacts = ContactRequest.objects.all()[:8]
 
-@staff_member_required
-def manage_site_settings(request):
-    # Ensure singleton: get or create the single SiteSetting row
-    setting, _ = SiteSetting.objects.get_or_create(id=1)
-    if request.method == 'POST':
-        form = SiteSettingForm(request.POST, instance=setting)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Paramètres du site mis à jour.')
-            return redirect('manage_dashboard')
-    else:
-        form = SiteSettingForm(instance=setting)
-
-    return render(request, 'admin/settings_form.html', {'form': form})
+    context = {
+        'services_count': services_count,
+        'projects_count': projects_count,
+        'team_count': team_count,
+        'contacts_count': contacts_count,
+        'recent_contacts': recent_contacts,
+    }
+    return render(request, 'admin/dashboard.html', context)

@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Service, Project, TeamMember, ContactRequest
-from .models import SiteSetting
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -24,9 +23,3 @@ class ContactRequestAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'subject', 'created_at', 'is_processed']
     list_filter = ['is_processed', 'created_at']
     search_fields = ['name', 'email', 'subject', 'message']
-
-
-@admin.register(SiteSetting)
-class SiteSettingAdmin(admin.ModelAdmin):
-    list_display = ['site_name', 'contact_email', 'contact_phone', 'updated_at']
-    readonly_fields = ['updated_at']
