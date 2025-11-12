@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand d-lg-none" href="{% url 'home' %}">
-            <img src="{% static 'images/logo.png' %}" alt="SICMI" style="height: 30px; width: auto;">
+            <img src="{% static 'images/logo.svg' %}" alt="SICMI" style="height: 30px; width: auto;">
         </a>
         
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -77,17 +77,8 @@
                 </li>
             </ul>
             
-            <!-- Sélecteur de langue -->
-            <div class="navbar-nav">
-                {% include 'includes/language_switcher.html' %}
-            </div>
-            
-            <!-- Informations légales dans la navigation -->
-            <div class="navbar-text d-none d-lg-block ms-3">
-                <small class="text-light opacity-75">
-                    RCCM: RC/DLA/2020/B/2383 | NIU: M042014422700O
-                </small>
-            </div>
+        
+            <!-- Legal identifiers removed as requested -->
         </div>
     </div>
 </nav>
