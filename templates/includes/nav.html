@@ -7,8 +7,12 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-lg-none" href="{% url 'home' %}">
-            <img src="{% static 'images/logo.png' %}" alt="SICMI" style="height: 30px; width: auto;">
+        <a class="navbar-brand d-flex align-items-center me-4" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.svg' %}" alt="SICMI" style="height: 40px; width: auto;">
+            <div class="ms-2 d-none d-md-block">
+                <div class="fw-bold">SICMI Sarl</div>
+                <small class="text-white-50">Ingénierie & Maintenance Industrielle</small>
+            </div>
         </a>
         
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -75,13 +79,6 @@
                         <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
                     </a>
                 </li>
-                {% if request.user.is_authenticated and request.user.is_staff %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'manage_dashboard' %}">
-                        <i class="fas fa-tachometer-alt me-1"></i>Administration
-                    </a>
-                </li>
-                {% endif %}
             </ul>
             
         
