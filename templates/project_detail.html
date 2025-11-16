@@ -41,11 +41,27 @@
                 <div class="lead">{{ project.description|linebreaks }}</div>
             </div>
 
-            <!-- Les services ne sont plus associés aux projets -->
-            <div class="project-services mb-5">
-                <h4 class="mb-4">Informations</h4>
-                <p class="mb-0">Ce projet n'est pas associé à des services spécifiques.</p>
+            <!-- Galerie d'images -->
+            {% if project_images %}
+            <div class="project-gallery mb-5">
+                <h4 class="mb-4">Galerie du projet</h4>
+                <div class="row g-3">
+                    {% for image in project_images %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item">
+                            <img src="{{ image.image.url }}" 
+                                 alt="{{ image.caption|default:project.title }}" 
+                                 class="img-fluid rounded shadow-sm"
+                                 style="width: 100%; height: 250px; object-fit: cover;">
+                            {% if image.caption %}
+                            <p class="text-muted mt-2 small">{{ image.caption }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
         </div>
 
         <!-- Sidebar -->
@@ -57,7 +73,6 @@
                 <div class="card-body">
                     <p><strong>Client:</strong> {{ project.client }}</p>
                     <p><strong>Date de réalisation:</strong> {{ project.completion_date|date:"d/m/Y" }}</p>
-                    <!-- services removed -->
                 </div>
                 <div class="card-footer">
                     <a href="{% url 'contact' %}" class="btn btn-primary w-100">
@@ -67,53 +82,30 @@
             </div>
         </div>
     </div>
-
-    <!-- Galerie d'images -->
-    {% if project_images %}
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3 class="mb-4">Galerie du projet</h3>
-            <div class="row g-3">
-                {% for image in project_images %}
-                <div class="col-lg-4 col-md-6">
-                    <div class="gallery-item">
-                        <img src="{{ image.image.url }}" 
-                             alt="{{ image.caption|default:project.title }}" 
-                             class="img-fluid rounded shadow-sm"
-                             style="width: 100%; height: 250px; object-fit: cover;">
-                        {% if image.caption %}
-                        <p class="text-muted mt-2 small">{{ image.caption }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </div>
 
-<!-- Section Projets Similaires -->
+<!-- Section Autres Projets -->
+{% if other_projects %}
 <section class="py-5 bg-light">
     <div class="container">
-        <h3 class="text-center mb-5">Projets Similaires</h3>
+        <h3 class="text-center mb-5">Autres Projets</h3>
         <div class="row g-4">
-            {% for related_project in related_projects %}
+            {% for other_project in other_projects %}
             <div class="col-lg-4 col-md-6">
                 <div class="card project-card h-100">
-                    {% if related_project.main_image %}
-                    <div class="project-background" data-background="{{ related_project.main_image.url }}">
+                    {% if other_project.main_image %}
+                    <div class="project-background" data-background="{{ other_project.main_image.url }}">
                         <div class="background-content">
-                            <h5 class="card-title">{{ related_project.title }}</h5>
-                            <p class="card-text">{{ related_project.client }}</p>
-                            <a href="{% url 'project_detail' related_project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
+                            <h5 class="card-title">{{ other_project.title }}</h5>
+                            <p class="card-text">{{ other_project.client }}</p>
+                            <a href="{% url 'project_detail' other_project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
                         </div>
                     </div>
                     {% else %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ related_project.title }}</h5>
-                        <p class="card-text">{{ related_project.client }}</p>
-                        <a href="{% url 'project_detail' related_project.id %}" class="btn btn-primary btn-sm">Voir le projet</a>
+                        <h5 class="card-title">{{ other_project.title }}</h5>
+                        <p class="card-text">{{ other_project.client }}</p>
+                        <a href="{% url 'project_detail' other_project.id %}" class="btn btn-primary btn-sm">Voir le projet</a>
                     </div>
                     {% endif %}
                 </div>
@@ -122,6 +114,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <!-- CTA Section -->
 <section class="py-5 bg-primary text-white">

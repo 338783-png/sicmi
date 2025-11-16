@@ -75,19 +75,16 @@ def services(request):
 def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
     service_images = service.images.all()
-    # Projects are no longer associated to services; show recent projects instead
-    related_projects = Project.objects.all()[:3]
 
     context = {
         'service': service,
         'service_images': service_images,
-        'related_projects': related_projects,
     }
     return render(request, 'services_detail.html', context)
 
 def projects(request):
     try:
-        projects_list = Project.objects.all().prefetch_related('services', 'images')
+        projects_list = Project.objects.all().prefetch_related('images')
         paginator = Paginator(projects_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -104,9 +101,13 @@ def project_detail(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     project_images = project.images.all()
     
+    # Autres projets pour la section similaire
+    other_projects = Project.objects.exclude(id=project.id)[:3]
+    
     context = {
         'project': project,
         'project_images': project_images,
+        'other_projects': other_projects,
     }
     return render(request, 'project_detail.html', context)
 

@@ -100,7 +100,6 @@ class QHSEPolicy(models.Model):
     
 class RealisationCategory(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
     order = models.IntegerField(default=0)
     
     class Meta:

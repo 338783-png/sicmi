@@ -1,39 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Nos Réalisations - SICMI Sarl{% endblock %}
+{% block title %}Nos Projets - SICMI Sarl{% endblock %}
 
 {% block breadcrumb %}
 {% if request.path == '/projets/' %}
-    <li class="breadcrumb-item active" aria-current="page">Réalisations</li>
+    <li class="breadcrumb-item active" aria-current="page">Projets</li>
 {% endif %}
 {% endblock %}
 
 {% block content %}
 <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-primary mb-4">Nos Réalisations</h1>
+        <h1 class="display-4 fw-bold text-primary mb-4">Nos Projets</h1>
         <p class="lead">Découvrez nos projets récents et notre expertise en action</p>
-    </div>
-
-    <!-- Filtres par catégorie -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="d-flex flex-wrap gap-2 justify-content-center">
-                <button class="btn btn-outline-primary active filter-btn" data-filter="all">Tous les projets</button>
-                <button class="btn btn-outline-primary filter-btn" data-filter="sonara">SONARA</button>
-                <button class="btn btn-outline-primary filter-btn" data-filter="addax">ADDAX</button>
-                <button class="btn btn-outline-primary filter-btn" data-filter="construction">Construction</button>
-                <button class="btn btn-outline-primary filter-btn" data-filter="maintenance">Maintenance</button>
-            </div>
-        </div>
     </div>
 
     <!-- Liste des projets -->
     <div class="row g-4" id="projects-container">
         {% for project in page_obj %}
-           <div class="col-lg-4 col-md-6 project-item" 
-               data-categories="{{ project.client|lower }}">
+        <div class="col-lg-4 col-md-6 project-item">
             <div class="card h-100 project-card">
                 {% if project.main_image %}
                 <div class="project-background" data-background="{{ project.main_image.url }}" style="height: 250px;">
@@ -56,8 +42,6 @@
                     <p class="card-text"><strong>Date:</strong> {{ project.completion_date|date:"F Y" }}</p>
                     <p class="card-text">{{ project.description|truncatewords:30 }}</p>
                     
-                    <!-- Les services ne sont plus affichés pour chaque projet -->
-                    
                     <div class="mt-3">
                         <a href="{% url 'project_detail' project.id %}" class="btn btn-primary btn-sm">Voir les détails</a>
                     </div>
@@ -70,7 +54,7 @@
                 <div class="card-body py-5">
                     <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
                     <h4 class="text-muted">Aucun projet disponible</h4>
-                    <p class="text-muted">Nos réalisations seront bientôt disponibles.</p>
+                    <p class="text-muted">Nos projets seront bientôt disponibles.</p>
                 </div>
             </div>
         </div>
@@ -172,39 +156,6 @@
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Filtrage des projets
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Mettre à jour les boutons actifs
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filtrer les projets
-            projectItems.forEach(item => {
-                const categories = item.getAttribute('data-categories').split(' ');
-                
-                if (filter === 'all' || categories.includes(filter)) {
-                    item.style.display = 'block';
-                    // Animation d'apparition
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                        item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    }, 100);
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
     // Animation au scroll
     const observerOptions = {
         threshold: 0.1,

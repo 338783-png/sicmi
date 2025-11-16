@@ -82,38 +82,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Projets associés -->
-    {% if related_projects %}
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3 class="mb-4">Projets associés</h3>
-            <div class="row g-4">
-                {% for project in related_projects %}
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card h-100">
-                        {% if project.main_image %}
-                        <div class="project-background" data-background="{{ project.main_image.url }}">
-                            <div class="background-content">
-                                <h5 class="card-title">{{ project.title }}</h5>
-                                <p class="card-text">{{ project.client }}</p>
-                                <a href="{% url 'project_detail' project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
-                            </div>
-                        </div>
-                        {% else %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ project.title }}</h5>
-                            <p class="card-text">{{ project.client }}</p>
-                            <a href="{% url 'project_detail' project.id %}" class="btn btn-primary btn-sm">Voir le projet</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </div>
 
 <!-- CTA Section -->
