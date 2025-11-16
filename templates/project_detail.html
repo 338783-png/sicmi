@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} - SICMI Sarl{% endblock %}
+
+{% block content %}
+<!-- Hero du projet avec background -->
+<div class="project-hero" style="
+    {% if project.main_image %}
+    background-image: url('{{ project.main_image.url }}');
+    {% endif %}
+    height: 60vh; 
+    background-size: cover;
+    background-position: center;
+    position: relative;">
+    <div class="project-hero-overlay" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, hsla(190, 5%, 24%, 0.464) 0%, rgba(60, 70, 82, 0.8) 100%);">
+    </div>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center text-white">
+                <h1 class="display-4 fw-bold">{{ project.title }}</h1>
+                <p class="lead">Client: {{ project.client }}</p>
+                <p class="mb-0">Date: {{ project.completion_date|date:"F Y" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Contenu principal -->
+        <div class="col-lg-8">
+            <div class="project-description mb-5">
+                <h3 class="mb-4">Description du projet</h3>
+                <div class="lead">{{ project.description|linebreaks }}</div>
+            </div>
+
+            <!-- Services utilisés -->
+            {% if project.services.all %}
+            <div class="project-services mb-5">
+                <h4 class="mb-4">Services utilisés</h4>
+                <div class="row g-3">
+                    {% for service in project.services.all %}
+                    <div class="col-md-6">
+                        <div class="card service-card h-100">
+                            {% if service.main_image %}
+                            <div class="service-background" data-background="{{ service.main_image.url }}" style="min-height: 150px;">
+                                <div class="background-content">
+                                    <h6 class="mb-2">{{ service.name }}</h6>
+                                    <a href="{% url 'service_detail' service.id %}" class="btn btn-light btn-sm">Voir le service</a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="card-body text-center">
+                                <h6 class="card-title">{{ service.name }}</h6>
+                                <a href="{% url 'service_detail' service.id %}" class="btn btn-primary btn-sm">Voir le service</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm sticky-top" style="top: 100px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Détails du projet</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Client:</strong> {{ project.client }}</p>
+                    <p><strong>Date de réalisation:</strong> {{ project.completion_date|date:"d/m/Y" }}</p>
+                    {% if project.services.all %}
+                    <p><strong>Services:</strong></p>
+                    <ul class="list-unstyled">
+                        {% for service in project.services.all %}
+                        <li>• {{ service.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'contact' %}" class="btn btn-primary w-100">
+                        <i class="fas fa-paper-plane me-2"></i>Demander un devis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Galerie d'images -->
+    {% if project_images %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Galerie du projet</h3>
+            <div class="row g-3">
+                {% for image in project_images %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="{{ image.image.url }}" 
+                             alt="{{ image.caption|default:project.title }}" 
+                             class="img-fluid rounded shadow-sm"
+                             style="width: 100%; height: 250px; object-fit: cover;">
+                        {% if image.caption %}
+                        <p class="text-muted mt-2 small">{{ image.caption }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Section Projets Similaires -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h3 class="text-center mb-5">Projets Similaires</h3>
+        <div class="row g-4">
+            {% for related_project in related_projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card project-card h-100">
+                    {% if related_project.main_image %}
+                    <div class="project-background" data-background="{{ related_project.main_image.url }}">
+                        <div class="background-content">
+                            <h5 class="card-title">{{ related_project.title }}</h5>
+                            <p class="card-text">{{ related_project.client }}</p>
+                            <a href="{% url 'project_detail' related_project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ related_project.title }}</h5>
+                        <p class="card-text">{{ related_project.client }}</p>
+                        <a href="{% url 'project_detail' related_project.id %}" class="btn btn-primary btn-sm">Voir le projet</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Vous avez un projet similaire ?</h3>
+                <p class="mb-0">Contactez-nous pour discuter de vos besoins et obtenir un devis personnalisé.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Démarrer un projet</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

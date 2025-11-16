@@ -1,63 +1,117 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
 
-{% block title %}SICMI Sarl - {% trans "Société d'Ingénierie de Construction et de Maintenance Industrielle" %}{% endblock %}
+{% block title %}Accueil - SICMI Sarl{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
+<!-- Hero Section avec Background Dynamique -->
 <section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center min-vh-80">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold text-primary mb-4">SICMI Sarl</h1>
-                <h2 class="h3 mb-4">{% trans "Société d'Ingénierie de Construction et de Maintenance Industrielle" %}</h2>
-                <p class="lead mb-4">{% trans "Votre partenaire de confiance pour tous vos projets de construction industrielle et de maintenance au Cameroun." %}</p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="{% url 'services' %}" class="btn btn-primary btn-lg">{% trans "Nos Services" %}</a>
-                    <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg">{% trans "Nous Contacter" %}</a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <img src="{% static 'images/hero-image.jpg' %}" alt="SICMI Sarl" class="img-fluid rounded shadow">
-            </div>
-        </div>
-    </div>
-</section>
+    <div class="hero-slider">
+        {% for image in hero_images %}
+        <div class="hero-slide" data-bg="{{ image.image.url }}"></div>
+        {% empty %}
+        <!-- Images statiques de fallback (utilisent data-bg pour éviter de casser le linter) -->
+        <div class="hero-slide" data-bg="{% static 'images/hero1.png' %}"></div>
+        <div class="hero-slide" data-bg="{% static 'images/hero2.png' %}"></div>
+        <div class="hero-slide" data-bg="{% static 'images/hero3.png' %}"></div>
+        <div class="hero-slide" data-bg="{% static 'images/hero4.png' %}"></div>
+        {% endfor %}
 
-<!-- Valeurs Section -->
-<section class="py-5 bg-light">
+        <!-- Controls -->
+        <button class="hero-control hero-prev" aria-label="Précédent">‹</button>
+        <button class="hero-control hero-next" aria-label="Suivant">›</button>
+        <!-- Indicators container (filled by JS) -->
+        <div class="hero-indicators" aria-hidden="false"></div>
+    </div>
+
+    <script>
+    // Script pour faire défiler automatiquement les slides du hero
+    (function(){
+        document.addEventListener('DOMContentLoaded', function(){
+            const slides = Array.from(document.querySelectorAll('.hero-slide'));
+            let currentSlide = 0;
+            const intervalMs = 5000;
+            let timer = null;
+
+            // Apply data-bg to background-image CSS
+            slides.forEach((slide) => {
+                const bg = slide.getAttribute('data-bg');
+                if (bg) {
+                    slide.style.backgroundImage = `url(${bg})`;
+                }
+            });
+
+            const totalSlides = slides.length;
+            if (totalSlides === 0) return;
+
+            // create indicators
+            const indicatorsContainer = document.querySelector('.hero-indicators');
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = 'hero-dot';
+                dot.setAttribute('aria-label', `Aller à la diapositive ${idx+1}`);
+                dot.addEventListener('click', () => goToSlide(idx));
+                indicatorsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(document.querySelectorAll('.hero-dot'));
+
+            function showSlide(idx) {
+                slides.forEach((s, i) => {
+                    if (i === idx) {
+                        s.classList.add('active');
+                        s.style.opacity = '1';
+                    } else {
+                        s.classList.remove('active');
+                        s.style.opacity = '0';
+                    }
+                });
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                currentSlide = idx;
+            }
+
+            function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+            function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+            function goToSlide(idx) {
+                showSlide(idx);
+                resetTimer();
+            }
+
+            // Controls
+            const btnNext = document.querySelector('.hero-next');
+            const btnPrev = document.querySelector('.hero-prev');
+            if (btnNext) btnNext.addEventListener('click', nextSlide);
+            if (btnPrev) btnPrev.addEventListener('click', prevSlide);
+
+            function resetTimer() {
+                if (timer) clearInterval(timer);
+                if (totalSlides > 1) timer = setInterval(nextSlide, intervalMs);
+            }
+
+            // initialize
+            showSlide(0);
+            resetTimer();
+        });
+    })();
+    </script>
+    
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-title">{% trans "Nos Valeurs" %}</h2>
-            <p class="lead">{% trans "L'excellence au service de votre réussite" %}</p>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-medal fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Excellence Opérationnelle" %}</h5>
-                        <p class="card-text">{% trans "Nous nous engageons à fournir des services de qualité supérieure dans tous nos projets." %}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Innovation" %}</h5>
-                        <p class="card-text">{% trans "Nous adoptons les dernières technologies et méthodes pour optimiser vos projets." %}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Sécurité" %}</h5>
-                        <p class="card-text">{% trans "La sécurité de nos équipes et de vos installations est notre priorité absolue." %}</p>
-                    </div>
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold text-white mb-4 fade-in">
+                    SICMI Sarl - Expertise Industrielle
+                </h1>
+                <p class="lead text-white mb-4 fade-in" style="animation-delay: 0.2s;">
+                    Votre partenaire de confiance pour la construction, la maintenance industrielle 
+                    et l'accompagnement technique depuis 2018.
+                </p>
+                <div class="d-flex flex-wrap gap-3 fade-in" style="animation-delay: 0.4s;">
+                    <a href="{% url 'services' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-cogs me-2"></i>Nos Services
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Nous Contacter
+                    </a>
                 </div>
             </div>
         </div>
@@ -68,58 +122,37 @@
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">{% trans "Nos Domaines d'Expertise" %}</h2>
-            <p class="lead">{% trans "Découvrez nos services spécialisés" %}</p>
+            <h2 class="section-title">Nos Services</h2>
+            <p class="lead">Des solutions complètes pour vos projets industriels</p>
         </div>
+        
         <div class="row g-4">
             {% for service in services %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 service-card">
-                    {% if service.image %}
-                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}">
-                    {% endif %}
-                    <div class="card-body">
+            <div class="col-lg-4 col-md-6 fade-in">
+                <div class="card service-card h-100">
+                    {% if service.main_image %}
+                    <div class="service-background" data-background="{{ service.main_image.url }}">
+                        <div class="background-content">
+                            <h5 class="card-title">{{ service.name }}</h5>
+                            <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+                            <a href="{% url 'service_detail' service.id %}" class="btn btn-light btn-sm">En savoir plus</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="card-body text-center">
+                        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
                         <h5 class="card-title">{{ service.name }}</h5>
                         <p class="card-text">{{ service.description|truncatewords:20 }}</p>
-                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
+                        <a href="{% url 'service_detail' service.id %}" class="btn btn-primary">En savoir plus</a>
                     </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 service-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-industry fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Constructions Neuves" %}</h5>
-                        <p class="card-text">{% trans "Structures métalliques, charpentes, tuyauterie industrielle et installation d'équipements." %}</p>
-                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 service-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-tools fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Maintenance Industrielle" %}</h5>
-                        <p class="card-text">{% trans "Maintenance préventive et curative, dépannage et remplacement de pièces." %}</p>
-                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 service-card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-building fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">{% trans "Travaux de Façade" %}</h5>
-                        <p class="card-text">{% trans "Pose de revêtements muraux, peinture et décoration numérique." %}</p>
-                        <a href="{% url 'services' %}" class="btn btn-outline-primary">{% trans "En savoir plus" %}</a>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
         </div>
+        
         <div class="text-center mt-5">
-            <a href="{% url 'services' %}" class="btn btn-primary">{% trans "Voir tous nos services" %}</a>
+            <a href="{% url 'services' %}" class="btn btn-primary btn-lg">Voir tous nos services</a>
         </div>
     </div>
 </section>
@@ -128,54 +161,830 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">{% trans "Nos Réalisations" %}</h2>
-            <p class="lead">{% trans "Découvrez quelques-uns de nos projets récents" %}</p>
+            <h2 class="section-title">Nos Réalisations</h2>
+            <p class="lead">Découvrez nos projets récents</p>
         </div>
+        
         <div class="row g-4">
             {% for project in recent_projects %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 project-card">
-                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+            <div class="col-lg-4 col-md-6 fade-in">
+                <div class="card project-card h-100">
+                    {% if project.main_image %}
+                    <div class="project-background" data-background="{{ project.main_image.url }}">
+                        <div class="background-content">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text"><strong>Client:</strong> {{ project.client }}</p>
+                            <p class="card-text">{{ project.description|truncatewords:15 }}</p>
+                            <a href="{% url 'project_detail' project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="card-body">
                         <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text"><strong>{% trans "Client" %}:</strong> {{ project.client }}</p>
-                        <p class="card-text">{{ project.description|truncatewords:15 }}</p>
+                        <p class="card-text"><strong>Client:</strong> {{ project.client }}</p>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                        <a href="{% url 'project_detail' project.id %}" class="btn btn-primary">Voir le projet</a>
                     </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 project-card">
-                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                        <i class="fas fa-industry fa-3x text-primary"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{% trans "Projet SONARA" %}</h5>
-                        <p class="card-text"><strong>{% trans "Client" %}:</strong> SONARA-LIMBE</p>
-                        <p class="card-text">{% trans "Conception et installation de structures métalliques complexes." %}</p>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
         </div>
+        
         <div class="text-center mt-5">
-            <a href="{% url 'projects' %}" class="btn btn-primary">{% trans "Voir tous nos projets" %}</a>
+            <a href="{% url 'projects' %}" class="btn btn-outline-primary btn-lg">Voir tous nos projets</a>
         </div>
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-5 bg-primary text-white">
+<!-- Section Témoignages Clients -->
+<section class="py-5 bg-white">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <h3 class="mb-3">{% trans "Prêt à démarrer votre projet ?" %}</h3>
-                <p class="mb-0">{% trans "Contactez-nous dès aujourd'hui pour une consultation gratuite et un devis personnalisé." %}</p>
+        <div class="text-center mb-5">
+            <h2 class="section-title">Ce que disent nos clients</h2>
+            <p class="lead">Découvrez les retours d'expérience de nos partenaires</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 fade-in">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <i class="fas fa-user-circle fa-3x text-primary"></i>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-3">
+                            "SICMI a réalisé un excellent travail sur notre ligne de production. 
+                            Le professionnalisme et la réactivité de leur équipe ont dépassé nos attentes."
+                        </p>
+                        <h6 class="testimonial-author">M. Diallo</h6>
+                        <p class="testimonial-company text-muted">Directeur d'Usine</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 text-lg-end">
-                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">{% trans "Nous Contacter" %}</a>
+            
+            <div class="col-lg-4 col-md-6 fade-in" style="animation-delay: 0.2s;">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <i class="fas fa-user-circle fa-3x text-primary"></i>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-3">
+                            "Un partenaire fiable pour tous nos projets industriels. 
+                            Leur expertise en maintenance préventive nous a permis de réduire nos temps d'arrêt de 40%."
+                        </p>
+                        <h6 class="testimonial-author">Mme. Ngo</h6>
+                        <p class="testimonial-company text-muted">Responsable Maintenance</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 fade-in" style="animation-delay: 0.4s;">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <i class="fas fa-user-circle fa-3x text-primary"></i>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-3">
+                            "Service impeccable et équipe compétente. Le respect des délais et la qualité 
+                            des interventions font de SICMI notre partenaire privilégié."
+                        </p>
+                        <h6 class="testimonial-author">M. Tchoupo</h6>
+                        <p class="testimonial-company text-muted">Chef de Projet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-comment me-2"></i>Laissez votre avis
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Section Chiffres -->
+<section class="py-5 bg-primary text-white counter-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4 fade-in">
+                <h2 class="display-4 fw-bold counter" data-target="50">0</h2>
+                <p class="lead">Projets Réalisés</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.2s;">
+                <h2 class="display-4 fw-bold counter" data-target="15">0</h2>
+                <p class="lead">Clients Satisfaits</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.4s;">
+                <h2 class="display-4 fw-bold counter" data-target="6">0</h2>
+                <p class="lead">Années d'Expérience</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.6s;">
+                <h2 class="display-4 fw-bold counter" data-target="24">0</h2>
+                <p class="lead">Spécialistes</p>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Section QHSE -->
+{% if qhse_policy %}
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 fade-in">
+                <h2 class="section-title text-start">Politique QHSE</h2>
+                <p class="lead">{{ qhse_policy.title }}</p>
+                <p>{{ qhse_policy.content|truncatewords:50 }}</p>
+                <a href="{% url 'qhse_policy' %}" class="btn btn-primary">En savoir plus</a>
+            </div>
+            <div class="col-lg-6 fade-in" style="animation-delay: 0.3s;">
+                <div class="qhse-organigramme">
+                    <h4 class="text-white mb-4">Notre Engagement</h4>
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-3">
+                            <div class="qhse-node">
+                                <i class="fas fa-shield-alt fa-2x mb-2"></i>
+                                <h6>Qualité</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="qhse-node">
+                                <i class="fas fa-user-shield fa-2x mb-2"></i>
+                                <h6>Hygiène & Sécurité</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="qhse-node">
+                                <i class="fas fa-leaf fa-2x mb-2"></i>
+                                <h6>Environnement</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Prêt à démarrer votre projet ?</h3>
+                <p class="mb-0">Contactez-nous dès aujourd'hui pour une consultation gratuite.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i>Nous Contacter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chatbot Widget -->
+<div id="chatbot-widget" class="chatbot-widget">
+    <div id="chatbot-toggle" class="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h6 class="mb-0">Assistant SICMI</h6>
+            <button id="chatbot-close" class="btn-close btn-close-white"></button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Bonjour ! Je suis l'assistant virtuel de SICMI. Comment puis-je vous aider aujourd'hui ?</p>
+                    <small>Il y a quelques secondes</small>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Tapez votre message..." maxlength="500">
+            <button id="chatbot-send" class="btn btn-primary btn-sm">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-quick-actions">
+            <button class="quick-action-btn" data-question="Quels sont vos services ?">Services</button>
+            <button class="quick-action-btn" data-question="Comment vous contacter ?">Contact</button>
+            <button class="quick-action-btn" data-question="Où êtes-vous situé ?">Localisation</button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+/* Carousel controls */
+.hero-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+}
+.hero-prev { left: 20px; }
+.hero-next { right: 20px; }
+.hero-control:hover { background: rgba(0,0,0,0.7); }
+
+.hero-indicators {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 24px;
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+}
+.hero-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+}
+.hero-dot.active { background: rgba(255,255,255,0.95); }
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Overlay pour meilleure lisibilité */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Styles pour les animations fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour les cartes de services */
+.service-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-background {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.service-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.background-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    color: white;
+}
+
+/* Styles pour les cartes de projets */
+.project-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.project-background {
+    position: relative;
+    height: 250px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.project-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Styles pour les témoignages */
+.testimonial-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background: #fff;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial-avatar {
+    color: #007bff;
+}
+
+.testimonial-rating {
+    font-size: 1.2rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    line-height: 1.6;
+    color: #555;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0;
+}
+
+.testimonial-company {
+    font-size: 0.9rem;
+}
+
+/* Styles pour la section QHSE */
+.qhse-organigramme {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.qhse-node {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.qhse-node:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Styles pour les compteurs */
+.counter-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+}
+
+/* Styles pour le Chatbot */
+.chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); }
+    50% { box-shadow: 0 4px 20px rgba(0, 123, 255, 0.7); }
+    100% { box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); }
+}
+
+.chatbot-container {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatbot-container.open {
+    display: flex;
+}
+
+.chatbot-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    animation: messageSlide 0.3s ease;
+}
+
+@keyframes messageSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-message .message-avatar {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.user-message .message-content {
+    background: #007bff;
+    color: white;
+    border-radius: 15px 15px 0 15px;
+}
+
+.user-message .message-avatar {
+    margin-left: 10px;
+    color: #28a745;
+}
+
+.message-avatar {
+    font-size: 1.2rem;
+}
+
+.message-content {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 80%;
+}
+
+.message-content p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.message-content small {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.chatbot-input {
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-input input {
+    flex: 1;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    padding: 10px 15px;
+    outline: none;
+}
+
+.chatbot-input input:focus {
+    border-color: #007bff;
+}
+
+.chatbot-quick-actions {
+    padding: 10px 15px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    border-top: 1px solid #dee2e6;
+}
+
+.quick-action-btn {
+    background: #e9ecef;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.quick-action-btn:hover {
+    background: #007bff;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+        min-height: 500px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .chatbot-container {
+        width: 300px;
+        height: 400px;
+        right: -50px;
+    }
+    
+    .chatbot-widget {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+</style>
+
+<script>
+// Animation des compteurs
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            
+            const inc = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCount();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        observer.observe(counter);
+    });
+});
+
+// Appliquer les images de background
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.service-background[data-background]').forEach(function(el) {
+        var url = el.getAttribute('data-background');
+        if(url) { 
+            el.style.backgroundImage = 'url(' + url + ')'; 
+        }
+    });
+    
+    document.querySelectorAll('.project-background[data-background]').forEach(function(el) {
+        var url = el.getAttribute('data-background');
+        if(url) { 
+            el.style.backgroundImage = 'url(' + url + ')'; 
+        }
+    });
+});
+
+// Chatbot functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+
+    // Bot responses
+    const botResponses = {
+        'salut': 'Bonjour ! Comment puis-je vous aider aujourd\'hui ?',
+        'bonjour': 'Bonjour ! Je suis ravi de vous aider. Que souhaitez-vous savoir sur SICMI ?',
+        'services': 'Nous proposons : Construction industrielle, Maintenance, Installation d\'équipements, Conseil technique, et bien plus. Souhaitez-vous plus de détails sur un service spécifique ?',
+        'contact': 'Vous pouvez nous contacter au +237 675948524, par email à sicmisarl@gmail.com, ou via notre formulaire de contact. Nous sommes à Bonaberi, Douala.',
+        'localisation': 'Nous sommes situés à Bonaberi, Douala, Cameroun. Notre zone d\'intervention couvre toute la région du Littoral et au-delà.',
+        'projets': 'Nous avons réalisé plus de 50 projets pour 15 clients satisfaits. Découvrez nos réalisations dans la section "Projets" de notre site.',
+        'qhse': 'Nous avons une politique QHSE stricte qui couvre la Qualité, l\'Hygiène, la Sécurité et l\'Environnement. La satisfaction client et la sécurité sont nos priorités.',
+        'default': 'Je comprends que vous souhaitez en savoir plus sur {{ question }}. Pour une réponse précise, je vous recommande de nous contacter directement. Nos experts se feront un plaisir de vous aider !'
+    };
+
+    // Toggle chatbot
+    chatbotToggle.addEventListener('click', function() {
+        chatbotContainer.classList.toggle('open');
+    });
+
+    chatbotClose.addEventListener('click', function() {
+        chatbotContainer.classList.remove('open');
+    });
+
+    // Send message function
+    function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (message) {
+            addMessage(message, 'user');
+            chatbotInput.value = '';
+            
+            // Bot response with delay
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+    }
+
+    // Quick actions
+    quickActionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const question = this.getAttribute('data-question');
+            chatbotInput.value = question;
+            sendMessage();
+        });
+    });
+
+    // Send on button click
+    chatbotSend.addEventListener('click', sendMessage);
+
+    // Send on Enter key
+    chatbotInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Add message to chat
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+        
+        const content = document.createElement('div');
+        content.className = 'message-content';
+        
+        const messageText = document.createElement('p');
+        messageText.textContent = text;
+        
+        const time = document.createElement('small');
+        time.textContent = 'À l\'instant';
+        
+        content.appendChild(messageText);
+        content.appendChild(time);
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(content);
+        
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Get bot response
+    function getBotResponse(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        for (const [key, response] of Object.entries(botResponses)) {
+            if (lowerMessage.includes(key)) {
+                return response;
+            }
+        }
+        
+        return botResponses['default'].replace('{{ question }}', message);
+    }
+});
+</script>
 {% endblock %}

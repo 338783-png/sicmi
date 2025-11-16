@@ -61,7 +61,7 @@
 
     <!-- Informations de contact -->
     <div class="row mt-5">
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-4 text-center mb-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-4 text-center mb-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <i class="fas fa-phone fa-3x text-primary mb-3"></i>
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-4 text-center mb-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
@@ -89,5 +89,210 @@
             </div>
         </div>
     </div>
+
+    <!-- Section Carte -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-body p-0">
+                    <div class="map-container" style="height: 400px; border-radius: 8px; overflow: hidden;">
+                        <!-- Carte Google Maps intégrée -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.949034717648!2d9.64825877501193!3d4.052223395971253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061128d6e3b7a3f%3A0x5a6e9a1c6e9b3a1f!2sBonab%C3%A9ri%2C%20Douala%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1690000000000!5m2!1sfr!2sfr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="p-3 bg-light text-center">
+                        <small class="text-muted">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                            SICMI Sarl - Zone Industrielle, Bonaberi, Douala, Cameroun
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <div class="card border-0 bg-light">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Horaires d'ouverture</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Lundi - Vendredi:</strong>
+                        </div>
+                        <div class="col-6">
+                            08:00 - 18:00
+                        </div>
+                        <div class="col-6 mt-2">
+                            <strong>Samedi:</strong>
+                        </div>
+                        <div class="col-6 mt-2">
+                            09:00 - 13:00
+                        </div>
+                        <div class="col-6 mt-2">
+                            <strong>Dimanche:</strong>
+                        </div>
+                        <div class="col-6 mt-2">
+                            Fermé
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-0 bg-light">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Zone d'intervention</h4>
+                    <p class="mb-3">Nous intervenons dans toute la région du Littoral et au-delà :</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success me-2"></i>Douala et périphérie</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Zone industrielle de Bonaberi</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Région du Littoral</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Projets nationaux</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+.map-container {
+    position: relative;
+}
+
+.map-container iframe {
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+}
+
+.map-container:hover iframe {
+    filter: grayscale(0%);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .map-container {
+        height: 300px !important;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<script>
+// Animation pour les cartes d'information
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+    
+    // Animation pour la carte
+    const mapCard = document.querySelector('.map-container').parentElement.parentElement;
+    mapCard.style.opacity = '0';
+    
+    setTimeout(() => {
+        mapCard.style.transition = 'opacity 0.8s ease';
+        mapCard.style.opacity = '1';
+    }, 600);
+});
+
+// Amélioration de l'expérience utilisateur pour le formulaire
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const inputs = form.querySelectorAll('input, textarea, select');
+    
+    inputs.forEach(input => {
+        // Ajouter une classe quand le champ est rempli
+        input.addEventListener('blur', function() {
+            if (this.value.trim() !== '') {
+                this.classList.add('filled');
+            } else {
+                this.classList.remove('filled');
+            }
+        });
+        
+        // Validation en temps réel pour l'email
+        if (input.type === 'email') {
+            input.addEventListener('blur', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (this.value.trim() !== '' && !emailRegex.test(this.value)) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                }
+            });
+        }
+    });
+});
+</script>
 {% endblock %}

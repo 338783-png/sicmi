@@ -22,7 +22,12 @@
                         <i class="fas fa-home me-1"></i>{% trans "Accueil" %}
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
+                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                    </a>
+                </li>
+                
                 <!-- Menu déroulant Services -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
@@ -63,40 +68,64 @@
                         </li>
                     </ul>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/projets/' %}active{% endif %}" href="{% url 'projects' %}">
                         <i class="fas fa-project-diagram me-1"></i>{% trans "Réalisations" %}
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
-                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                <!-- Menu déroulant QHSE & RSE -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if 'qhse_policy' in request.path or 'rse_engagement' in request.path %}active{% endif %}" 
+                       href="#" id="qhseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shield-alt me-1"></i>QHSE & RSE
                     </a>
+                    <ul class="dropdown-menu" aria-labelledby="qhseDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}">
+                                <i class="fas fa-file-contract me-2"></i>Politique QHSE
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'rse_engagement' %}">
+                                <i class="fas fa-leaf me-2"></i>Engagement RSE
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#certifications">
+                                <i class="fas fa-certificate me-2"></i>Nos Certifications
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#objectifs">
+                                <i class="fas fa-bullseye me-2"></i>Objectifs Stratégiques
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-
+                
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
                         <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
                     </a>
                 </li>
             </ul>
-            
         
-            <!-- Legal identifiers removed as requested -->
         </div>
     </div>
 </nav>
 
-<!-- Breadcrumb -->
+<!-- Breadcrumb amélioré -->
 <div class="bg-light border-bottom">
     <div class="container">
-        <nav aria-label="breadcrumb" class="py-2">
+        <nav aria-label="breadcrumb" class="py-3">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="{% url 'home' %}" class="text-decoration-none">
-                        <i class="fas fa-home"></i>
+                    <a href="{% url 'home' %}" class="text-decoration-none d-flex align-items-center">
+                        <i class="fas fa-home me-1"></i>
+                        <span>{% trans "Accueil" %}</span>
                     </a>
                 </li>
                 {% block breadcrumb %}
@@ -113,9 +142,287 @@
                     <li class="breadcrumb-item active" aria-current="page">{% trans "Réalisations" %}</li>
                 {% elif request.path == '/contact/' %}
                     <li class="breadcrumb-item active" aria-current="page">{% trans "Contact" %}</li>
+                {% elif request.path == '/politique-qhse/' %}
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'about' %}" class="text-decoration-none">{% trans "À Propos" %}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Politique QHSE</li>
+                {% elif request.path == '/engagement-rse/' %}
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'about' %}" class="text-decoration-none">{% trans "À Propos" %}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Engagement RSE</li>
                 {% endif %}
                 {% endblock %}
             </ol>
         </nav>
     </div>
 </div>
+
+<!-- Navigation mobile secondaire (pour les écrans petits) -->
+<div class="d-lg-none bg-primary text-white">
+    <div class="container">
+        <div class="row g-0 text-center">
+            <div class="col-4">
+                <a href="tel:+237675948524" class="text-white d-block py-2">
+                    <i class="fas fa-phone fa-sm d-block mb-1"></i>
+                    <small>Appeler</small>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="https://wa.me/237675948524" class="text-white d-block py-2">
+                    <i class="fab fa-whatsapp fa-sm d-block mb-1"></i>
+                    <small>WhatsApp</small>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="mailto:sicmisarl@gmail.com" class="text-white d-block py-2">
+                    <i class="fas fa-envelope fa-sm d-block mb-1"></i>
+                    <small>Email</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Animation améliorée pour la navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation des dropdowns
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('show.bs.dropdown', function() {
+            const menu = this.querySelector('.dropdown-menu');
+            menu.style.opacity = '0';
+            menu.style.transform = 'translateY(-10px) scale(0.95)';
+        });
+        
+        dropdown.addEventListener('shown.bs.dropdown', function() {
+            const menu = this.querySelector('.dropdown-menu');
+            menu.style.opacity = '1';
+            menu.style.transform = 'translateY(0) scale(1)';
+            menu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+    });
+
+    // Navigation active avec highlight
+    function updateActiveNav() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            
+            // Gestion des liens exacts
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+            
+            // Gestion des liens parents pour les dropdowns
+            if (currentPath.includes('/services/') && link.getAttribute('href') === '/services/') {
+                link.classList.add('active');
+            }
+            
+            if ((currentPath.includes('/politique-qhse/') || currentPath.includes('/engagement-rse/')) && 
+                link.classList.contains('dropdown-toggle') && link.getAttribute('href') === '#') {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    updateActiveNav();
+
+    // Ajout d'un effet de pulse sur le logo au chargement
+    const logo = document.querySelector('.navbar-brand img');
+    if (logo) {
+        setTimeout(() => {
+            logo.style.transform = 'scale(1.1)';
+            logo.style.transition = 'transform 0.3s ease';
+            setTimeout(() => {
+                logo.style.transform = 'scale(1)';
+            }, 300);
+        }, 1000);
+    }
+
+    // Gestion du scroll pour la navbar
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scroll vers le bas
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            // Scroll vers le haut
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        navbar.style.transition = 'transform 0.3s ease';
+        lastScrollTop = scrollTop;
+    });
+
+    // Animation des liens au survol
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.transition = 'transform 0.2s ease';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Gestion responsive améliorée
+    function handleResponsiveNav() {
+        const navbarCollapse = document.getElementById('navbarNav');
+        const isMobile = window.innerWidth < 992;
+        
+        if (isMobile) {
+            // Ajouter une classe pour le style mobile
+            navbarCollapse.classList.add('mobile-nav');
+        } else {
+            navbarCollapse.classList.remove('mobile-nav');
+        }
+    }
+
+    // Écouter les changements de taille d'écran
+    window.addEventListener('resize', handleResponsiveNav);
+    handleResponsiveNav();
+
+    // Fermer le menu mobile après clic sur un lien
+    const navLinksMobile = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+    
+    navLinksMobile.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+        });
+    });
+});
+
+// Fonction pour le menu mobile personnalisé
+function toggleMobileMenu() {
+    const navbar = document.getElementById('navbarNav');
+    const isExpanded = navbar.classList.contains('show');
+    
+    if (isExpanded) {
+        navbar.style.maxHeight = '0px';
+        navbar.style.opacity = '0';
+        setTimeout(() => {
+            navbar.classList.remove('show');
+        }, 300);
+    } else {
+        navbar.classList.add('show');
+        setTimeout(() => {
+            navbar.style.maxHeight = '500px';
+            navbar.style.opacity = '1';
+        }, 10);
+    }
+}
+
+// Style CSS additionnel pour la navigation
+const additionalStyles = `
+/* Animation pour la navbar sticky */
+.navbar.sticky-top {
+    transition: transform 0.3s ease;
+}
+
+/* Style pour le menu mobile */
+@media (max-width: 991.98px) {
+    .navbar-collapse.mobile-nav {
+        background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    
+    .navbar-collapse.mobile-nav .nav-link {
+        padding: 10px 15px;
+        margin: 2px 0;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-collapse.mobile-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    .navbar-collapse.mobile-nav .dropdown-menu {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-collapse.mobile-nav .dropdown-item {
+        padding: 8px 15px;
+    }
+}
+
+/* Amélioration des dropdowns */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin: 2px 10px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Style pour la navigation secondaire mobile */
+.bg-primary .row a {
+    transition: all 0.3s ease;
+}
+
+.bg-primary .row a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+/* Animation du breadcrumb */
+.breadcrumb-item a {
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Logo animation */
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+`;
+
+// Injecter les styles additionnels
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+</script>

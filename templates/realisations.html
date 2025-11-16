@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nos Réalisations - SICMI Sarl{% endblock %}
+
+{% block breadcrumb %}
+{% if request.path == '/realisations/' %}
+    <li class="breadcrumb-item active" aria-current="page">Réalisations</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-4">Nos Réalisations</h1>
+        <p class="lead">Découvrez nos projets récents et notre expertise en action</p>
+    </div>
+
+    <!-- Filtres par catégorie -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                <button class="btn btn-outline-primary active filter-btn" data-filter="all">Toutes les réalisations</button>
+                {% for category in categories %}
+                <button class="btn btn-outline-primary filter-btn" data-filter="{{ category.name|slugify }}">{{ category.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Liste des réalisations -->
+    <div class="row g-4" id="realisations-container">
+        {% for realisation in page_obj %}
+        <div class="col-lg-4 col-md-6 realisation-item" data-categories="{{ realisation.category.name|slugify }} {{ realisation.client|slugify }}">
+            <div class="card h-100 realisation-card">
+                {% if realisation.main_image %}
+                <div class="realisation-background" data-background="{{ realisation.main_image.url }}" style="height: 250px;">
+                    <div class="background-content">
+                        <h5 class="card-title text-white">{{ realisation.title }}</h5>
+                        <p class="card-text text-white"><strong>Client:</strong> {{ realisation.client }}</p>
+                        <p class="card-text text-white"><strong>Date:</strong> {{ realisation.completion_date|date:"Y" }}</p>
+                        <a href="{% url 'realisation_detail' realisation.id %}" class="btn btn-light btn-sm">Voir la réalisation</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-trophy fa-3x text-primary"></i>
+                </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title">{{ realisation.title }}</h5>
+                        <span class="badge bg-primary">{{ realisation.category.name }}</span>
+                    </div>
+                    
+                    <p class="card-text"><strong>Client:</strong> {{ realisation.client }}</p>
+                    <p class="card-text"><strong>Date:</strong> {{ realisation.completion_date|date:"F Y" }}</p>
+                    
+                    {% if realisation.location %}
+                    <p class="card-text"><strong>Lieu:</strong> {{ realisation.location }}</p>
+                    {% endif %}
+                    
+                    <p class="card-text">{{ realisation.description|truncatewords:25 }}</p>
+                    
+                    {% if realisation.duration or realisation.budget %}
+                    <div class="realisation-meta mt-3">
+                        {% if realisation.duration %}
+                        <small class="text-muted me-3">
+                            <i class="fas fa-clock me-1"></i> {{ realisation.duration }}
+                        </small>
+                        {% endif %}
+                        {% if realisation.budget %}
+                        <small class="text-muted">
+                            <i class="fas fa-euro-sign me-1"></i> {{ realisation.budget }}
+                        </small>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="mt-3">
+                        <a href="{% url 'realisation_detail' realisation.id %}" class="btn btn-primary btn-sm">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <div class="card">
+                <div class="card-body py-5">
+                    <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                    <h4 class="text-muted">Aucune réalisation disponible</h4>
+                    <p class="text-muted">Nos réalisations seront bientôt disponibles.</p>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Nous contacter</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Pagination des réalisations" class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Précédent</span>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Suivant</span>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+<!-- Section Clients -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Ils nous font confiance</h2>
+            <p class="lead">Nos clients et partenaires</p>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">SONARA</h5>
+                    <small class="text-muted">Limbe</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">ADDAX</h5>
+                    <small class="text-muted">Petroleum</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">SNH</h5>
+                    <small class="text-muted">Cameroun</small>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="client-logo bg-white rounded shadow-sm p-3">
+                    <h5 class="text-primary mb-0">PERENCO</h5>
+                    <small class="text-muted">Cameroun</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Vous avez un projet similaire ?</h3>
+                <p class="mb-0">Contactez-nous pour discuter de vos besoins et obtenir un devis personnalisé.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Démarrer un projet</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filtrage des réalisations
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const realisationItems = document.querySelectorAll('.realisation-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Mettre à jour les boutons actifs
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filtrer les réalisations
+            realisationItems.forEach(item => {
+                const categories = item.getAttribute('data-categories').split(' ');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    item.style.display = 'block';
+                    // Animation d'apparition
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    }, 100);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observer les cartes de réalisations
+    document.querySelectorAll('.realisation-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Initialiser les backgrounds dynamiques
+    initDynamicBackgrounds();
+});
+</script>
+{% endblock %}

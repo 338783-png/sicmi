@@ -31,165 +31,99 @@
 
     <!-- Liste des projets -->
     <div class="row g-4" id="projects-container">
-        <!-- Projet SONARA -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="sonara construction">
+        {% for project in page_obj %}
+        <div class="col-lg-4 col-md-6 project-item" 
+             data-categories="{% for service in project.services.all %}{{ service.category }} {% endfor %}{{ project.client|lower }}">
             <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-industry fa-3x text-primary"></i>
+                {% if project.main_image %}
+                <div class="project-background" data-background="{{ project.main_image.url }}" style="height: 250px;">
+                    <div class="background-content">
+                        <h5 class="card-title text-white">{{ project.title }}</h5>
+                        <p class="card-text text-white"><strong>Client:</strong> {{ project.client }}</p>
+                        <p class="card-text text-white"><strong>Date:</strong> {{ project.completion_date|date:"Y" }}</p>
+                        <a href="{% url 'project_detail' project.id %}" class="btn btn-light btn-sm">Voir le projet</a>
+                    </div>
                 </div>
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                </div>
+                {% endif %}
+                
                 <div class="card-body">
-                    <h5 class="card-title">Structures Métalliques Complexes</h5>
-                    <p class="card-text"><strong>Client:</strong> SONARA-LIMBE</p>
-                    <p class="card-text"><strong>Date:</strong> 2023</p>
-                    <p class="card-text">Conception, fabrication et montage de structures métalliques complexes pour l'extension des installations industrielles.</p>
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text"><strong>Client:</strong> {{ project.client }}</p>
+                    <p class="card-text"><strong>Date:</strong> {{ project.completion_date|date:"F Y" }}</p>
+                    <p class="card-text">{{ project.description|truncatewords:30 }}</p>
                     
                     <div class="mt-3">
                         <h6 class="text-primary">Services réalisés:</h6>
                         <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Structures métalliques</span>
-                            <span class="badge bg-secondary">Charpentes</span>
-                            <span class="badge bg-secondary">Tuyauterie</span>
+                            {% for service in project.services.all %}
+                            <span class="badge bg-secondary">{{ service.name }}</span>
+                            {% empty %}
+                            <span class="badge bg-secondary">Projet général</span>
+                            {% endfor %}
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projet ADDAX -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="addax maintenance">
-            <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-tools fa-3x text-primary"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Maintenance Industrielle</h5>
-                    <p class="card-text"><strong>Client:</strong> ADDAX PETROLEUM</p>
-                    <p class="card-text"><strong>Date:</strong> 2024</p>
-                    <p class="card-text">Maintenance préventive et curative des équipements de production avec soudage spécialisé sur acier inoxydable.</p>
                     
                     <div class="mt-3">
-                        <h6 class="text-primary">Services réalisés:</h6>
-                        <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Soudage TIG/MIG</span>
-                            <span class="badge bg-secondary">Maintenance</span>
-                            <span class="badge bg-secondary">Tuyauterie</span>
-                        </div>
+                        <a href="{% url 'project_detail' project.id %}" class="btn btn-primary btn-sm">Voir les détails</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Projet Construction -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="construction">
-            <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-building fa-3x text-primary"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Bâtiment Industriel</h5>
-                    <p class="card-text"><strong>Client:</strong> Société Industrielle</p>
-                    <p class="card-text"><strong>Date:</strong> 2024</p>
-                    <p class="card-text">Construction complète d'un bâtiment industriel avec charpente métallique et installation des équipements.</p>
-                    
-                    <div class="mt-3">
-                        <h6 class="text-primary">Services réalisés:</h6>
-                        <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Construction</span>
-                            <span class="badge bg-secondary">Charpente</span>
-                            <span class="badge bg-secondary">Équipements</span>
-                        </div>
-                    </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <div class="card">
+                <div class="card-body py-5">
+                    <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                    <h4 class="text-muted">Aucun projet disponible</h4>
+                    <p class="text-muted">Nos réalisations seront bientôt disponibles.</p>
                 </div>
             </div>
         </div>
-
-        <!-- Projet Maintenance -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="maintenance">
-            <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-cogs fa-3x text-primary"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Optimisation Ligne Production</h5>
-                    <p class="card-text"><strong>Client:</strong> Entreprise Manufacturière</p>
-                    <p class="card-text"><strong>Date:</strong> 2023</p>
-                    <p class="card-text">Transfert et optimisation d'une ligne de production complète avec maintenance préventive des équipements.</p>
-                    
-                    <div class="mt-3">
-                        <h6 class="text-primary">Services réalisés:</h6>
-                        <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Transfert industriel</span>
-                            <span class="badge bg-secondary">Maintenance</span>
-                            <span class="badge bg-secondary">Optimisation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projet Façade -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="construction">
-            <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-paint-roller fa-3x text-primary"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Rénovation Façade</h5>
-                    <p class="card-text"><strong>Client:</strong> Complexe Commercial</p>
-                    <p class="card-text"><strong>Date:</strong> 2024</p>
-                    <p class="card-text">Rénovation complète de façade avec pose de revêtement Alucobon et décoration murale numérique.</p>
-                    
-                    <div class="mt-3">
-                        <h6 class="text-primary">Services réalisés:</h6>
-                        <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Revêtement mural</span>
-                            <span class="badge bg-secondary">Décoration</span>
-                            <span class="badge bg-secondary">Rénovation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projet Équipements -->
-        <div class="col-lg-4 col-md-6 project-item" data-categories="sonara construction">
-            <div class="card h-100 project-card">
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                    <i class="fas fa-oil-well fa-3x text-primary"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Équipements de Stockage</h5>
-                    <p class="card-text"><strong>Client:</strong> SONARA-LIMBE</p>
-                    <p class="card-text"><strong>Date:</strong> 2023</p>
-                    <p class="card-text">Fabrication et installation d'équipements de stockage pour produits pétroliers (cuves, citernes, bacs).</p>
-                    
-                    <div class="mt-3">
-                        <h6 class="text-primary">Services réalisés:</h6>
-                        <div class="d-flex flex-wrap gap-1">
-                            <span class="badge bg-secondary">Équipements stockage</span>
-                            <span class="badge bg-secondary">Installation</span>
-                            <span class="badge bg-secondary">Fabrication</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
-    <!-- Pagination (cachée pour l'instant car données statiques) -->
-    <nav aria-label="Pagination des projets" class="mt-5 d-none">
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Pagination des projets" class="mt-5">
         <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+            </li>
+            {% else %}
             <li class="page-item disabled">
                 <span class="page-link">Précédent</span>
             </li>
-            <li class="page-item active">
-                <span class="page-link">1</span>
-            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="#">Suivant</a>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
             </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Suivant</span>
+            </li>
+            {% endif %}
         </ul>
     </nav>
+    {% endif %}
 </div>
 
 <!-- Section Clients -->
@@ -302,6 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+
+    // Initialiser les backgrounds dynamiques
+    initDynamicBackgrounds();
 });
 </script>
 {% endblock %}
