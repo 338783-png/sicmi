@@ -75,7 +75,8 @@ def services(request):
 def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
     service_images = service.images.all()
-    related_projects = Project.objects.filter(services=service)[:3]
+    # Projects are no longer associated to services; show recent projects instead
+    related_projects = Project.objects.all()[:3]
 
     context = {
         'service': service,

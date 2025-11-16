@@ -34,7 +34,6 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     client = models.CharField(max_length=200)
     description = models.TextField()
-    services = models.ManyToManyField(Service)
     main_image = models.ImageField(upload_to='projects/')
     completion_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)

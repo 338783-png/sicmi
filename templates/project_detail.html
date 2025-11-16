@@ -41,33 +41,11 @@
                 <div class="lead">{{ project.description|linebreaks }}</div>
             </div>
 
-            <!-- Services utilisés -->
-            {% if project.services.all %}
+            <!-- Les services ne sont plus associés aux projets -->
             <div class="project-services mb-5">
-                <h4 class="mb-4">Services utilisés</h4>
-                <div class="row g-3">
-                    {% for service in project.services.all %}
-                    <div class="col-md-6">
-                        <div class="card service-card h-100">
-                            {% if service.main_image %}
-                            <div class="service-background" data-background="{{ service.main_image.url }}" style="min-height: 150px;">
-                                <div class="background-content">
-                                    <h6 class="mb-2">{{ service.name }}</h6>
-                                    <a href="{% url 'service_detail' service.id %}" class="btn btn-light btn-sm">Voir le service</a>
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="card-body text-center">
-                                <h6 class="card-title">{{ service.name }}</h6>
-                                <a href="{% url 'service_detail' service.id %}" class="btn btn-primary btn-sm">Voir le service</a>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                <h4 class="mb-4">Informations</h4>
+                <p class="mb-0">Ce projet n'est pas associé à des services spécifiques.</p>
             </div>
-            {% endif %}
         </div>
 
         <!-- Sidebar -->
@@ -79,14 +57,7 @@
                 <div class="card-body">
                     <p><strong>Client:</strong> {{ project.client }}</p>
                     <p><strong>Date de réalisation:</strong> {{ project.completion_date|date:"d/m/Y" }}</p>
-                    {% if project.services.all %}
-                    <p><strong>Services:</strong></p>
-                    <ul class="list-unstyled">
-                        {% for service in project.services.all %}
-                        <li>• {{ service.name }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
+                    <!-- services removed -->
                 </div>
                 <div class="card-footer">
                     <a href="{% url 'contact' %}" class="btn btn-primary w-100">
