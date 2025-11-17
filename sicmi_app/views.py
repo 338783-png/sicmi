@@ -138,3 +138,78 @@ def rse_engagement(request):
         'page_title': 'Engagement RSE',
     }
     return render(request, 'rse_engagement.html', context)
+
+def ateliers(request):
+    """Page descriptive des ateliers et équipements"""
+    # Informations statiques pour la page; on peut plus tard les tirer d'un modèle si besoin
+    ateliers_info = [
+        {
+            'id': 'production',
+            'title': "Atelier de production",
+            'summary': "Grande surface dédiée à la fabrication et à l'assemblage de structures métalliques.",
+            'details': "Nos ateliers de production sont équipés pour la découpe, le pliage, le soudage et l'assemblage de grandes structures. Nous respectons des procédures QHSE strictes et gérons les flux logistiques pour des livraisons fiables."
+        },
+        {
+            'id': 'usinage',
+            'title': "Atelier d'usinage",
+            'summary': "Postes d'usinage CNC et traditionnels pour pièces de précision.",
+            'details': "Postes CNC modernes et outillage de contrôle assurent des tolérances serrées pour pièces mécaniques et ensembles. Notre équipe réalise usinage, rectification et finition selon les plans techniques."
+        },
+        {
+            'id': 'assemblage',
+            'title': "Atelier d'assemblage",
+            'summary': "Zones d'assemblage équipées pour montage, tests et mise en service.",
+            'details': "Zones dédiées pour le montage mécanique et électrique, bancs de test fonctionnels et équipes d'essais pour s'assurer de la conformité et de la performance avant livraison."
+        },
+        {
+            'id': 'equipements',
+            'title': "Équipements & Machines",
+            'summary': "CNC, presses hydrauliques, soudeuses, systèmes de levage et outillage spécialisé.",
+            'details': "Nous investissons continuellement dans des équipements pour augmenter la capacité et la qualité : CNC 3-axes/5-axes, lignes de soudure semi-automatiques, presses, palans et contrôles non destructifs."
+        },
+    ]
+
+    context = {
+        'ateliers_info': ateliers_info,
+    }
+    return render(request, 'ateliers.html', context)
+
+
+def atelier_detail(request, atelier_id):
+    """Affiche la page détaillée pour un atelier donné (atelier_id = production|usinage|assemblage|equipements)"""
+    ateliers_info = [
+        {
+            'id': 'production',
+            'title': "Atelier de production",
+            'summary': "Grande surface dédiée à la fabrication et à l'assemblage de structures métalliques.",
+            'details': "Nos ateliers de production sont équipés pour la découpe, le pliage, le soudage et l'assemblage de grandes structures. Nous respectons des procédures QHSE strictes et gérons les flux logistiques pour des livraisons fiables."
+        },
+        {
+            'id': 'usinage',
+            'title': "Atelier d'usinage",
+            'summary': "Postes d'usinage CNC et traditionnels pour pièces de précision.",
+            'details': "Postes CNC modernes et outillage de contrôle assurent des tolérances serrées pour pièces mécaniques et ensembles. Notre équipe réalise usinage, rectification et finition selon les plans techniques."
+        },
+        {
+            'id': 'assemblage',
+            'title': "Atelier d'assemblage",
+            'summary': "Zones d'assemblage équipées pour montage, tests et mise en service.",
+            'details': "Zones dédiées pour le montage mécanique et électrique, bancs de test fonctionnels et équipes d'essais pour s'assurer de la conformité et de la performance avant livraison."
+        },
+        {
+            'id': 'equipements',
+            'title': "Équipements & Machines",
+            'summary': "CNC, presses hydrauliques, soudeuses, systèmes de levage et outillage spécialisé.",
+            'details': "Nous investissons continuellement dans des équipements pour augmenter la capacité et la qualité : CNC 3-axes/5-axes, lignes de soudure semi-automatiques, presses, palans et contrôles non destructifs."
+        },
+    ]
+
+    atelier = next((a for a in ateliers_info if a['id'] == atelier_id), None)
+    if not atelier:
+        # return to ateliers listing if unknown
+        return redirect('ateliers')
+
+    context = {
+        'atelier': atelier,
+    }
+    return render(request, 'atelier_detail.html', context)

@@ -1,0 +1,113 @@
+nohup: ignoring input
+Watching for file changes with StatReloader
+[17/Nov/2025 07:10:49] "GET / HTTP/1.1" 200 56077
+[17/Nov/2025 07:10:49] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:11:39] "GET /services/2/ HTTP/1.1" 200 28168
+[17/Nov/2025 07:11:39] "GET /media/services/gallery/69b27c7dfc36.jpg HTTP/1.1" 304 0
+[17/Nov/2025 07:11:39] "GET /media/services/gallery/OIP_1_JiLmSyA.webp HTTP/1.1" 304 0
+[17/Nov/2025 07:11:39] "GET /media/services/gallery/vignette-robot-assemblage-batterie-1.avif HTTP/1.1" 304 0
+[17/Nov/2025 07:11:39] "GET /media/services/gallery/OIP_3bLy8JT.webp HTTP/1.1" 304 0
+[17/Nov/2025 07:14:10] "GET / HTTP/1.1" 200 56077
+[17/Nov/2025 07:14:10] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:14:25] "GET /admin/ HTTP/1.1" 200 13700
+[17/Nov/2025 07:14:25] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+[17/Nov/2025 07:14:25] "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+[17/Nov/2025 07:14:25] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[17/Nov/2025 07:14:25] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[17/Nov/2025 07:14:25] "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+[17/Nov/2025 07:14:25] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+[17/Nov/2025 07:14:25] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[17/Nov/2025 07:14:25] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[17/Nov/2025 07:14:25] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[17/Nov/2025 07:14:56] "GET / HTTP/1.1" 200 56077
+[17/Nov/2025 07:14:57] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:15:25] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:15:41] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:15:43] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:15:45] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:28:27] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:28:31] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:28:32] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:28:34] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:29:02] "GET / HTTP/1.1" 200 56077
+[17/Nov/2025 07:29:03] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 07:29:03] "GET /media/services/COVER-ARTICLE-suivi-de-chantier-1.png HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/services/ENVOYE_SPECIAL_BAILLEUL_SUR_BERTHOULT_62__1_.jpg HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/services/M%C3%A9canique-ind_2_pt-1024x683.jpg HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/projects/Screenshot_2025-11-10_235518_DWWfeoY.png HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/projects/Screenshot_2025-11-10_235518_MSuX8P5.png HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/services/OIP_2.webp HTTP/1.1" 304 0
+[17/Nov/2025 07:29:03] "GET /media/services/Screenshot_2025-11-11_162343.png HTTP/1.1" 304 0
+[17/Nov/2025 08:29:15] "GET / HTTP/1.1" 200 56077
+[17/Nov/2025 08:29:15] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+Not Found: /favicon.ico
+[17/Nov/2025 08:29:15] "GET /favicon.ico HTTP/1.1" 404 5656
+[17/Nov/2025 08:31:40] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 08:44:44] "GET / HTTP/1.1" 200 57095
+[17/Nov/2025 08:44:44] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 08:59:20] "GET / HTTP/1.1" 200 57007
+[17/Nov/2025 08:59:20] "GET /static/images/pattern.png HTTP/1.1" 404 1981
+[17/Nov/2025 08:59:21] "GET /static/images/hero2.png HTTP/1.1" 304 0
+[17/Nov/2025 08:59:21] "GET /static/images/hero1.png HTTP/1.1" 304 0
+[17/Nov/2025 08:59:21] "GET /static/images/hero4.png HTTP/1.1" 304 0
+[17/Nov/2025 08:59:21] "GET /static/images/hero3.png HTTP/1.1" 304 0
+/home/jordanie/sicmi_site/sicmi_app/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 17, 2025 - 07:08:08
+Django version 5.2.8, using settings 'sicmi_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/jordanie/sicmi_site/sicmi_app/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 17, 2025 - 10:08:15
+Django version 5.2.8, using settings 'sicmi_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/jordanie/sicmi_site/sicmi_app/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 17, 2025 - 10:08:22
+Django version 5.2.8, using settings 'sicmi_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/jordanie/sicmi_site/sicmi_app/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 17, 2025 - 10:15:48
+Django version 5.2.8, using settings 'sicmi_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/jordanie/sicmi_site/sicmi_app/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 17, 2025 - 10:16:00
+Django version 5.2.8, using settings 'sicmi_site.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader

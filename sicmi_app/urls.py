@@ -13,4 +13,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('politique-qhse/', views.qhse_policy, name='qhse_policy'),
     path('engagement-rse/', views.rse_engagement, name='rse_engagement'),
+    path('ateliers/', views.ateliers, name='ateliers'),
+    path('ateliers/<slug:atelier_id>/', views.atelier_detail, name='atelier_detail'),
 ]

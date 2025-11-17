@@ -35,10 +35,8 @@
 
             // Apply data-bg to background-image CSS
             slides.forEach((slide) => {
-                let bg = slide.getAttribute('data-bg');
+                const bg = slide.getAttribute('data-bg');
                 if (bg) {
-                    // Normalize leading slash so static snapshots and GitHub Pages work
-                    if (bg.charAt(0) === '/') bg = bg.substring(1);
                     slide.style.backgroundImage = `url(${bg})`;
                 }
             });
@@ -155,6 +153,91 @@
         
         <div class="text-center mt-5">
             <a href="{% url 'services' %}" class="btn btn-primary btn-lg">Voir tous nos services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Ateliers & Équipements -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-title">Ateliers &amp; Équipements</h2>
+            <div class="underline mx-auto mb-3"></div>
+            <p class="lead">Découvrez nos ateliers de production modernes et les équipements professionnels qui garantissent la qualité de nos réalisations. Intéressé ? Consultez les détails de chaque atelier.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card production-card h-100 p-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-3 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-industry fa-3x text-primary"></i>
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">Atelier de production</h5>
+                                <p class="card-text"><strong>Grande surface dédiée à la fabrication et à l'assemblage de structures métalliques.</strong></p>
+                                <p class="mb-2">Nos ateliers de production sont équipés pour la découpe, le pliage, le soudage et l'assemblage de grandes structures. Nous respectons des procédures QHSE strictes et gérons les flux logistiques pour des livraisons fiables.</p>
+                                <a href="{% url 'atelier_detail' 'production' %}" class="btn btn-outline-primary btn-sm">Voir les détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card production-card h-100 p-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-3 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-cogs fa-3x text-primary"></i>
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">Atelier d'usinage</h5>
+                                <p class="card-text"><strong>Postes d'usinage CNC et traditionnels pour pièces de précision.</strong></p>
+                                <p class="mb-2">Postes CNC modernes et outillage de contrôle assurent des tolérances serrées pour pièces mécaniques et ensembles. Notre équipe réalise usinage, rectification et finition selon les plans techniques.</p>
+                                <a href="{% url 'atelier_detail' 'usinage' %}" class="btn btn-outline-primary btn-sm">Voir les détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card production-card h-100 p-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-3 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-tools fa-3x text-primary"></i>
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">Atelier d'assemblage</h5>
+                                <p class="card-text"><strong>Zones d'assemblage équipées pour montage, tests et mise en service.</strong></p>
+                                <p class="mb-2">Zones dédiées pour le montage mécanique et électrique, bancs de test fonctionnels et équipes d'essais pour s'assurer de la conformité et de la performance avant livraison.</p>
+                                <a href="{% url 'atelier_detail' 'assemblage' %}" class="btn btn-outline-primary btn-sm">Voir les détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card production-card h-100 p-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-3 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-robot fa-3x text-primary"></i>
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">Équipements &amp; Machines</h5>
+                                <p class="card-text"><strong>CNC, presses hydrauliques, soudeuses, systèmes de levage et outillage spécialisé.</strong></p>
+                                <p class="mb-2">Nous investissons continuellement dans des équipements pour augmenter la capacité et la qualité : CNC 3-axes/5-axes, lignes de soudure semi-automatiques, presses, palans et contrôles non destructifs.</p>
+                                <a href="{% url 'atelier_detail' 'equipements' %}" class="btn btn-outline-primary btn-sm">Voir les détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -829,6 +912,19 @@
         right: 10px;
     }
 }
+
+/* Styles for Ateliers cards on index */
+.production-card {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(11,35,70,0.08);
+    transition: transform .18s ease, box-shadow .18s ease;
+    background: #fff;
+}
+.production-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,35,70,0.12); }
+.production-card .card-title{ font-size:1.25rem; margin-bottom:6px; }
+.production-card .card-body p{ color:#444 }
+.section-title{ font-weight:700; font-size:1.8rem }
+.underline{ width:60px; height:4px; background:#007bff; border-radius:4px }
 </style>
 
 <script>
@@ -869,16 +965,14 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.service-background[data-background]').forEach(function(el) {
         var url = el.getAttribute('data-background');
-        if(url) {
-            if (url.charAt(0) === '/') url = url.substring(1);
+        if(url) { 
             el.style.backgroundImage = 'url(' + url + ')'; 
         }
     });
     
     document.querySelectorAll('.project-background[data-background]').forEach(function(el) {
         var url = el.getAttribute('data-background');
-        if(url) {
-            if (url.charAt(0) === '/') url = url.substring(1);
+        if(url) { 
             el.style.backgroundImage = 'url(' + url + ')'; 
         }
     });

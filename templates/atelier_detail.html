@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ atelier.title }} - SICMI{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="mb-4">
+            <a href="{% url 'ateliers' %}" class="text-decoration-none">← Retour aux Ateliers</a>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="mb-3">{{ atelier.title }}</h1>
+                <p class="lead text-muted">{{ atelier.summary }}</p>
+                <p>{{ atelier.details }}</p>
+
+                <hr>
+                <h5>Pourquoi choisir cet atelier ?</h5>
+                <ul>
+                    <li>Équipe qualifiée et expérimentée</li>
+                    <li>Procédures QHSE conformes aux meilleures pratiques</li>
+                    <li>Équipements modernes et contrôles qualité</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <!-- Sidebar: coordonnées / CTA -->
+                <div class="card p-3">
+                    <h6>Contactez notre équipe</h6>
+                    <p class="mb-1"><strong>Téléphone:</strong> +237 675948524</p>
+                    <p class="mb-1"><strong>Email:</strong> sicmisarl@gmail.com</p>
+                    <a href="{% url 'contact' %}" class="btn btn-primary btn-sm mt-2">Nous contacter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.lead.text-muted{color:#555}
+.card p{margin-bottom:6px}
+</style>
+
+{% endblock %}

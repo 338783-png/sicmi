@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ateliers & Équipements - SICMI Sarl{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h1 class="section-title">Ateliers &amp; Équipements</h1>
+            <p class="lead">Visitez virtuellement nos ateliers et découvrez les équipements qui garantissent la qualité de nos réalisations.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for atelier in ateliers_info %}
+            <div class="col-lg-6">
+                <article id="{{ atelier.id }}" class="card mb-3">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-industry fa-3x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ atelier.title }}</h4>
+                                <p class="text-muted"><strong>{{ atelier.summary }}</strong></p>
+                                <p>{{ atelier.details }}</p>
+                                <!-- Link to individual atelier detail page -->
+                                <div class="mt-2">
+                                    <a href="{% url 'atelier_detail' atelier.id %}" class="btn btn-outline-primary btn-sm">Voir les détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+/* Minor styling for ateliers page */
+.card { border: none; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.section-title { font-size: 2rem; }
+</style>
+
+{% endblock %}
