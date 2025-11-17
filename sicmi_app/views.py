@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Service, Project, TeamMember, QHSEPolicy, ServiceImage, ProjectImage
 from .forms import ContactForm
+from django.conf import settings
+from django.core.mail import send_mail, BadHeaderError
 from .models import Realisation, RealisationCategory, RealisationImage
 
 def realisations(request):
@@ -116,7 +118,35 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
+            # Préparer l'email à envoyer
+            try:
+                cd = form.cleaned_data
+                subject = f"[Contact] {cd.get('subject','Nouveau message')}"
+                message_lines = [
+                    f"Nom: {cd.get('name','')}",
+                    f"Société: {cd.get('company','')}",
+                    f"Email: {cd.get('email','')}",
+                    f"Téléphone: {cd.get('phone','')}",
+                    "",
+                    "Message:",
+                    cd.get('message','')
+                ]
+                message = "\n".join(message_lines)
+
+                recipient = getattr(settings, 'CONTACT_EMAIL', None) or getattr(settings, 'DEFAULT_FROM_EMAIL', None)
+                from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None)
+
+                if recipient and from_email:
+                    send_mail(subject, message, from_email, [recipient], fail_silently=False)
+
+                messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
+            except BadHeaderError:
+                messages.error(request, "Envoi du message impossible (en-tête invalide).")
+            except Exception as e:
+                # Log exception if desired (print for simplicity)
+                print(f"Erreur en envoyant l'email de contact: {e}")
+                messages.warning(request, 'Votre message a été enregistré mais l\'envoi par email a échoué.')
+
             return redirect('contact')
     else:
         form = ContactForm()
