@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique QHSE - SICMI Sarl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    
+<!-- Simplified header (no carousel/background) -->
+<header class="header-simple bg-white shadow-sm d-lg-none">
+    <div class="container">
+        <div class="row align-items-center py-3">
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="logo me-3">
+                    <img src="../static/images/logo.png" alt="SICMI Sarl" class="logo-img" style="height: 60px; width: auto;">
+                </div>
+                <div>
+                    <h1 class="h4 mb-0 fw-bold">SICMI Sarl</h1>
+                    <p class="small mb-0">Société d'Ingénierie de Construction et de Maintenance Industrielle</p>
+                </div>
+            </div>
+            <!-- Contact info removed as requested -->
+        </div>
+    </div>
+</header>
+    
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+            <img src="../static/images/logo.png" alt="SICMI" style="height: 40px; width: auto;">
+            <div class="ms-2 d-none d-md-block">
+                <div class="fw-bold text-white">SICMI Sarl</div>
+                <small class="text-white-50">Ingénierie & Maintenance Industrielle</small>
+            </div>
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="../index.html">
+                        <i class="fas fa-home me-1"></i>Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="../a-propos/index.html">
+                        <i class="fas fa-info-circle me-1"></i>À Propos
+                    </a>
+                </li>
+                
+                <!-- Menu déroulant Services -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " 
+                       href="index.html#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cogs me-1"></i>Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html">
+                                <i class="fas fa-list me-2"></i>Tous nos services
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html#construction">
+                                <i class="fas fa-industry me-2"></i>Constructions neuves
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html#maintenance">
+                                <i class="fas fa-tools me-2"></i>Maintenance industrielle
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html#accompagnement">
+                                <i class="fas fa-hands-helping me-2"></i>Accompagnement
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html#facade">
+                                <i class="fas fa-building me-2"></i>Travaux de façade
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../services/index.html#renovation">
+                                <i class="fas fa-paint-roller me-2"></i>Rénovation
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link " href="../projets/index.html">
+                        <i class="fas fa-project-diagram me-1"></i>Réalisations
+                    </a>
+                </li>
+
+                <!-- Menu déroulant QHSE & RSE -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " 
+                       href="index.html#" id="qhseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shield-alt me-1"></i>QHSE & RSE
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="qhseDropdown">
+                        <li>
+                            <a class="dropdown-item" href="index.html">
+                                <i class="fas fa-file-contract me-2"></i>Politique QHSE
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../engagement-rse/index.html">
+                                <i class="fas fa-leaf me-2"></i>Engagement RSE
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="index.html#certifications">
+                                <i class="fas fa-certificate me-2"></i>Nos Certifications
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="index.html#objectifs">
+                                <i class="fas fa-bullseye me-2"></i>Objectifs Stratégiques
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link " href="../contact/index.html">
+                        <i class="fas fa-envelope me-1"></i>Contact
+                    </a>
+                </li>
+            </ul>
+        
+        </div>
+    </div>
+</nav>
+
+<!-- Breadcrumb amélioré -->
+<div class="bg-light border-bottom">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="py-3">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="text-decoration-none d-flex align-items-center">
+                        <i class="fas fa-home me-1"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                
+                
+                    <li class="breadcrumb-item">
+                        <a href="../a-propos/index.html" class="text-decoration-none">À Propos</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Politique QHSE</li>
+                
+                
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Navigation mobile secondaire (pour les écrans petits) -->
+<div class="d-lg-none bg-primary text-white">
+    <div class="container">
+        <div class="row g-0 text-center">
+            <div class="col-4">
+                <a href="tel:+237675948524" class="text-white d-block py-2">
+                    <i class="fas fa-phone fa-sm d-block mb-1"></i>
+                    <small>Appeler</small>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="https://wa.me/237675948524" class="text-white d-block py-2">
+                    <i class="fab fa-whatsapp fa-sm d-block mb-1"></i>
+                    <small>WhatsApp</small>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="mailto:sicmisarl@gmail.com" class="text-white d-block py-2">
+                    <i class="fas fa-envelope fa-sm d-block mb-1"></i>
+                    <small>Email</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Animation améliorée pour la navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation des dropdowns
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('show.bs.dropdown', function() {
+            const menu = this.querySelector('.dropdown-menu');
+            menu.style.opacity = '0';
+            menu.style.transform = 'translateY(-10px) scale(0.95)';
+        });
+        
+        dropdown.addEventListener('shown.bs.dropdown', function() {
+            const menu = this.querySelector('.dropdown-menu');
+            menu.style.opacity = '1';
+            menu.style.transform = 'translateY(0) scale(1)';
+            menu.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+    });
+
+    // Navigation active avec highlight
+    function updateActiveNav() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            
+            // Gestion des liens exacts
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+            
+            // Gestion des liens parents pour les dropdowns
+            if (currentPath.includes('/services/') && link.getAttribute('href') === '/services/') {
+                link.classList.add('active');
+            }
+            
+            if ((currentPath.includes('/politique-qhse/') || currentPath.includes('/engagement-rse/')) && 
+                link.classList.contains('dropdown-toggle') && link.getAttribute('href') === '#') {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    updateActiveNav();
+
+    // Ajout d'un effet de pulse sur le logo au chargement
+    const logo = document.querySelector('.navbar-brand img');
+    if (logo) {
+        setTimeout(() => {
+            logo.style.transform = 'scale(1.1)';
+            logo.style.transition = 'transform 0.3s ease';
+            setTimeout(() => {
+                logo.style.transform = 'scale(1)';
+            }, 300);
+        }, 1000);
+    }
+
+    // Gestion du scroll pour la navbar
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scroll vers le bas
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            // Scroll vers le haut
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        navbar.style.transition = 'transform 0.3s ease';
+        lastScrollTop = scrollTop;
+    });
+
+    // Animation des liens au survol
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.transition = 'transform 0.2s ease';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Gestion responsive améliorée
+    function handleResponsiveNav() {
+        const navbarCollapse = document.getElementById('navbarNav');
+        const isMobile = window.innerWidth < 992;
+        
+        if (isMobile) {
+            // Ajouter une classe pour le style mobile
+            navbarCollapse.classList.add('mobile-nav');
+        } else {
+            navbarCollapse.classList.remove('mobile-nav');
+        }
+    }
+
+    // Écouter les changements de taille d'écran
+    window.addEventListener('resize', handleResponsiveNav);
+    handleResponsiveNav();
+
+    // Fermer le menu mobile après clic sur un lien
+    const navLinksMobile = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+    
+    navLinksMobile.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+        });
+    });
+});
+
+// Fonction pour le menu mobile personnalisé
+function toggleMobileMenu() {
+    const navbar = document.getElementById('navbarNav');
+    const isExpanded = navbar.classList.contains('show');
+    
+    if (isExpanded) {
+        navbar.style.maxHeight = '0px';
+        navbar.style.opacity = '0';
+        setTimeout(() => {
+            navbar.classList.remove('show');
+        }, 300);
+    } else {
+        navbar.classList.add('show');
+        setTimeout(() => {
+            navbar.style.maxHeight = '500px';
+            navbar.style.opacity = '1';
+        }, 10);
+    }
+}
+
+// Style CSS additionnel pour la navigation
+const additionalStyles = `
+/* Animation pour la navbar sticky */
+.navbar.sticky-top {
+    transition: transform 0.3s ease;
+}
+
+/* Style pour le menu mobile */
+@media (max-width: 991.98px) {
+    .navbar-collapse.mobile-nav {
+        background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    
+    .navbar-collapse.mobile-nav .nav-link {
+        padding: 10px 15px;
+        margin: 2px 0;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-collapse.mobile-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    .navbar-collapse.mobile-nav .dropdown-menu {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-collapse.mobile-nav .dropdown-item {
+        padding: 8px 15px;
+    }
+}
+
+/* Amélioration des dropdowns */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin: 2px 10px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Style pour la navigation secondaire mobile */
+.bg-primary .row a {
+    transition: all 0.3s ease;
+}
+
+.bg-primary .row a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+/* Animation du breadcrumb */
+.breadcrumb-item a {
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Logo animation */
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+`;
+
+// Injecter les styles additionnels
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+</script>
+    
+    <main>
+        
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-3">POLITIQUE QHSE</h1>
+                <p class="lead mb-0">
+                    Qualité, Hygiène, Sécurité, Environnement
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <div class="bg-white text-dark rounded p-3 d-inline-block">
+                    <div class="fw-bold text-primary">SICMI S.A.R.L.</div>
+                    <small>Société d'Ingénierie de Construction et de Maintenance Industrielle</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Introduction -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <img src="../static/images/logo.png" alt="SICMI" class="mb-3" style="width: 80px;">
+                            <h2 class="text-primary">ENGAGEMENT QHSE</h2>
+                        </div>
+                        
+                        <p class="lead text-center mb-4">
+                            La construction métallique et la maintenance industrielle sont des domaines d'activités en
+                            constante évolution et hautement concurrentiels. Pour assurer le développement et la
+                            pérennisation de ses activités, SICMI S.A.R.L. met un accent particulier sur la qualité de ses
+                            prestations, la satisfaction de ses parties intéressées et la protection de l'environnement.
+                        </p>
+
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <div class="text-center p-4">
+                                    <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+                                    <h4 class="text-primary">Notre Vision</h4>
+                                    <p>Être le partenaire de référence en ingénierie industrielle, reconnu pour notre excellence opérationnelle et notre engagement QHSE.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center p-4">
+                                    <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                                    <h4 class="text-primary">Notre Mission</h4>
+                                    <p>Fournir des services de qualité supérieure tout en garantissant la sécurité de nos équipes et la protection de l'environnement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Organigramme QHSE -->
+<section class="py-5 bg-light" id="structure">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Notre Structure QHSE</h2>
+        
+        <div class="qhse-organigramme">
+            <!-- Direction Générale -->
+            <div class="qhse-level qhse-top-level text-center">
+                <div class="qhse-node qhse-main-node mx-auto">
+                    <i class="fas fa-crown fa-2x mb-2 text-warning"></i>
+                    <h5>Direction Générale</h5>
+                    <small>Pilotage & Engagement</small>
+                </div>
+            </div>
+
+            <!-- Flèche vers le bas -->
+            <div class="qhse-arrow-down text-center my-4">
+                <i class="fas fa-arrow-down fa-2x text-white"></i>
+            </div>
+
+            <!-- Niveau des piliers QHSE -->
+            <div class="qhse-level qhse-middle-level">
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-4">
+                        <div class="qhse-node qhse-quality">
+                            <i class="fas fa-award fa-2x mb-2 text-success"></i>
+                            <h5>Qualité</h5>
+                            <small>ISO 9001:2015</small>
+                            <div class="mt-3">
+                                <span class="badge bg-success">Certifié</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="qhse-node qhse-safety">
+                            <i class="fas fa-shield-alt fa-2x mb-2 text-danger"></i>
+                            <h5>Sécurité</h5>
+                            <small>ISO 45001:2018</small>
+                            <div class="mt-3">
+                                <span class="badge bg-danger">En cours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="qhse-node qhse-environment">
+                            <i class="fas fa-leaf fa-2x mb-2 text-success"></i>
+                            <h5>Environnement</h5>
+                            <small>ISO 14001</small>
+                            <div class="mt-3">
+                                <span class="badge bg-success">Objectif 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flèche vers le bas -->
+            <div class="qhse-arrow-down text-center my-4">
+                <i class="fas fa-arrow-down fa-2x text-white"></i>
+            </div>
+
+            <!-- Processus opérationnels -->
+            <div class="qhse-level qhse-bottom-level">
+                <h4 class="text-center mb-4 text-white">Processus & Outils</h4>
+                <div class="row g-3">
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-clipboard-check fa-lg mb-2"></i>
+                            <span>Audit</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-file-alt fa-lg mb-2"></i>
+                            <span>Procédures</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-graduation-cap fa-lg mb-2"></i>
+                            <span>Formation</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-chart-line fa-lg mb-2"></i>
+                            <span>Évaluation</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-chart-bar fa-lg mb-2"></i>
+                            <span>Indicateurs</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <div class="qhse-process">
+                            <i class="fas fa-tasks fa-lg mb-2"></i>
+                            <span>Actions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Objectifs Stratégiques -->
+<section class="py-5" id="objectifs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="section-title text-center mb-5">Objectifs Stratégiques</h2>
+                
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon bg-primary text-white">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Amélioration Continue</h5>
+                            <p>Amélioration continue de notre système de management (Qualité, Santé, Sécurité, Environnement) grâce à des revues régulières et des actions correctives.</p>
+                        </div>
+                    </div>
+
+                    <div class="objective-card">
+                        <div class="objective-icon bg-danger text-white">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Réduction des Risques</h5>
+                            <p>Réduction des dangers liés aux activités et réduction des risques pour la santé et la sécurité du personnel grâce à une analyse systématique des risques.</p>
+                        </div>
+                    </div>
+
+                    <div class="objective-card">
+                        <div class="objective-icon bg-success text-white">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Participation du Personnel</h5>
+                            <p>Participation et consultation des travailleurs pour une gestion optimale de la santé et de la sécurité au travail via des réunions régulières et des formations.</p>
+                        </div>
+                    </div>
+
+                    <div class="objective-card">
+                        <div class="objective-icon bg-warning text-white">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Conformité Légale</h5>
+                            <p>Respect des exigences légales et réglementaires applicables à nos activités avec une veille réglementaire active et des audits de conformité.</p>
+                        </div>
+                    </div>
+
+                    <div class="objective-card">
+                        <div class="objective-icon bg-info text-white">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Formation Continue</h5>
+                            <p>Assurer la formation et la sensibilisation continue du personnel avec un plan de formation annuel et des sessions de recyclage obligatoires.</p>
+                        </div>
+                    </div>
+
+                    <div class="objective-card">
+                        <div class="objective-icon bg-dark text-white">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="objective-content">
+                            <h5>Protection Environnementale</h5>
+                            <p>Réduction de notre impact environnemental grâce à une gestion optimisée des déchets et une utilisation rationnelle des ressources naturelles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Indicateurs de Performance -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Indicateurs de Performance QHSE</h2>
+        
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="display-6 fw-bold text-primary mb-2" id="accidentCounter">0</div>
+                        <h6 class="text-muted">Jours sans accident</h6>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-success" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="display-6 fw-bold text-primary mb-2" id="formationCounter">0</div>
+                        <h6 class="text-muted">Heures de formation</h6>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-info" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="display-6 fw-bold text-primary mb-2" id="auditCounter">0</div>
+                        <h6 class="text-muted">Audits réalisés</h6>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="display-6 fw-bold text-primary mb-2" id="recyclageCounter">0%</div>
+                        <h6 class="text-muted">Déchets recyclés</h6>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Engagement de la Direction -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Engagement de la Direction</h3>
+                <p class="mb-4">
+                    Ces objectifs sont déclinés à l'ensemble des processus pertinents et sont soutenus par un plan d'actions
+                    défini lors de revues de direction. La direction générale s'engage à mettre à disposition les ressources
+                    nécessaires à l'atteinte des résultats attendus et à promouvoir une culture QHSE au sein de SICMI S.A.R.L.
+                </p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-3 text-warning"></i>
+                            <span>Mise à disposition des ressources nécessaires</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-3 text-warning"></i>
+                            <span>Revues de direction trimestrielles</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-3 text-warning"></i>
+                            <span>Promotion de la culture QHSE</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-3 text-warning"></i>
+                            <span>Suivi des indicateurs de performance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="signature-block bg-white text-dark rounded p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-signature fa-3x text-primary"></i>
+                    </div>
+                    <div class="fw-bold">Le Directeur Général</div>
+                    <small>Fait le: 06 Janvier 2024</small>
+                    <div class="mt-3">
+                        <img src="http://127.0.0.1:8000/static/images/signature.png" alt="Signature" style="height: 50px;" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section class="py-5" id="certifications">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Nos Certifications & Référentiels</h2>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+                <div class="certification-card text-center border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="certification-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-certificate fa-2x"></i>
+                        </div>
+                        <h5>ISO 9001:2015</h5>
+                        <p class="text-muted">Système de Management de la Qualité</p>
+                        <div class="mt-3">
+                            <span class="badge bg-success">Certifié</span>
+                            <span class="badge bg-secondary">Depuis 2023</span>
+                        </div>
+                        <ul class="list-unstyled mt-3 text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Processus optimisés</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Satisfaction client</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Amélioration continue</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="certification-card text-center border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="certification-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h5>ISO 45001:2018</h5>
+                        <p class="text-muted">Santé et Sécurité au Travail</p>
+                        <div class="mt-3">
+                            <span class="badge bg-warning">En cours</span>
+                            <span class="badge bg-secondary">Objectif 2024</span>
+                        </div>
+                        <ul class="list-unstyled mt-3 text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Réduction des risques</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Protection du personnel</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Environnement sécurisé</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="certification-card text-center border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="certification-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-leaf fa-2x"></i>
+                        </div>
+                        <h5>ISO 26000</h5>
+                        <p class="text-muted">Responsabilité Sociétale</p>
+                        <div class="mt-3">
+                            <span class="badge bg-info">Implémentation</span>
+                            <span class="badge bg-secondary">En cours</span>
+                        </div>
+                        <ul class="list-unstyled mt-3 text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Éthique des affaires</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Développement durable</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Engagement social</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Autres référentiels -->
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto">
+                <h4 class="text-center mb-4">Autres Référentiels Appliqués</h4>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="p-3">
+                            <i class="fas fa-hard-hat fa-2x text-secondary mb-2"></i>
+                            <h6>Règlementation Travaux</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3">
+                            <i class="fas fa-fire-extinguisher fa-2x text-danger mb-2"></i>
+                            <h6>Sécurité Incendie</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3">
+                            <i class="fas fa-tint fa-2x text-info mb-2"></i>
+                            <h6>Environnement</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3">
+                            <i class="fas fa-bolt fa-2x text-warning mb-2"></i>
+                            <h6>Électricité</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Documents QHSE -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Documents QHSE</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    <i class="fas fa-file-pdf fa-2x text-danger me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">Manuel QHSE</h6>
+                                        <small class="text-muted">Version 2.1 - PDF</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    <i class="fas fa-clipboard-list fa-2x text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">Procédures Opérationnelles</h6>
+                                        <small class="text-muted">Document interne</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    <i class="fas fa-chart-bar fa-2x text-success me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">Rapport d'Audit</h6>
+                                        <small class="text-muted">Trimestriel</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    <i class="fas fa-exclamation-triangle fa-2x text-warning me-3"></i>
+                                    <div>
+                                        <h6 class="mb-1">Plan de Prévention</h6>
+                                        <small class="text-muted">Document unique</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+    
+<footer class="bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Colonne 1: Présentation -->
+            <div class="col-lg-4 col-md-6">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="logo me-3">
+                        <img src="../static/images/logo.png" alt="SICMI Sarl" class="logo-img" style="height: 50px; width: auto;">
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">SICMI Sarl</h5>
+                        <small class="text-light opacity-75">Ingénierie de construction et maintenance industrielle</small>
+                    </div>
+                </div>
+                <p class="text-light opacity-75">
+                    Spécialisée dans la construction et la maintenance industrielle, SICMI Sarl 
+                    s'engage à fournir des services de qualité supérieure avec un focus sur 
+                    l'excellence opérationnelle et l'innovation.
+                </p>
+                <div class="social-links">
+                    <a href="index.html#" class="text-white me-3">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="index.html#" class="text-white me-3">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="index.html#" class="text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Colonne 2: Services principaux -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="fw-bold text-primary mb-3">Nos Services</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="../services/index.html#construction" class="text-light opacity-75 text-decoration-none">
+                            Constructions neuves
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../services/index.html#maintenance" class="text-light opacity-75 text-decoration-none">
+                            Maintenance industrielle
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../services/index.html#accompagnement" class="text-light opacity-75 text-decoration-none">
+                            Accompagnement
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../services/index.html#facade" class="text-light opacity-75 text-decoration-none">
+                            Travaux de façade
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../services/index.html#renovation" class="text-light opacity-75 text-decoration-none">
+                            Rénovation
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Colonne 3: Liens rapides -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="fw-bold text-primary mb-3">Liens Rapides</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="../index.html" class="text-light opacity-75 text-decoration-none">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../a-propos/index.html" class="text-light opacity-75 text-decoration-none">
+                            À Propos
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../projets/index.html" class="text-light opacity-75 text-decoration-none">
+                            Réalisations
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../contact/index.html" class="text-light opacity-75 text-decoration-none">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Colonne 4: Contact -->
+            <div class="col-lg-4 col-md-6">
+                <h6 class="fw-bold text-primary mb-3">Contactez-nous</h6>
+                <div class="mb-3">
+                    <div class="d-flex align-items-start mb-2">
+                        <i class="fas fa-map-marker-alt text-primary mt-1 me-2"></i>
+                        <div>
+                            <small class="text-light opacity-75">
+                                Siège: Bonaberi Douala, Cameroun
+                            </small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-phone-alt text-primary me-2"></i>
+                        <div>
+                            <small class="text-light opacity-75">
+                                +237 675948524<br>+237 687013563
+                            </small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <div>
+                            <small class="text-light opacity-75">
+                                sicmisarl@gmail.com
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bouton de contact rapide -->
+                <a href="../contact/index.html" class="btn btn-primary btn-sm">
+                    <i class="fas fa-paper-plane me-1"></i>Envoyer un message
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-4 bg-light opacity-25">
+
+        <!-- Section infos légales et copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <small class="text-light opacity-75">
+                    &copy; 2024 SICMI Sarl. Tous droits réservés.
+                </small>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <!-- Legal identifiers removed as requested -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bouton retour en haut -->
+<button id="backToTop" class="btn btn-primary rounded-circle position-fixed" 
+        style="bottom: 20px; right: 20px; display: none; z-index: 1000; width: 50px; height: 50px;">
+    <i class="fas fa-chevron-up"></i>
+</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
