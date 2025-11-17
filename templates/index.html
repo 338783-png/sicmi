@@ -35,8 +35,10 @@
 
             // Apply data-bg to background-image CSS
             slides.forEach((slide) => {
-                const bg = slide.getAttribute('data-bg');
+                let bg = slide.getAttribute('data-bg');
                 if (bg) {
+                    // Normalize leading slash so static snapshots and GitHub Pages work
+                    if (bg.charAt(0) === '/') bg = bg.substring(1);
                     slide.style.backgroundImage = `url(${bg})`;
                 }
             });
@@ -867,14 +869,16 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.service-background[data-background]').forEach(function(el) {
         var url = el.getAttribute('data-background');
-        if(url) { 
+        if(url) {
+            if (url.charAt(0) === '/') url = url.substring(1);
             el.style.backgroundImage = 'url(' + url + ')'; 
         }
     });
     
     document.querySelectorAll('.project-background[data-background]').forEach(function(el) {
         var url = el.getAttribute('data-background');
-        if(url) { 
+        if(url) {
+            if (url.charAt(0) === '/') url = url.substring(1);
             el.style.backgroundImage = 'url(' + url + ')'; 
         }
     });
