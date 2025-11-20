@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views_debug import cloudinary_debug
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -14,4 +15,5 @@ urlpatterns = [
     path('ateliers/<slug:atelier_id>/', views.atelier_detail, name='atelier_detail'),
     path('recherche/', views.search, name='search'),
     path('equipe/', views.team, name='team'),
+    path('debug/cloudinary/', cloudinary_debug, name='cloudinary_debug'),
 ]
