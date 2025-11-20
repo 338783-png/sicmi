@@ -1,0 +1,1364 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$4S8VC2XkWYfVGjbzAduSbb$8kBkXlOPhxPlTvRUJb8+4UYnDn/5+u5D5EFNtQigvdY=",
+    "last_login": "2025-11-17T15:30:23.399Z",
+    "is_superuser": true,
+    "username": "jordanie",
+    "first_name": "",
+    "last_name": "",
+    "email": "jordanietane2@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-16T12:41:01.595Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$ZhjJkjcx59MHblPTHBOqWt$oWuAEPV4jVHPog7KZvGOY7sjiLnkEwKPHbP2No7oJz8=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "jordanietane2@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-20T01:18:26.722Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 1,
+  "fields": {
+    "name": "Constructions neuves et revamping"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 2,
+  "fields": {
+    "name": "Maintenance industrielle"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 3,
+  "fields": {
+    "name": "Accompagnement"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 4,
+  "fields": {
+    "name": "Travaux de Façade"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 5,
+  "fields": {
+    "name": "Travaux de rénovation"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 6,
+  "fields": {
+    "name": "Pose des tuyauteries et équipement  sur site"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 7,
+  "fields": {
+    "name": "Pose d’une passerelle, structures métalliques et équipements"
+  }
+},
+{
+  "model": "sicmi_app.servicecategory",
+  "pk": 8,
+  "fields": {
+    "name": "Montage des bacs et cuves"
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 1,
+  "fields": {
+    "name": "construction",
+    "category": 1,
+    "description": "Conception, fabrication et montage de structures métalliques \r\n\r\n Charpentes  métalliques \r\n\r\n Structures  complexes \r\n\r\n Fabrication sur mesure (escaliers ; mezzanine, passerelles, garde-corps, verrière, etc.)\r\n\r\n Cloisons, bardage, couverture métallique \r\n\r\nSoudure (TIG, MIG, MAG, à  l’arc, brasage,..) \r\n\r\n Tuyauterie industrielle \r\n\r\n Pose des équipements de production industrielle \r\n\r\n Construction des équipements de stockage des produits pétrolier (kerobar ; cuves, citernes, \r\nBac,..) \r\n\r\n Fabrication des carrosseries (fourgons, cellule métallique, brasseurs, plateaux nu, plateaux \r\nridelles,..) \r\n\r\n Traitement thermique des pièces métalliques",
+    "main_image": "services/ENVOYE_SPECIAL_BAILLEUL_SUR_BERTHOULT_62__1_.jpg",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 2,
+  "fields": {
+    "name": "Maintenance industrielle",
+    "category": 2,
+    "description": "Travaux de mécanique industrielle \r\n\r\n Dépannage et entretien des équipements de production \r\n\r\n Remplacement des pièces et remise en état. \r\n\r\n Transfert industriel (déménagement de machine, ligne de production) \r\n\r\n Soudage spéciaux sur équipements de production (acier inoxydable, aluminium, fonte, cuivre) \r\n\r\n Maintenance préventive et curative des équipements",
+    "main_image": "services/Mécanique-ind_2_pt-1024x683.jpg",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 3,
+  "fields": {
+    "name": "Accompagnement",
+    "category": 3,
+    "description": "Aide aux choix des matériaux  \r\n\r\nSuivi des chantiers \r\n\r\n Assurance qualité et contrôle qualité des travaux de  construction, de fabrication et \r\n\r\ninstallation des équipements industrielles et autres ouvrages d’art.  \r\n\r\n gestion des projets",
+    "main_image": "services/COVER-ARTICLE-suivi-de-chantier-1.png",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 4,
+  "fields": {
+    "name": "Travaux de Façade",
+    "category": 4,
+    "description": "Pose du  revêtement  mural  en panneaux  Equiton \r\nPose du  revêtement  mural  en panneaux Alucobon \r\n\r\n Peinture murale \r\n\r\n Découpe numérique pour décoration murale",
+    "main_image": "services/OIP_4.webp",
+    "order": 7
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 5,
+  "fields": {
+    "name": "Travaux de rénovation",
+    "category": 5,
+    "description": " Rénovation intérieure et extérieure \r\n Découpe numérique pour portail et  enseigne publicitaire. \r\n Serrurerie \r\n Carrelage \r\n Menuiserie aluminium \r\n Pose des staffs",
+    "main_image": "services/Screenshot_2025-11-11_162400.png",
+    "order": 8
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 6,
+  "fields": {
+    "name": "Pose des tuyauteries et équipement  sur site",
+    "category": 6,
+    "description": "bonjour les amis",
+    "main_image": "services/image1.jpg",
+    "order": 5
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 7,
+  "fields": {
+    "name": "Pose d’une passerelle, structures métalliques et équipements",
+    "category": 7,
+    "description": "pose de passerelles, structures métalliques et équipements industriels, nous garantissons des installations robustes, sécurisées et durables. Grâce à notre expertise technique et à un savoir-faire reconnu, nous accompagnons vos projets de l’étude à la réalisation, avec des solutions sur mesure qui répondent aux exigences les plus strictes",
+    "main_image": "services/2.jpg",
+    "order": 6
+  }
+},
+{
+  "model": "sicmi_app.service",
+  "pk": 8,
+  "fields": {
+    "name": "Montage des bacs et cuves",
+    "category": 8,
+    "description": "Experts en montage de bacs et cuves, nous assurons des installations précises, fiables et conformes aux normes de sécurité les plus strictes. Grâce à notre maîtrise technique et notre rigueur sur chantier, nous garantissons une mise en place optimale, durable et adaptée aux besoins spécifiques de chaque projet.",
+    "main_image": "services/2_fMubpll.jpg",
+    "order": 4
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 1,
+  "fields": {
+    "service": 1,
+    "image": "services/gallery/Les_diff_rentes_formes_de_charpentes_m_talliques.jpg",
+    "caption": "",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 2,
+  "fields": {
+    "service": 1,
+    "image": "services/gallery/Low-Price-Prefab-Large-Capacity-Chicken-House-Broiler-Poultry-Steel-St_IiivuJy.avif",
+    "caption": "",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 3,
+  "fields": {
+    "service": 1,
+    "image": "services/gallery/OIP_1.webp",
+    "caption": "",
+    "order": 4
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 4,
+  "fields": {
+    "service": 1,
+    "image": "services/gallery/OIP.webp",
+    "caption": "",
+    "order": 5
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 5,
+  "fields": {
+    "service": 2,
+    "image": "services/gallery/69b27c7dfc36.jpg",
+    "caption": "",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 6,
+  "fields": {
+    "service": 2,
+    "image": "services/gallery/OIP_1_JiLmSyA.webp",
+    "caption": "",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 7,
+  "fields": {
+    "service": 2,
+    "image": "services/gallery/OIP_3bLy8JT.webp",
+    "caption": "",
+    "order": 4
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 8,
+  "fields": {
+    "service": 2,
+    "image": "services/gallery/vignette-robot-assemblage-batterie-1.avif",
+    "caption": "",
+    "order": 5
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 9,
+  "fields": {
+    "service": 4,
+    "image": "services/gallery/Screenshot_2025-11-11_000124.png",
+    "caption": "",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 15,
+  "fields": {
+    "service": 5,
+    "image": "services/gallery/Screenshot_2025-11-11_162335_XeizY6Z.png",
+    "caption": "",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 16,
+  "fields": {
+    "service": 5,
+    "image": "services/gallery/Screenshot_2025-11-11_162343.png",
+    "caption": "",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 17,
+  "fields": {
+    "service": 6,
+    "image": "services/gallery/img_2.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 18,
+  "fields": {
+    "service": 6,
+    "image": "services/gallery/img_3.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 19,
+  "fields": {
+    "service": 6,
+    "image": "services/gallery/img_5.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 20,
+  "fields": {
+    "service": 6,
+    "image": "services/gallery/img_6.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 21,
+  "fields": {
+    "service": 6,
+    "image": "services/gallery/img4.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 22,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/1.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 23,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/3.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 24,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/4.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 25,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/5.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 26,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/6.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 27,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/7.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 28,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/8.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 29,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/9.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 30,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/10.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 31,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/11.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 32,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/12.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 33,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/13.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 34,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/14.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 35,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/15.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 36,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/16.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 37,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/17.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 38,
+  "fields": {
+    "service": 7,
+    "image": "services/gallery/18.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 39,
+  "fields": {
+    "service": 8,
+    "image": "services/gallery/1_DlDRk2C.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 40,
+  "fields": {
+    "service": 8,
+    "image": "services/gallery/4_dNQg1dQ.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 41,
+  "fields": {
+    "service": 8,
+    "image": "services/gallery/3_EabFJqD.jpg",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 42,
+  "fields": {
+    "service": 5,
+    "image": "services/gallery/Screenshot_2025-11-11_162329.png",
+    "caption": "",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 43,
+  "fields": {
+    "service": 4,
+    "image": "services/gallery/OIP_1_ASEAPim.webp",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 44,
+  "fields": {
+    "service": 4,
+    "image": "services/gallery/OIP_2_vPQIJtG.webp",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 45,
+  "fields": {
+    "service": 4,
+    "image": "services/gallery/OIP_3_8t9PKPm.webp",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 46,
+  "fields": {
+    "service": 4,
+    "image": "services/gallery/OIP_LgHU7Pz.webp",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.serviceimage",
+  "pk": 47,
+  "fields": {
+    "service": 1,
+    "image": "services/gallery/OIP_1_5jriw61.webp",
+    "caption": "",
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.project",
+  "pk": 1,
+  "fields": {
+    "title": "ADDAX PETROPLIEUM",
+    "client": "ADDAX PETROPLIEUM",
+    "description": "Conception, fabrication et montage de structures métalliques \r\n\r\nCharpentes  métalliques \r\n\r\n Structures  complexes \r\n\r\n Cloisons, bardage, couverture métallique\r\n\r\nFabrication et pose de Tuyauterie industrielle \r\n\r\n Pose des équipements de production industrielle",
+    "main_image": "projects/construction_metalique.jpg",
+    "completion_date": "2025-06-12",
+    "created_at": "2025-11-16T12:46:48.401Z"
+  }
+},
+{
+  "model": "sicmi_app.project",
+  "pk": 2,
+  "fields": {
+    "title": "SONARA-LIMBE",
+    "client": "SONARA-LIMBE",
+    "description": "Conception, fabrication et montage de structures métalliques \r\n\r\nCharpentes  métalliques \r\n\r\n Structures  complexes \r\n\r\n Cloisons, bardage, couverture métallique \r\n\r\nFabrication et pose de Tuyauterie industrielle \r\n\r\n Pose des équipements de production industrielle",
+    "main_image": "projects/Screenshot_2025-11-10_235518_DWWfeoY.png",
+    "completion_date": "2024-07-19",
+    "created_at": "2025-11-16T13:52:51.295Z"
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 8,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235530_0GaQZnD.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 9,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235541_6W7PQC3.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 10,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235549_MQqiKPn.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 11,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235842_j2Fl3DR.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 12,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235850_ZhMbYsW.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 13,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235858_TvdN4lK.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 14,
+  "fields": {
+    "project": 2,
+    "image": "projects/gallery/Screenshot_2025-11-10_235907_wvTm6As.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 15,
+  "fields": {
+    "project": 1,
+    "image": "projects/gallery/Screenshot_2025-11-11_162503_xGiB9lL.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.projectimage",
+  "pk": 16,
+  "fields": {
+    "project": 1,
+    "image": "projects/gallery/Screenshot_2025-11-11_162441.png",
+    "caption": "",
+    "is_primary": false,
+    "order": 0
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 2,
+  "fields": {
+    "name": "Ingénieur Construction 1",
+    "position": "Ingénieur",
+    "specialization": "Spécialisé en travaux de construction",
+    "image": "team/OIP_1.webp",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 3,
+  "fields": {
+    "name": "Ingénieur Construction 2",
+    "position": "Ingénieur",
+    "specialization": "Spécialisé en travaux de construction",
+    "image": "",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 4,
+  "fields": {
+    "name": "Ingénieur Maintenance",
+    "position": "Ingénieur",
+    "specialization": "Spécialisé en travaux de maintenance",
+    "image": "",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 5,
+  "fields": {
+    "name": "Spécialiste QHSE",
+    "position": "Spécialiste Qualité & Sécurité",
+    "specialization": "Aspects qualité et sécurité",
+    "image": "team/Immagine_WhatsApp_2025-11-15_ore_22.26.50_3b611925.jpg",
+    "order": 4
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 6,
+  "fields": {
+    "name": "Spécialiste QA/QC",
+    "position": "Contrôle Qualité",
+    "specialization": "Quality Assurance / Quality Control",
+    "image": "",
+    "order": 5
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 7,
+  "fields": {
+    "name": "Préparateur Travaux 1",
+    "position": "Préparateur de Travaux",
+    "specialization": "Relevés sur site et plans de fabrication",
+    "image": "",
+    "order": 6
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 8,
+  "fields": {
+    "name": "Préparateur Travaux 2",
+    "position": "Préparateur de Travaux",
+    "specialization": "Relevés sur site et plans de fabrication",
+    "image": "",
+    "order": 7
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 9,
+  "fields": {
+    "name": "Technicien Chaudronnerie 1",
+    "position": "Technicien Chaudronnier",
+    "specialization": "Ouvrages chaudronnés et installation équipements",
+    "image": "",
+    "order": 8
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 10,
+  "fields": {
+    "name": "Technicien Chaudronnerie 2",
+    "position": "Technicien Chaudronnier",
+    "specialization": "Ouvrages chaudronnés et installation équipements",
+    "image": "",
+    "order": 9
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 11,
+  "fields": {
+    "name": "Technicien Chaudronnerie 3",
+    "position": "Technicien Chaudronnier",
+    "specialization": "Ouvrages chaudronnés et installation équipements",
+    "image": "",
+    "order": 10
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 12,
+  "fields": {
+    "name": "Technicien Chaudronnerie 4",
+    "position": "Technicien Chaudronnier",
+    "specialization": "Ouvrages chaudronnés et installation équipements",
+    "image": "",
+    "order": 11
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 13,
+  "fields": {
+    "name": "Technicien Chaudronnerie 5",
+    "position": "Technicien Chaudronnier",
+    "specialization": "Ouvrages chaudronnés et installation équipements",
+    "image": "",
+    "order": 12
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 14,
+  "fields": {
+    "name": "Technicien Tuyauterie 1",
+    "position": "Technicien Tuyauteur",
+    "specialization": "Tuyauterie industrielle",
+    "image": "",
+    "order": 13
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 15,
+  "fields": {
+    "name": "Technicien Tuyauterie 2",
+    "position": "Technicien Tuyauteur",
+    "specialization": "Tuyauterie industrielle",
+    "image": "",
+    "order": 14
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 16,
+  "fields": {
+    "name": "Technicien Tuyauterie 3",
+    "position": "Technicien Tuyauteur",
+    "specialization": "Tuyauterie industrielle",
+    "image": "",
+    "order": 15
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 17,
+  "fields": {
+    "name": "Technicien Maintenance",
+    "position": "Technicien",
+    "specialization": "Maintenance industrielle",
+    "image": "",
+    "order": 16
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 18,
+  "fields": {
+    "name": "Soudeur Expérimenté 1",
+    "position": "Soudeur Certifié",
+    "specialization": "Procédés 141, 111, 135 homologués",
+    "image": "",
+    "order": 17
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 19,
+  "fields": {
+    "name": "Soudeur Expérimenté 2",
+    "position": "Soudeur Certifié",
+    "specialization": "Procédés 141, 111, 135 homologués",
+    "image": "",
+    "order": 18
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 20,
+  "fields": {
+    "name": "Soudeur Expérimenté 3",
+    "position": "Soudeur Certifié",
+    "specialization": "Procédés 141, 111, 135 homologués",
+    "image": "",
+    "order": 19
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 21,
+  "fields": {
+    "name": "Soudeur Certifié 1",
+    "position": "Soudeur",
+    "specialization": "Procédés 111, 141 homologués",
+    "image": "",
+    "order": 20
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 22,
+  "fields": {
+    "name": "Soudeur Certifié 2",
+    "position": "Soudeur",
+    "specialization": "Procédés 111, 141 homologués",
+    "image": "",
+    "order": 21
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 23,
+  "fields": {
+    "name": "Soudeur Certifié 3",
+    "position": "Soudeur",
+    "specialization": "Procédés 111, 141 homologués",
+    "image": "",
+    "order": 22
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 24,
+  "fields": {
+    "name": "Soudeur Certifié 4",
+    "position": "Soudeur",
+    "specialization": "Procédés 111, 141 homologués",
+    "image": "",
+    "order": 23
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 25,
+  "fields": {
+    "name": "Technicien Traitement Surface 1",
+    "position": "Technicien",
+    "specialization": "Traitement des surfaces métalliques",
+    "image": "",
+    "order": 24
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 26,
+  "fields": {
+    "name": "Technicien Traitement Surface 2",
+    "position": "Technicien",
+    "specialization": "Traitement des surfaces métalliques",
+    "image": "",
+    "order": 25
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 27,
+  "fields": {
+    "name": "Technicien Traitement Surface 3",
+    "position": "Technicien",
+    "specialization": "Traitement des surfaces métalliques",
+    "image": "",
+    "order": 26
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 28,
+  "fields": {
+    "name": "Peintre Bâtiment 1",
+    "position": "Peintre",
+    "specialization": "Peinture en bâtiment",
+    "image": "",
+    "order": 27
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 29,
+  "fields": {
+    "name": "Peintre Bâtiment 2",
+    "position": "Peintre",
+    "specialization": "Peinture en bâtiment",
+    "image": "",
+    "order": 28
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 30,
+  "fields": {
+    "name": "Peintre Bâtiment 3",
+    "position": "Peintre",
+    "specialization": "Peinture en bâtiment",
+    "image": "",
+    "order": 29
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 31,
+  "fields": {
+    "name": "Peintre Bâtiment 4",
+    "position": "Peintre",
+    "specialization": "Peinture en bâtiment",
+    "image": "",
+    "order": 30
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 32,
+  "fields": {
+    "name": "Technicien Revêtements 1",
+    "position": "Technicien",
+    "specialization": "Pose revêtements Equiton et Alucobond",
+    "image": "",
+    "order": 31
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 33,
+  "fields": {
+    "name": "Technicien Revêtements 2",
+    "position": "Technicien",
+    "specialization": "Pose revêtements Equiton et Alucobond",
+    "image": "",
+    "order": 32
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 34,
+  "fields": {
+    "name": "Menuisier Aluminium 1",
+    "position": "Menuisier",
+    "specialization": "Menuiserie aluminium",
+    "image": "",
+    "order": 33
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 35,
+  "fields": {
+    "name": "Menuisier Aluminium 2",
+    "position": "Menuisier",
+    "specialization": "Menuiserie aluminium",
+    "image": "",
+    "order": 34
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 36,
+  "fields": {
+    "name": "Menuisier Bois",
+    "position": "Menuisier",
+    "specialization": "Menuiserie bois",
+    "image": "",
+    "order": 35
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 37,
+  "fields": {
+    "name": "Technicien Serrurier",
+    "position": "Serrurier",
+    "specialization": "Serrurerie métallique",
+    "image": "",
+    "order": 36
+  }
+},
+{
+  "model": "sicmi_app.teammember",
+  "pk": 38,
+  "fields": {
+    "name": "Technicien Échafaudage",
+    "position": "Technicien",
+    "specialization": "Montage et vérification échafaudage",
+    "image": "",
+    "order": 37
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 1,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "University of Mantua Foundation - UniverMantova Foundation",
+    "email": "338783@studenti.unimore.it",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "uygfdtrfvhyg",
+    "created_at": "2025-11-17T11:08:59.860Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 2,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "",
+    "email": "jordaniekenne@gmail.com",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "les renseignements",
+    "created_at": "2025-11-19T22:58:55.893Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 3,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "University of Mantua Foundation - UniverMantova Foundation",
+    "email": "338783@studenti.unimore.it",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "bonjours",
+    "created_at": "2025-11-19T23:49:47.733Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 4,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "University of Mantua Foundation - UniverMantova Foundation",
+    "email": "338783@studenti.unimore.it",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "bonjour j'aimerais avoirs des infos",
+    "created_at": "2025-11-20T00:06:38.389Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 5,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "",
+    "email": "jordaniekenne@gmail.com",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "bmchc,hv,yjhv,jh",
+    "created_at": "2025-11-20T00:07:18.180Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.contactrequest",
+  "pk": 6,
+  "fields": {
+    "name": "JORDANIE tane kenne",
+    "company": "",
+    "email": "jordaniekenne@gmail.com",
+    "phone": "3518645657",
+    "subject": "demande",
+    "message": "bonjour j'aimearais avoir des infos",
+    "created_at": "2025-11-20T00:15:44.479Z",
+    "is_processed": false
+  }
+},
+{
+  "model": "sicmi_app.atelier",
+  "pk": 5,
+  "fields": {
+    "name": "Atelier d'assemblage",
+    "description": "Notre atelier d'assemblage est équipé pour réaliser tous types de montages et d'assemblages de structures métalliques. Nous disposons d'un espace optimisé et d'équipements modernes pour garantir la précision et la qualité de chaque assemblage.",
+    "order": 1,
+    "created_at": "2025-11-19T20:24:51.926Z"
+  }
+},
+{
+  "model": "sicmi_app.atelier",
+  "pk": 6,
+  "fields": {
+    "name": "Atelier d'usinage",
+    "description": "Équipé de machines-outils de haute précision, notre atelier d'usinage permet la réalisation de pièces complexes avec une exactitude millimétrique. Nous maîtrisons l'ensemble des techniques d'usinage pour répondre aux exigences les plus strictes.",
+    "order": 2,
+    "created_at": "2025-11-19T20:24:51.942Z"
+  }
+},
+{
+  "model": "sicmi_app.atelier",
+  "pk": 7,
+  "fields": {
+    "name": "Atelier de production",
+    "description": "Notre atelier de production centralise l'ensemble des activités de fabrication. Organisé de manière optimale, il permet une production efficace tout en maintenant les plus hauts standards de qualité et de sécurité.",
+    "order": 3,
+    "created_at": "2025-11-19T20:24:51.975Z"
+  }
+},
+{
+  "model": "sicmi_app.atelier",
+  "pk": 8,
+  "fields": {
+    "name": "Équipements & Machines",
+    "description": "SICMI dispose d'un parc machines moderne et diversifié comprenant des équipements de pointe pour la chaudronnerie, la tuyauterie, le soudage et la maintenance industrielle. Notre investissement continu dans les technologies nous permet d'offrir des prestations de haute qualité.",
+    "order": 4,
+    "created_at": "2025-11-19T20:24:51.989Z"
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 13,
+  "fields": {
+    "atelier": 5,
+    "image": "images/Ateliers & Équipements/Atelier d'assemblage/atelier-production-charpente-metallique-bouquet.jpeg",
+    "caption": "Atelier d'assemblage - Image 1",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 14,
+  "fields": {
+    "atelier": 6,
+    "image": "images/Ateliers & Équipements/Atelier d'usinage/1.jpg",
+    "caption": "Atelier d'usinage - Image 1",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 15,
+  "fields": {
+    "atelier": 6,
+    "image": "images/Ateliers & Équipements/Atelier d'usinage/OIP (2).webp",
+    "caption": "Atelier d'usinage - Image 2",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 16,
+  "fields": {
+    "atelier": 6,
+    "image": "images/Ateliers & Équipements/Atelier d'usinage/OIP (3).webp",
+    "caption": "Atelier d'usinage - Image 3",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 17,
+  "fields": {
+    "atelier": 7,
+    "image": "images/Ateliers & Équipements/Atelier de production/2.jpg",
+    "caption": "Atelier de production - Image 1",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 18,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/3.jpg",
+    "caption": "Équipements & Machines - Image 1",
+    "order": 1
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 19,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/4.jpg",
+    "caption": "Équipements & Machines - Image 2",
+    "order": 2
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 20,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/5.jpg",
+    "caption": "Équipements & Machines - Image 3",
+    "order": 3
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 21,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/6.jpg",
+    "caption": "Équipements & Machines - Image 4",
+    "order": 4
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 22,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/7.jpg",
+    "caption": "Équipements & Machines - Image 5",
+    "order": 5
+  }
+},
+{
+  "model": "sicmi_app.atelierimage",
+  "pk": 23,
+  "fields": {
+    "atelier": 8,
+    "image": "images/Ateliers & Équipements/Équipements & Machines/8.jpg",
+    "caption": "Équipements & Machines - Image 6",
+    "order": 6
+  }
+}
+]
