@@ -34,6 +34,11 @@ def cloudinary_debug(request):
     </div>
     
     <div class="section">
+        <h2>2b. Configuration Cloudinary réelle</h2>
+        <pre>{cloudinary_real_config}</pre>
+    </div>
+    
+    <div class="section">
         <h2>3. Test d'import</h2>
         <pre>{import_test}</pre>
     </div>
@@ -60,13 +65,28 @@ def cloudinary_debug(request):
     default_storage = settings.DEFAULT_FILE_STORAGE
     cloudinary_storage = str(settings.CLOUDINARY_STORAGE)
     
-    # Test d'import
+    # Configuration Cloudinary réelle
+    try:
+        import cloudinary
+        config = cloudinary.config()
+        cloudinary_real_config = f"""
+cloud_name: {config.cloud_name if config.cloud_name else '❌ NON CONFIGURÉ'}
+api_key: {config.api_key if config.api_key else '❌ NON CONFIGURÉ'}
+api_secret: {config.api_secret[:5] + '****' if config.api_secret else '❌ NON CONFIGURÉ'}
+        """
+    except Exception as e:
+        cloudinary_real_config = f"❌ Erreur: {e}"
+    
+    # Test d'import et configuration
     try:
         import cloudinary
         import cloudinary_storage
-        import_test = "✅ Modules cloudinary importés correctement"
+        import_test = "✅ Modules cloudinary importés correctement\n"
+        import_test += f"Cloudinary.config: {cloudinary.config().cloud_name if hasattr(cloudinary.config(), 'cloud_name') else 'Non configuré'}"
     except ImportError as e:
         import_test = f"❌ Erreur d'import: {e}"
+    except Exception as e:
+        import_test = f"✅ Modules importés mais erreur config: {e}"
     
     # Base de données
     from sicmi_app.models import Service, Project, Atelier
@@ -109,6 +129,7 @@ Ateliers: {Atelier.objects.count()}
         api_secret_masked=api_secret_masked,
         default_storage=default_storage,
         cloudinary_storage=cloudinary_storage,
+        cloudinary_real_config=cloudinary_real_config,
         import_test=import_test,
         db_info=db_info,
         recent_images=recent_images
