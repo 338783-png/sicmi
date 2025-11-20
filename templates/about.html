@@ -10,31 +10,52 @@
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section bg-light">
-    <div class="container py-5">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold text-primary mb-4">À Propos de SICMI</h1>
-                <p class="lead mb-4">
-                    Société d'Ingénierie de Construction et de Maintenance Industrielle, 
-                    SICMI Sarl est votre partenaire de confiance pour tous vos projets industriels au Cameroun.
+<!-- Hero Section with Background -->
+<section class="hero-section position-relative py-5" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{% static 'images/AXM2581-scaled-1.jpg' %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-4">
+                <h1 class="display-4 fw-bold text-white mb-3">À Propos de SICMI Sarl</h1>
+                <p class="lead text-white">
+                    Société d'Ingénierie de Construction et de Maintenance Industrielle
                 </p>
             </div>
-            <div class="col-lg-6">
-                <div class="bg-primary text-white rounded p-4">
-                    <h4 class="mb-3">Notre Mission</h4>
-                    <p class="mb-0">
+        </div>
+        
+        <!-- Notre Mission avec Image -->
+        <div class="row align-items-center mt-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="mission-card bg-primary text-white rounded-4 p-5 shadow-lg">
+                    <div class="mission-icon mb-4">
+                        <i class="fas fa-bullseye fa-3x"></i>
+                    </div>
+                    <h3 class="mb-4">Notre Mission</h3>
+                    <p class="lead mb-0">
                         Satisfaire nos clients sur les aspects liés à la qualité, au respect des délais 
-                        et aux coûts des prestations, tout en garantissant la sécurité et l'innovation.
+                        et aux coûts des prestations, tout en garantissant la sécurité et l'innovation dans 
+                        tous nos projets industriels.
                     </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mission-image-wrapper position-relative">
+                    <img src="{% static 'images/hero4.png' %}" alt="SICMI Sarl - Excellence Industrielle" 
+                         class="img-fluid rounded-4 shadow-lg">
+                    <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 rounded-4"></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Présentation de l'entreprise -->
+<!-- 1. Notre Histoire -->
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -67,7 +88,7 @@
                             <h5>Démarche qualité</h5>
                             <p>
                                 Engagement dans une démarche de certification de nos processus aux référentiels 
-                                 ISO 26000, ISO 9001 v2015 et ISO 45001 v2018.
+                                 ISO 26000, ISO 9001 v2015 et ISO 45001 v2018.
                             </p>
                         </div>
                     </div>
@@ -87,7 +108,7 @@
     </div>
 </section>
 
-<!-- Valeurs -->
+<!-- 2. Nos Valeurs -->
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
@@ -171,7 +192,383 @@
     </div>
 </section>
 
-<!-- Équipe -->
+<!-- 3. Notre Méthodologie de Travail -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Notre Méthodologie de Travail</h2>
+            <p class="lead">Un processus rigoureux en 8 étapes pour garantir votre satisfaction</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Étape 1 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                1
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Visite de Site</h5>
+                                <p class="card-text">Relevé des cotes et analyse approfondie des contraintes techniques, logistiques et environnementales du site.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                2
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Analyse des Besoins</h5>
+                                <p class="card-text">Étude détaillée des besoins spécifiques du client pour proposer des solutions adaptées et optimales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 3 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                3
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Proposition Technique et Financière</h5>
+                                <p class="card-text">Élaboration d'une offre détaillée comprenant les aspects techniques, le planning et le budget prévisionnel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 4 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                4
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Planification et Coordination</h5>
+                                <p class="card-text">Organisation minutieuse des ressources humaines et matérielles, coordination des différentes équipes techniques.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 5 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                5
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Réalisation des Travaux</h5>
+                                <p class="card-text">Exécution des travaux dans le respect strict des normes et codes applicables, avec un suivi continu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 6 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                6
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Assurance et Contrôle Qualité</h5>
+                                <p class="card-text">Mise en œuvre de processus QA/QC rigoureux à toutes les étapes pour garantir la qualité des réalisations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 7 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                7
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Réception des Travaux</h5>
+                                <p class="card-text">Préparation minutieuse et réalisation des réceptions, accompagnement du client dans la validation finale.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 8 -->
+            <div class="col-lg-6">
+                <div class="methodology-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="methodology-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 50px; height: 50px; font-size: 1.5rem; font-weight: bold;">
+                                8
+                            </div>
+                            <div>
+                                <h5 class="card-title text-primary mb-2">Suivi Post-Intervention</h5>
+                                <p class="card-text">Accompagnement après livraison, reporting détaillé et disponibilité pour tout support technique nécessaire.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="text-center mt-5">
+            <div class="alert alert-info d-inline-block">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Notre engagement :</strong> Transparence, rigueur et excellence à chaque étape de votre projet
+            </div>
+        </div>
+    </div>
+</section>
+
+            <!-- 5. Equipements et Qualification -->
+            <section id="equipements" class="py-5">
+                <div class="container">
+                    <h2 class="section-title text-center mb-5">Equipements et Qualification</h2>
+                    <div class="row g-4">
+                        <!-- Parc Matériel -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-truck-loading fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Parc Matériel</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Nacelles</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Chariots élévateurs</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Grues mobiles</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Groupes électrogènes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sableuse & Contrôle -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-spray-can fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Sableuse & Contrôle</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Sableuse professionnelle</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Kit complet Elcometer</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Echafaudages -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-building fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Echafaudages</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Echafaudages mobiles</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Echafaudages fixes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outils de Chaudronnerie -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-tools fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Outils de Chaudronnerie</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Perceuses</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Rouleuses</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Plieuses</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Caisse complète chaudronnier</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outils de Tuyauterie -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-wrench fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Outils de Tuyauterie</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Caisse complète tuyauteur</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outils de Maintenance -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-cog fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Outils de Maintenance</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Caisse complète mainteneur</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Outils de Pose -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-hard-hat fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Outils de Pose</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Caisse complète poseur</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Equipements de Levage -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-anchor fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Equipements de Levage</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Matériel de levage</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Matériel de découpe</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Contrôle qualité</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Equipements de Soudage -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-burn fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Equipements de Soudage</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Postes à souder autonomes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Traitement Thermique -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-fire fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Traitement Thermique</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Equipement de traitement thermique</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Découpe Oxyacétylénique -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-cut fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Découpe</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Découpe oxyacétylénique</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Meuleuses -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-circle-notch fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Meuleuses</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Meuleuses professionnelles</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logiciels -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-laptop-code fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">Logiciels</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Robot Millenium</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>AutoCAD</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>SolidWorks</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Chacal</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Opticoupe</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ERP Odoo -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-project-diagram fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">ERP</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>ERP Odoo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QMOS -->
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm equipment-card">
+                                <div class="card-body">
+                                    <i class="fas fa-certificate fa-3x text-primary mb-3 equipment-icon"></i>
+                                    <h5 class="card-title">QMOS</h5>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Acier inoxydable</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Acier construction</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Tuyauterie</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Structure</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<!-- 5. Notre Équipe -->
 <section class="py-5">
     <div class="container">
         <div class="text-center mb-5">
@@ -205,7 +602,7 @@
     </div>
 </section>
 
-<!-- Certifications -->
+<!-- 6. Engagement Qualité & Sécurité -->
 <section class="py-5 bg-primary text-white">
     <div class="container">
         <div class="row align-items-center">
@@ -218,7 +615,7 @@
                 </p>
             </div>
             <div class="col-lg-4 text-lg-end">
-                <div class="d-flex justify-content-lg-end gap-3">
+                <div class="d-flex justify-content-lg-end gap-3 flex-wrap">
                     <div class="certification-badge bg-white text-dark rounded p-3 text-center">
                         <i class="fas fa-certificate fa-2x text-primary mb-2"></i>
                         <div>ISO 9001</div>
@@ -231,12 +628,111 @@
                     </div>
                     <div class="certification-badge bg-white text-dark rounded p-3 text-center">
                         <i class="fas fa-certificate fa-2x text-primary mb-2"></i>
-                        <div> ISO 26000</div>
-                        <small>Responsabilité Sociétale</small>
+                        <div>ISO 26000</div>
+                        <small>RSE</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+.mission-card {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.mission-icon {
+    opacity: 0.9;
+}
+
+.mission-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+
+.mission-image-wrapper img {
+    transition: transform 0.5s ease;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.mission-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mission-image-wrapper:hover .image-overlay {
+    opacity: 0;
+}
+
+.methodology-card {
+    transition: all 0.3s ease;
+}
+
+.methodology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.methodology-number {
+    flex-shrink: 0;
+}
+
+.team-card {
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.certification-badge {
+    min-width: 100px;
+}
+
+.equipment-card {
+    transition: all 0.3s ease;
+}
+
+.equipment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.equipment-icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.equipment-card:hover .equipment-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+</style>
 {% endblock %}

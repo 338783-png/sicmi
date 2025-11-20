@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notre Équipe - SICMI Sarl{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative text-white d-flex align-items-center" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 40vh;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">Notre Équipe</h1>
+        <p class="lead mb-0">
+            Des professionnels expérimentés au service de vos projets
+        </p>
+    </div>
+</section>
+
+<!-- Team Members Section -->
+<section class="py-5">
+    <div class="container">
+        {% if team_members %}
+        <div class="row g-4">
+            {% for member in team_members %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 border-0 shadow-sm team-member-card">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" class="card-img-top" alt="{{ member.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="height: 250px;">
+                        <i class="fas fa-user-tie fa-5x text-primary opacity-25"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">{{ member.name }}</h5>
+                        <p class="text-primary mb-2">{{ member.position }}</p>
+                        <p class="text-muted small mb-0">{{ member.specialization }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-users fa-4x text-muted mb-3"></i>
+            <h3 class="text-muted">Aucun membre de l'équipe pour le moment</h3>
+            <p class="text-muted">Les informations de l'équipe seront bientôt disponibles.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Rejoignez Notre Équipe</h2>
+        <p class="lead mb-4">Vous êtes un professionnel passionné par l'industrie ? Contactez-nous !</p>
+        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-envelope me-2"></i>Nous Contacter
+        </a>
+    </div>
+</section>
+
+<style>
+.team-member-card {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.team-member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.team-member-card .card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.team-member-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.team-member-card .card-title {
+    color: #1e3c72;
+}
+</style>
+{% endblock %}

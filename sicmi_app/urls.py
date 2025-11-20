@@ -8,11 +8,10 @@ urlpatterns = [
     path('services/<int:service_id>/', views.service_detail, name='service_detail'),
     path('projets/', views.projects, name='projects'),
     path('projets/<int:project_id>/', views.project_detail, name='project_detail'),
-    path('realisations/', views.realisations, name='realisations'),
-    path('realisations/<int:realisation_id>/', views.realisation_detail, name='realisation_detail'),
     path('contact/', views.contact, name='contact'),
     path('politique-qhse/', views.qhse_policy, name='qhse_policy'),
-    path('engagement-rse/', views.rse_engagement, name='rse_engagement'),
     path('ateliers/', views.ateliers, name='ateliers'),
     path('ateliers/<slug:atelier_id>/', views.atelier_detail, name='atelier_detail'),
+    path('recherche/', views.search, name='search'),
+    path('equipe/', views.team, name='team'),
 ]

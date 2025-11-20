@@ -16,19 +16,13 @@
         </a>
         
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
-                        <i class="fas fa-home me-1"></i>{% trans "Accueil" %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
-                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                        {% trans "Accueil" %}
                     </a>
                 </li>
                 
-                <!-- Menu déroulant Services -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
                        href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,119 +69,119 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
+                        <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
+                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                    </a>
+                </li>
+
                 <!-- Menu déroulant QHSE & RSE -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if 'qhse_policy' in request.path or 'rse_engagement' in request.path %}active{% endif %}" 
+                    <a class="nav-link dropdown-toggle {% if 'qhse_policy' in request.path %}active{% endif %}" 
                        href="#" id="qhseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-shield-alt me-1"></i>QHSE & RSE
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="qhseDropdown">
                         <li>
                             <a class="dropdown-item" href="{% url 'qhse_policy' %}">
-                                <i class="fas fa-file-contract me-2"></i>Politique QHSE
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'rse_engagement' %}">
-                                <i class="fas fa-leaf me-2"></i>Engagement RSE
+                                <i class="fas fa-file-contract me-2"></i>Politique QHSE & RSE
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#qhse">
+                                <i class="fas fa-shield-alt me-2"></i>Politique QHSE
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#rse">
+                                <i class="fas fa-leaf me-2"></i>Engagement RSE
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'qhse_policy' %}#certifications">
                                 <i class="fas fa-certificate me-2"></i>Nos Certifications
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#objectifs">
-                                <i class="fas fa-bullseye me-2"></i>Objectifs Stratégiques
+                            <a class="dropdown-item" href="{% url 'qhse_policy' %}#engagement">
+                                <i class="fas fa-handshake me-2"></i>Engagement Direction
                             </a>
                         </li>
                     </ul>
                 </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
-                        <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
-                    </a>
-                </li>
             </ul>
         
+        </div>
+        
+        <!-- Barra di ricerca espandibile -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container">
+                <button class="search-close" id="searchClose" type="button" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+                <form action="{% url 'search' %}" method="get" class="search-form">
+                    <input type="search" name="q" class="search-input-large" 
+                           placeholder="Rechercher des services, projets..." 
+                           aria-label="Rechercher" autofocus>
+                    <button type="submit" class="search-submit">
+                        <i class="fas fa-search"></i>
+                        <span class="ms-2">Rechercher</span>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
 
-<!-- Breadcrumb amélioré -->
-<div class="bg-light border-bottom">
-    <div class="container">
-        <nav aria-label="breadcrumb" class="py-3">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                    <a href="{% url 'home' %}" class="text-decoration-none d-flex align-items-center">
-                        <i class="fas fa-home me-1"></i>
-                        <span>{% trans "Accueil" %}</span>
-                    </a>
-                </li>
-                {% block breadcrumb %}
-                {% if request.path == '/a-propos/' %}
-                    <li class="breadcrumb-item active" aria-current="page">{% trans "À Propos" %}</li>
-                {% elif request.path == '/services/' %}
-                    <li class="breadcrumb-item active" aria-current="page">{% trans "Services" %}</li>
-                {% elif 'services' in request.path and request.path != '/services/' %}
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'services' %}" class="text-decoration-none">{% trans "Services" %}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">{% trans "Détail" %}</li>
-                {% elif request.path == '/projets/' %}
-                    <li class="breadcrumb-item active" aria-current="page">{% trans "Réalisations" %}</li>
-                {% elif request.path == '/contact/' %}
-                    <li class="breadcrumb-item active" aria-current="page">{% trans "Contact" %}</li>
-                {% elif request.path == '/politique-qhse/' %}
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'about' %}" class="text-decoration-none">{% trans "À Propos" %}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Politique QHSE</li>
-                {% elif request.path == '/engagement-rse/' %}
-                    <li class="breadcrumb-item">
-                        <a href="{% url 'about' %}" class="text-decoration-none">{% trans "À Propos" %}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Engagement RSE</li>
-                {% endif %}
-                {% endblock %}
-            </ol>
-        </nav>
-    </div>
-</div>
-
-<!-- Navigation mobile secondaire (pour les écrans petits) -->
-<div class="d-lg-none bg-primary text-white">
-    <div class="container">
-        <div class="row g-0 text-center">
-            <div class="col-4">
-                <a href="tel:+237675948524" class="text-white d-block py-2">
-                    <i class="fas fa-phone fa-sm d-block mb-1"></i>
-                    <small>Appeler</small>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="https://wa.me/237675948524" class="text-white d-block py-2">
-                    <i class="fab fa-whatsapp fa-sm d-block mb-1"></i>
-                    <small>WhatsApp</small>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="mailto:sicmisarl@gmail.com" class="text-white d-block py-2">
-                    <i class="fas fa-envelope fa-sm d-block mb-1"></i>
-                    <small>Email</small>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
 // Animation améliorée pour la navigation
 document.addEventListener('DOMContentLoaded', function() {
+    // Toggle ricerca overlay
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchOverlay = document.getElementById('searchOverlay');
+    
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', function() {
+            searchOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                const input = searchOverlay.querySelector('.search-input-large');
+                if (input) input.focus();
+            }, 300);
+        });
+    }
+    
+    if (searchClose && searchOverlay) {
+        searchClose.addEventListener('click', function() {
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Chiudi con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Chiudi cliccando fuori
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
     // Animation des dropdowns
     const dropdowns = document.querySelectorAll('.dropdown');
     
@@ -224,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.classList.add('active');
             }
             
-            if ((currentPath.includes('/politique-qhse/') || currentPath.includes('/engagement-rse/')) && 
+            if (currentPath.includes('/politique-qhse/') && 
                 link.classList.contains('dropdown-toggle') && link.getAttribute('href') === '#') {
                 link.classList.add('active');
             }
@@ -295,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handleResponsiveNav();
 
     // Fermer le menu mobile après clic sur un lien
-    const navLinksMobile = document.querySelectorAll('.navbar-nav .nav-link');
+    const navLinksMobile = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.getElementById('navbarNav');
     
@@ -306,6 +300,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     toggle: false
                 });
                 bsCollapse.hide();
+            }
+        });
+    });
+    
+    // Chiudere il menu mobile dopo aver selezionato un elemento dropdown
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                setTimeout(() => {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                }, 300);
             }
         });
     });
@@ -418,6 +427,115 @@ const additionalStyles = `
 
 .navbar-brand:hover img {
     transform: scale(1.05);
+}
+
+/* Search overlay styles */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+
+.search-overlay.active .search-container {
+    transform: translateY(0);
+}
+
+.search-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-close:hover {
+    transform: rotate(90deg);
+}
+
+.search-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input-large {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: #333;
+}
+
+.search-input-large:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.search-submit {
+    padding: 1.5rem 3rem;
+    background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.search-submit:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0, 86, 179, 0.4);
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-input-large {
+        font-size: 1.2rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .search-submit {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
 }
 `;
 

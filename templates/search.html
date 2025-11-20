@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Résultats de recherche - SICMI Sarl{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="mb-4">
+                    <h1 class="display-5 fw-bold text-primary">Résultats de recherche</h1>
+                    {% if query %}
+                        <p class="lead">Recherche pour : <strong>"{{ query }}"</strong></p>
+                        <p class="text-muted">{{ total_results }} résultat{{ total_results|pluralize }} trouvé{{ total_results|pluralize }}</p>
+                    {% else %}
+                        <p class="lead text-muted">Veuillez entrer un terme de recherche</p>
+                    {% endif %}
+                </div>
+
+                {% if query %}
+                    <!-- Résultats Services -->
+                    {% if services_results %}
+                        <div class="mb-5">
+                            <h2 class="h4 mb-3 text-primary">
+                                <i class="fas fa-cogs me-2"></i>Services ({{ services_results|length }})
+                            </h2>
+                            <div class="row g-4">
+                                {% for service in services_results %}
+                                    <div class="col-md-6">
+                                        <div class="card h-100 shadow-sm hover-shadow">
+                                            {% if service.main_image %}
+                                                <img src="{{ service.main_image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <span class="badge bg-primary mb-2">{{ service.get_category_display }}</span>
+                                                <h5 class="card-title">{{ service.name }}</h5>
+                                                <p class="card-text">{{ service.description|truncatewords:30 }}</p>
+                                                <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary btn-sm">
+                                                    <i class="fas fa-arrow-right me-1"></i>Voir les détails
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Résultats Projets -->
+                    {% if projects_results %}
+                        <div class="mb-5">
+                            <h2 class="h4 mb-3 text-primary">
+                                <i class="fas fa-project-diagram me-2"></i>Projets ({{ projects_results|length }})
+                            </h2>
+                            <div class="row g-4">
+                                {% for project in projects_results %}
+                                    <div class="col-md-6">
+                                        <div class="card h-100 shadow-sm hover-shadow">
+                                            {% if project.main_image %}
+                                                <img src="{{ project.main_image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <span class="badge bg-success mb-2">{{ project.client }}</span>
+                                                <h5 class="card-title">{{ project.title }}</h5>
+                                                <p class="card-text">{{ project.description|truncatewords:30 }}</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-calendar me-1"></i>{{ project.completion_date|date:"d/m/Y" }}
+                                                    </small>
+                                                    <a href="{% url 'project_detail' project.id %}" class="btn btn-outline-primary btn-sm">
+                                                        <i class="fas fa-arrow-right me-1"></i>Voir le projet
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Aucun résultat -->
+                    {% if not services_results and not projects_results %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-search fa-4x text-muted mb-3"></i>
+                            <h3 class="text-muted">Aucun résultat trouvé</h3>
+                            <p class="lead">Essayez avec d'autres mots-clés</p>
+                            <div class="mt-4">
+                                <a href="{% url 'services' %}" class="btn btn-primary me-2">
+                                    <i class="fas fa-cogs me-1"></i>Voir tous les services
+                                </a>
+                                <a href="{% url 'projects' %}" class="btn btn-outline-primary">
+                                    <i class="fas fa-project-diagram me-1"></i>Voir tous les projets
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.hover-shadow {
+    transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card {
+    overflow: hidden;
+}
+</style>
+{% endblock %}

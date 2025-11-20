@@ -1,47 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Service, Project, TeamMember, QHSEPolicy, ServiceImage, ProjectImage
+from django.db.models import Q
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import Service, ServiceCategory, Project, TeamMember, ServiceImage, ProjectImage, Atelier, AtelierImage
 from .forms import ContactForm
-from .models import Realisation, RealisationCategory, RealisationImage
-
-def realisations(request):
-    """Page principale des réalisations"""
-    categories = RealisationCategory.objects.all()
-    realisations_list = Realisation.objects.all().select_related('category').prefetch_related('images')
-    
-    # Pagination
-    paginator = Paginator(realisations_list, 6)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    context = {
-        'categories': categories,
-        'page_obj': page_obj,
-    }
-    return render(request, 'realisations.html', context)
-
-def realisation_detail(request, realisation_id):
-    """Détail d'une réalisation"""
-    realisation = get_object_or_404(Realisation, id=realisation_id)
-    realisation_images = realisation.images.all()
-    
-    # Réalisations similaires (même catégorie)
-    similar_realisations = Realisation.objects.filter(
-        category=realisation.category
-    ).exclude(id=realisation.id)[:3]
-    
-    context = {
-        'realisation': realisation,
-        'realisation_images': realisation_images,
-        'similar_realisations': similar_realisations,
-    }
-    return render(request, 'realisation_detail.html', context)
 
 def home(request):
     services = Service.objects.all()[:6]
     recent_projects = Project.objects.all()[:3]
-    qhse_policy = QHSEPolicy.objects.filter(is_active=True).first()
+    ateliers = Atelier.objects.all()[:4]
     
     # Récupérer les images de fond pour l'héros
     hero_images = ProjectImage.objects.filter(is_primary=True)[:5]
@@ -49,8 +18,8 @@ def home(request):
     context = {
         'services': services,
         'recent_projects': recent_projects,
-        'qhse_policy': qhse_policy,
         'hero_images': hero_images,
+        'ateliers': ateliers,
     }
     return render(request, 'index.html', context)
 
@@ -62,10 +31,14 @@ def about(request):
     return render(request, 'about.html', context)
 
 def services(request):
+    # Raggruppa servizi per categoria
     services_by_category = {}
-    for category in Service.CATEGORY_CHOICES:
-        services = Service.objects.filter(category=category[0])
-        services_by_category[category[1]] = services
+    categories = ServiceCategory.objects.all().prefetch_related('services')
+    
+    for category in categories:
+        services_list = category.services.all()
+        if services_list.exists():
+            services_by_category[category.name] = services_list
 
     context = {
         'services_by_category': services_by_category,
@@ -115,8 +88,39 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
+            contact_request = form.save()
+            
+            # Envoyer un email de notification
+            subject = f'Nouveau message de contact - {contact_request.subject}'
+            message = f"""
+Nouveau message reçu depuis le site SICMI:
+
+Nom: {contact_request.name}
+Entreprise: {contact_request.company}
+Email: {contact_request.email}
+Téléphone: {contact_request.phone}
+Sujet: {contact_request.subject}
+
+Message:
+{contact_request.message}
+
+---
+Date: {contact_request.created_at.strftime('%d/%m/%Y %H:%M')}
+"""
+            
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['jordanietane2@gmail.com'],
+                    fail_silently=False,
+                )
+                messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
+            except Exception as e:
+                # En cas d'erreur d'envoi, le message est quand même sauvegardé
+                messages.success(request, 'Votre message a été enregistré. Nous vous contacterons bientôt.')
+            
             return redirect('contact')
     else:
         form = ContactForm()
@@ -127,89 +131,74 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 def qhse_policy(request):
-    qhse_policies = QHSEPolicy.objects.filter(is_active=True)
+    """Page statique de la politique QHSE & RSE combinée"""
     context = {
-        'qhse_policies': qhse_policies,
+        'page_title': 'Politique QHSE & RSE',
     }
     return render(request, 'qhse_policy.html', context)
 
-def rse_engagement(request):
-    context = {
-        'page_title': 'Engagement RSE',
-    }
-    return render(request, 'rse_engagement.html', context)
-
 def ateliers(request):
-    """Page descriptive des ateliers et équipements"""
-    # Informations statiques pour la page; on peut plus tard les tirer d'un modèle si besoin
-    ateliers_info = [
-        {
-            'id': 'production',
-            'title': "Atelier de production",
-            'summary': "Grande surface dédiée à la fabrication et à l'assemblage de structures métalliques.",
-            'details': "Nos ateliers de production sont équipés pour la découpe, le pliage, le soudage et l'assemblage de grandes structures. Nous respectons des procédures QHSE strictes et gérons les flux logistiques pour des livraisons fiables."
-        },
-        {
-            'id': 'usinage',
-            'title': "Atelier d'usinage",
-            'summary': "Postes d'usinage CNC et traditionnels pour pièces de précision.",
-            'details': "Postes CNC modernes et outillage de contrôle assurent des tolérances serrées pour pièces mécaniques et ensembles. Notre équipe réalise usinage, rectification et finition selon les plans techniques."
-        },
-        {
-            'id': 'assemblage',
-            'title': "Atelier d'assemblage",
-            'summary': "Zones d'assemblage équipées pour montage, tests et mise en service.",
-            'details': "Zones dédiées pour le montage mécanique et électrique, bancs de test fonctionnels et équipes d'essais pour s'assurer de la conformité et de la performance avant livraison."
-        },
-        {
-            'id': 'equipements',
-            'title': "Équipements & Machines",
-            'summary': "CNC, presses hydrauliques, soudeuses, systèmes de levage et outillage spécialisé.",
-            'details': "Nous investissons continuellement dans des équipements pour augmenter la capacité et la qualité : CNC 3-axes/5-axes, lignes de soudure semi-automatiques, presses, palans et contrôles non destructifs."
-        },
-    ]
-
+    """Page des ateliers et équipements avec images depuis la base de données"""
+    ateliers_list = Atelier.objects.all().prefetch_related('images')
+    
     context = {
-        'ateliers_info': ateliers_info,
+        'ateliers': ateliers_list,
     }
     return render(request, 'ateliers.html', context)
 
 
 def atelier_detail(request, atelier_id):
-    """Affiche la page détaillée pour un atelier donné (atelier_id = production|usinage|assemblage|equipements)"""
-    ateliers_info = [
-        {
-            'id': 'production',
-            'title': "Atelier de production",
-            'summary': "Grande surface dédiée à la fabrication et à l'assemblage de structures métalliques.",
-            'details': "Nos ateliers de production sont équipés pour la découpe, le pliage, le soudage et l'assemblage de grandes structures. Nous respectons des procédures QHSE strictes et gérons les flux logistiques pour des livraisons fiables."
-        },
-        {
-            'id': 'usinage',
-            'title': "Atelier d'usinage",
-            'summary': "Postes d'usinage CNC et traditionnels pour pièces de précision.",
-            'details': "Postes CNC modernes et outillage de contrôle assurent des tolérances serrées pour pièces mécaniques et ensembles. Notre équipe réalise usinage, rectification et finition selon les plans techniques."
-        },
-        {
-            'id': 'assemblage',
-            'title': "Atelier d'assemblage",
-            'summary': "Zones d'assemblage équipées pour montage, tests et mise en service.",
-            'details': "Zones dédiées pour le montage mécanique et électrique, bancs de test fonctionnels et équipes d'essais pour s'assurer de la conformité et de la performance avant livraison."
-        },
-        {
-            'id': 'equipements',
-            'title': "Équipements & Machines",
-            'summary': "CNC, presses hydrauliques, soudeuses, systèmes de levage et outillage spécialisé.",
-            'details': "Nous investissons continuellement dans des équipements pour augmenter la capacité et la qualité : CNC 3-axes/5-axes, lignes de soudure semi-automatiques, presses, palans et contrôles non destructifs."
-        },
-    ]
-
-    atelier = next((a for a in ateliers_info if a['id'] == atelier_id), None)
-    if not atelier:
-        # return to ateliers listing if unknown
-        return redirect('ateliers')
-
+    """Affiche la page détaillée pour un atelier donné"""
+    atelier = get_object_or_404(Atelier, id=atelier_id)
+    atelier_images = atelier.images.all()
+    
+    # Autres ateliers pour la section similaire
+    other_ateliers = Atelier.objects.exclude(id=atelier.id)[:3]
+    
     context = {
         'atelier': atelier,
+        'atelier_images': atelier_images,
+        'other_ateliers': other_ateliers,
     }
     return render(request, 'atelier_detail.html', context)
+
+
+def search(request):
+    """Vista per la ricerca globale"""
+    query = request.GET.get('q', '').strip()
+    
+    services_results = []
+    projects_results = []
+    
+    if query:
+        # Cerca nei servizi (inclusa la categoria)
+        services_results = Service.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(category__name__icontains=query)
+        ).distinct()[:10]
+        
+        # Cerca nei progetti
+        projects_results = Project.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(client__icontains=query)
+        ).distinct()[:10]
+    
+    context = {
+        'query': query,
+        'services_results': services_results,
+        'projects_results': projects_results,
+        'total_results': len(services_results) + len(projects_results),
+    }
+    return render(request, 'search.html', context)
+
+
+def team(request):
+    """Page de l'équipe"""
+    team_members = TeamMember.objects.all()
+    
+    context = {
+        'team_members': team_members,
+    }
+    return render(request, 'team.html', context)

@@ -1,25 +1,30 @@
 from django.db import models
+from django.utils.text import slugify
+
+class ServiceCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="Nom")
+    
+    class Meta:
+        verbose_name = "Catégorie de Service"
+        verbose_name_plural = "Catégories de Services"
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
 
 class Service(models.Model):
-    CATEGORY_CHOICES = [
-        ('construction', 'Constructions neuves et revamping'),
-        ('maintenance', 'Maintenance industrielle'),
-        ('accompagnement', 'Accompagnement'),
-        ('facade', 'Travaux de Façade'),
-        ('renovation', 'Travaux de rénovation'),
-    ]
-    
     name = models.CharField(max_length=200)
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, related_name='services', verbose_name="Catégorie")
     description = models.TextField()
     main_image = models.ImageField(upload_to='services/', blank=True, null=True)
     order = models.IntegerField(default=0)
     
     class Meta:
-        ordering = ['order', 'name']
+        ordering = ['category__name', 'order', 'name']
     
     def __str__(self):
         return self.name
+
 
 class ServiceImage(models.Model):
     service = models.ForeignKey(Service, related_name='images', on_delete=models.CASCADE)
@@ -32,7 +37,7 @@ class ServiceImage(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
-    client = models.CharField(max_length=200)
+    client = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField()
     main_image = models.ImageField(upload_to='projects/')
     completion_date = models.DateField()
@@ -83,55 +88,33 @@ class ContactRequest(models.Model):
     def __str__(self):
         return f"{self.name} - {self.subject}"
 
-class QHSEPolicy(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    version = models.CharField(max_length=20, default='1.0')
-    effective_date = models.DateField()
-    is_active = models.BooleanField(default=True)
+
+class Atelier(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Nom de l'atelier")
+    description = models.TextField(verbose_name="Description")
+    order = models.IntegerField(default=0, verbose_name="Ordre d'affichage")
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ['-effective_date']
-        verbose_name_plural = 'QHSE Policies'
-    
-    def __str__(self):
-        return f"{self.title} - v{self.version}"
-    
-class RealisationCategory(models.Model):
-    name = models.CharField(max_length=100)
-    order = models.IntegerField(default=0)
-    
-    class Meta:
         ordering = ['order', 'name']
-        verbose_name_plural = 'Realisation Categories'
+        verbose_name = "Atelier"
+        verbose_name_plural = "Ateliers & Équipements"
     
     def __str__(self):
         return self.name
 
-class Realisation(models.Model):
-    title = models.CharField(max_length=200)
-    client = models.CharField(max_length=200)
-    description = models.TextField()
-    category = models.ForeignKey(RealisationCategory, on_delete=models.CASCADE, related_name='realisations')
-    main_image = models.ImageField(upload_to='realisations/')
-    completion_date = models.DateField()
-    location = models.CharField(max_length=200, blank=True)
-    duration = models.CharField(max_length=100, blank=True, help_text="Ex: 3 mois, 6 semaines")
-    budget = models.CharField(max_length=100, blank=True, help_text="Ex: 50M FCFA")
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        ordering = ['-completion_date']
-    
-    def __str__(self):
-        return f"{self.title} - {self.client}"
 
-class RealisationImage(models.Model):
-    realisation = models.ForeignKey(Realisation, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='realisations/gallery/')
-    caption = models.CharField(max_length=200, blank=True)
-    order = models.IntegerField(default=0)
+class AtelierImage(models.Model):
+    atelier = models.ForeignKey(Atelier, related_name='images', on_delete=models.CASCADE, verbose_name="Atelier")
+    image = models.ImageField(upload_to='ateliers/', verbose_name="Image")
+    caption = models.CharField(max_length=200, blank=True, verbose_name="Légende")
+    order = models.IntegerField(default=0, verbose_name="Ordre")
     
     class Meta:
         ordering = ['order']
+        verbose_name = "Image d'atelier"
+        verbose_name_plural = "Images d'ateliers"
+    
+    def __str__(self):
+        return f"{self.atelier.name} - Image {self.order}"
+    

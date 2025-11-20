@@ -35,9 +35,16 @@
 /* Styles généraux */
 .hero-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 100px 0;
+    padding: 80px 0;
     position: relative;
     overflow: hidden;
+}
+
+/* Padding-top solo per desktop per compensare navbar sticky */
+@media (min-width: 992px) {
+    .hero-section {
+        padding-top: 120px;
+    }
 }
 
 .hero-section::before {
@@ -464,14 +471,12 @@ footer::before {
 }
 
 /* Styles généraux */
+/* Hero Section con immagine di sfondo */
 .hero-section {
-    background: linear-gradient(135deg, rgba(0, 86, 179, 0.8) 0%, rgba(0, 68, 148, 0.8) 100%);
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
-    min-height: 80vh;
+    min-height: 400px;
     display: flex;
     align-items: center;
+    padding-top: 76px;
 }
 
 .hero-background {
@@ -525,6 +530,7 @@ footer::before {
     min-height: 300px;
     border-radius: 15px;
     overflow: hidden;
+    margin-top: 0;
 }
 
 .project-background::before {

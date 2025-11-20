@@ -1,23 +1,10 @@
 from django.contrib import admin
-from .models import Service, ServiceImage, Project, ProjectImage, TeamMember, ContactRequest, QHSEPolicy
-from .models import RealisationCategory, Realisation, RealisationImage
+from .models import Service, ServiceCategory, ServiceImage, Project, ProjectImage, TeamMember, ContactRequest, Atelier, AtelierImage
 
-
-class RealisationImageInline(admin.TabularInline):
-    model = RealisationImage
-    extra = 1
-
-@admin.register(RealisationCategory)
-class RealisationCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'order']
-    search_fields = ['name', 'description']
-
-@admin.register(Realisation)
-class RealisationAdmin(admin.ModelAdmin):
-    list_display = ['title', 'client', 'category', 'completion_date']
-    list_filter = ['category', 'completion_date']
-    search_fields = ['title', 'client', 'description', 'location']
-    inlines = [RealisationImageInline]
+@admin.register(ServiceCategory)
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
 
 class ServiceImageInline(admin.TabularInline):
     model = ServiceImage
@@ -28,6 +15,7 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'order']
     list_filter = ['category']
     search_fields = ['name', 'description']
+    list_editable = ['order']
     inlines = [ServiceImageInline]
 
 class ProjectImageInline(admin.TabularInline):
@@ -52,8 +40,16 @@ class ContactRequestAdmin(admin.ModelAdmin):
     list_filter = ['is_processed', 'created_at']
     search_fields = ['name', 'email', 'subject', 'message']
 
-@admin.register(QHSEPolicy)
-class QHSEPolicyAdmin(admin.ModelAdmin):
-    list_display = ['title', 'version', 'effective_date', 'is_active']
-    list_filter = ['is_active', 'effective_date']
-    search_fields = ['title', 'content']
+
+class AtelierImageInline(admin.TabularInline):
+    model = AtelierImage
+    extra = 1
+
+
+@admin.register(Atelier)
+class AtelierAdmin(admin.ModelAdmin):
+    list_display = ['name', 'order']
+    list_editable = ['order']
+    search_fields = ['name', 'description']
+    inlines = [AtelierImageInline]
+

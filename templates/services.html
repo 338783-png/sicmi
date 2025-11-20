@@ -1,31 +1,122 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Nos Services - SICMI Sarl{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold text-primary mb-4">Nos Services</h1>
-        <p class="lead">Découvrez l'étendue de notre expertise industrielle</p>
+<!-- Hero Section -->
+<section class="hero-section position-relative text-white py-5 mb-5" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{% static 'images/hero1.png' %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">Nos Services</h1>
+                <p class="lead" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.8);">Découvrez l'étendue de notre expertise industrielle et nos solutions complètes pour tous vos projets</p>
+            </div>
+        </div>
     </div>
+</section>
 
+<!-- Services par catégories -->
+<div class="container py-5">
     {% for category_name, services in services_by_category.items %}
-    <section class="mb-5">
-        <h2 class="h3 text-primary mb-4">{{ category_name }}</h2>
-        <div class="row g-4">
+    <section class="mb-5 pb-5" id="{{ services.0.category }}">
+        <!-- En-tête de catégorie centralisée -->
+        <div class="text-center mb-5">
+            <h2 class="section-title text-primary mb-3">{{ category_name }}</h2>
+            <div class="title-underline mx-auto mb-4"></div>
+        </div>
+        
+        <!-- Grille de services -->
+        <div class="row g-4 justify-content-center">
             {% for service in services %}
-            <div class="col-lg-6">
-                <div class="card h-100 service-card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ service.name }}</h5>
-                        <p class="card-text">{{ service.description }}</p>
-                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">Voir les détails</a>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 service-card border-0 shadow-sm">
+                    {% if service.main_image %}
+                    <div class="service-image-wrapper" style="height: 200px; overflow: hidden;">
+                        <img src="{{ service.main_image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 100%; object-fit: cover; width: 100%;">
+                    </div>
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-cogs fa-4x text-primary opacity-25"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title text-primary mb-3">{{ service.name }}</h5>
+                        <p class="card-text text-muted mb-4 flex-grow-1">{{ service.description|truncatewords:25 }}</p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary mt-auto">
+                            <i class="fas fa-arrow-right me-2"></i>Voir les détails
+                        </a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+
+        {% if not forloop.last %}
+        <hr class="my-5">
+        {% endif %}
     </section>
     {% endfor %}
 </div>
+
+<!-- CTA Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 class="mb-4">Besoin d'un service personnalisé ?</h3>
+                <p class="lead mb-4">Notre équipe d'experts est à votre disposition pour discuter de vos besoins spécifiques</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-phone me-2"></i>Nous contacter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.service-card {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+}
+
+.service-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-image-wrapper img {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.title-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border-radius: 2px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+</style>
+
 {% endblock %}

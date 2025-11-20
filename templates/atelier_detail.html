@@ -1,45 +1,158 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ atelier.title }} - SICMI{% endblock %}
+{% block title %}{{ atelier.name }} - SICMI{% endblock %}
 
 {% block content %}
+<!-- Main Content -->
 <section class="py-5">
     <div class="container">
         <div class="mb-4">
-            <a href="{% url 'ateliers' %}" class="text-decoration-none">← Retour aux Ateliers</a>
+            <a href="{% url 'home' %}#ateliers" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-arrow-left me-2"></i>Retour aux ateliers
+            </a>
         </div>
-
         <div class="row">
             <div class="col-lg-8">
-                <h1 class="mb-3">{{ atelier.title }}</h1>
-                <p class="lead text-muted">{{ atelier.summary }}</p>
-                <p>{{ atelier.details }}</p>
-
-                <hr>
-                <h5>Pourquoi choisir cet atelier ?</h5>
-                <ul>
-                    <li>Équipe qualifiée et expérimentée</li>
-                    <li>Procédures QHSE conformes aux meilleures pratiques</li>
-                    <li>Équipements modernes et contrôles qualité</li>
-                </ul>
-            </div>
-            <div class="col-lg-4">
-                <!-- Sidebar: coordonnées / CTA -->
-                <div class="card p-3">
-                    <h6>Contactez notre équipe</h6>
-                    <p class="mb-1"><strong>Téléphone:</strong> +237 675948524</p>
-                    <p class="mb-1"><strong>Email:</strong> sicmisarl@gmail.com</p>
-                    <a href="{% url 'contact' %}" class="btn btn-primary btn-sm mt-2">Nous contacter</a>
+                <h1 class="mb-4">{{ atelier.name }}</h1>
+                <!-- Description -->
+                <div class="mb-4">
+                    <p class="lead">{{ atelier.description }}</p>
                 </div>
+
+                <!-- Image Gallery -->
+                {% if atelier_images %}
+                <div class="mb-5">
+                    <h3 class="mb-4">Galerie Photos</h3>
+                    <div class="row g-3">
+                        {% for image in atelier_images %}
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <img src="{% static image.image %}" class="card-img-top" alt="{{ image.caption }}" style="height: 300px; object-fit: cover; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ forloop.counter }}">
+                                {% if image.caption %}
+                                <div class="card-body">
+                                    <p class="card-text small text-muted">{{ image.caption }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Modal for fullscreen image -->
+                            <div class="modal fade" id="imageModal{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                    <div class="modal-content bg-transparent border-0">
+                                        <div class="modal-body p-0 position-relative">
+                                            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <img src="{% static image.image %}" class="img-fluid w-100" alt="{{ image.caption }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Additional Info -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-3">
+                            <i class="fas fa-check-circle me-2"></i>Caractéristiques
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i>Équipe qualifiée et expérimentée</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i>Procédures QHSE conformes aux normes internationales</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i>Équipements modernes et contrôles qualité rigoureux</li>
+                            <li class="mb-2"><i class="fas fa-chevron-right text-primary me-2"></i>Maintenance préventive et curative optimale</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Contact Card -->
+                <div class="card border-0 shadow-sm mb-4 sticky-top" style="top: 100px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-3">
+                            <i class="fas fa-phone-alt me-2"></i>Contactez-nous
+                        </h5>
+                        <p class="mb-3">Besoin de plus d'informations sur cet atelier ? Notre équipe est à votre disposition.</p>
+                        <div class="mb-3">
+                            <p class="mb-2 small"><i class="fas fa-phone text-primary me-2"></i><strong>Téléphone:</strong></p>
+                            <p class="ms-4">+237 675948524</p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="mb-2 small"><i class="fas fa-envelope text-primary me-2"></i><strong>Email:</strong></p>
+                            <p class="ms-4">sicmisarl@gmail.com</p>
+                        </div>
+                        <a href="{% url 'contact' %}" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Nous contacter
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Other Ateliers -->
+                {% if other_ateliers %}
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-3">
+                            Autres Ateliers
+                        </h5>
+                        <div class="list-group list-group-flush">
+                            {% for other in other_ateliers %}
+                            <a href="{% url 'atelier_detail' other.id %}" class="list-group-item list-group-item-action border-0 px-0">
+                                <div class="d-flex align-items-center">
+                                    {% if other.images.first %}
+                                    <img src="{% static other.images.first.image %}" alt="{{ other.name }}" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                    {% else %}
+                                    <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-industry text-muted"></i>
+                                    </div>
+                                    {% endif %}
+                                    <div>
+                                        <h6 class="mb-0">{{ other.name }}</h6>
+                                        <small class="text-muted">{{ other.description|truncatewords:5 }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
 
 <style>
-.lead.text-muted{color:#555}
-.card p{margin-bottom:6px}
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.modal-content.bg-transparent {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.card-img-top:hover {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
 </style>
 
 {% endblock %}
