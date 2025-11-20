@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 class ServiceCategory(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Nom")
@@ -16,7 +17,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200)
     category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE, related_name='services', verbose_name="Catégorie")
     description = models.TextField()
-    main_image = models.ImageField(upload_to='services/', blank=True, null=True)
+    main_image = CloudinaryField('image', folder='services', blank=True, null=True)
     order = models.IntegerField(default=0)
     
     class Meta:
@@ -28,7 +29,7 @@ class Service(models.Model):
 
 class ServiceImage(models.Model):
     service = models.ForeignKey(Service, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='services/gallery/')
+    image = CloudinaryField('image', folder='services/gallery')
     caption = models.CharField(max_length=200, blank=True)
     order = models.IntegerField(default=0)
     
@@ -39,7 +40,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     client = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField()
-    main_image = models.ImageField(upload_to='projects/')
+    main_image = CloudinaryField('image', folder='projects')
     completion_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -51,7 +52,7 @@ class Project(models.Model):
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(Project, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='projects/gallery/')
+    image = CloudinaryField('image', folder='projects/gallery')
     caption = models.CharField(max_length=200, blank=True)
     is_primary = models.BooleanField(default=False)
     order = models.IntegerField(default=0)
@@ -63,7 +64,7 @@ class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     specialization = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='team/', blank=True, null=True)
+    image = CloudinaryField('image', folder='team', blank=True, null=True)
     order = models.IntegerField(default=0)
     
     class Meta:
@@ -106,7 +107,7 @@ class Atelier(models.Model):
 
 class AtelierImage(models.Model):
     atelier = models.ForeignKey(Atelier, related_name='images', on_delete=models.CASCADE, verbose_name="Atelier")
-    image = models.ImageField(upload_to='ateliers/', max_length=500, verbose_name="Image")
+    image = CloudinaryField('image', folder='ateliers')
     caption = models.CharField(max_length=200, blank=True, verbose_name="Légende")
     order = models.IntegerField(default=0, verbose_name="Ordre")
     

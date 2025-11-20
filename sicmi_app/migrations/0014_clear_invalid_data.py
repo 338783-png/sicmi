@@ -1,16 +1,16 @@
 from django.db import migrations
 
+
 def clear_all_data(apps, schema_editor):
-    """Supprimer toutes les données pour éviter les erreurs d'images"""
-    Service = apps.get_model('sicmi_app', 'Service')
+    """Supprimer toutes les données pour éviter les erreurs d'image"""
     ServiceImage = apps.get_model('sicmi_app', 'ServiceImage')
-    Project = apps.get_model('sicmi_app', 'Project')
     ProjectImage = apps.get_model('sicmi_app', 'ProjectImage')
-    Atelier = apps.get_model('sicmi_app', 'Atelier')
     AtelierImage = apps.get_model('sicmi_app', 'AtelierImage')
+    Service = apps.get_model('sicmi_app', 'Service')
+    Project = apps.get_model('sicmi_app', 'Project')
+    Atelier = apps.get_model('sicmi_app', 'Atelier')
     TeamMember = apps.get_model('sicmi_app', 'TeamMember')
     
-    # Supprimer toutes les données
     ServiceImage.objects.all().delete()
     ProjectImage.objects.all().delete()
     AtelierImage.objects.all().delete()
@@ -18,6 +18,7 @@ def clear_all_data(apps, schema_editor):
     Project.objects.all().delete()
     Atelier.objects.all().delete()
     TeamMember.objects.all().delete()
+
 
 class Migration(migrations.Migration):
 

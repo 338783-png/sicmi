@@ -125,13 +125,16 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = 'SICMI Sarl <jordanietane2@gmail.com>'
 ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
 
-# Cloudinary Configuration (désactivé)
-# Utilisation du stockage local /media/ au lieu de Cloudinary
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
-    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
-    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
-}
+# Cloudinary Configuration
+import cloudinary
 
-# Stockage local par défaut
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME', config('CLOUDINARY_CLOUD_NAME', default=''))
+CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY', config('CLOUDINARY_API_KEY', default=''))
+CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET', config('CLOUDINARY_API_SECRET', default=''))
+
+cloudinary.config(
+    cloud_name=CLOUDINARY_CLOUD_NAME,
+    api_key=CLOUDINARY_API_KEY,
+    api_secret=CLOUDINARY_API_SECRET,
+    secure=True
+)
