@@ -127,8 +127,8 @@ ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
 
 # Cloudinary Configuration
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
-    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
-    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', config('CLOUDINARY_CLOUD_NAME', default='')),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', config('CLOUDINARY_API_KEY', default='')),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', config('CLOUDINARY_API_SECRET', default='')),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
