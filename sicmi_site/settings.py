@@ -2,9 +2,6 @@ import os
 from pathlib import Path
 from decouple import config
 import dj_database_url
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,23 +125,13 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = 'SICMI Sarl <jordanietane2@gmail.com>'
 ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
 
-# Cloudinary Configuration
-CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME', config('CLOUDINARY_CLOUD_NAME', default=''))
-CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY', config('CLOUDINARY_API_KEY', default=''))
-CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET', config('CLOUDINARY_API_SECRET', default=''))
-
-cloudinary.config(
-    cloud_name=CLOUDINARY_CLOUD_NAME,
-    api_key=CLOUDINARY_API_KEY,
-    api_secret=CLOUDINARY_API_SECRET,
-    secure=True
-)
-
+# Cloudinary Configuration (désactivé)
+# Utilisation du stockage local /media/ au lieu de Cloudinary
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': CLOUDINARY_CLOUD_NAME,
-    'API_KEY': CLOUDINARY_API_KEY,
-    'API_SECRET': CLOUDINARY_API_SECRET,
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
 
-# Utiliser notre propre storage backend Cloudinary
-DEFAULT_FILE_STORAGE = 'sicmi_app.cloudinary_storage.CloudinaryStorage'
+# Stockage local par défaut
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
