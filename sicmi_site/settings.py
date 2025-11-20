@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 from decouple import config
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,6 +129,13 @@ DEFAULT_FROM_EMAIL = 'SICMI Sarl <jordanietane2@gmail.com>'
 ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
 
 # Cloudinary Configuration
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', config('CLOUDINARY_CLOUD_NAME', default='')),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', config('CLOUDINARY_API_KEY', default='')),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', config('CLOUDINARY_API_SECRET', default='')),
+    secure=True
+)
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', config('CLOUDINARY_CLOUD_NAME', default='')),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY', config('CLOUDINARY_API_KEY', default='')),
