@@ -5,52 +5,50 @@ import os
 def cloudinary_debug(request):
     """View pour debugger la configuration Cloudinary"""
     
-    html = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Cloudinary Debug</title>
-        <style>
-            body { font-family: monospace; padding: 20px; background: #f5f5f5; }
-            .section { background: white; padding: 20px; margin: 10px 0; border-radius: 5px; }
-            .ok { color: green; }
-            .error { color: red; }
-            pre { background: #f0f0f0; padding: 10px; overflow-x: auto; }
-        </style>
-    </head>
-    <body>
-        <h1>🔍 Diagnostic Cloudinary</h1>
-        
-        <div class="section">
-            <h2>1. Variables d'environnement</h2>
-            <pre>CLOUDINARY_CLOUD_NAME: {cloud_name}</pre>
-            <pre>CLOUDINARY_API_KEY: {api_key}</pre>
-            <pre>CLOUDINARY_API_SECRET: {api_secret_masked}</pre>
-        </div>
-        
-        <div class="section">
-            <h2>2. Configuration Django</h2>
-            <pre>DEFAULT_FILE_STORAGE: {default_storage}</pre>
-            <pre>CLOUDINARY_STORAGE: {cloudinary_storage}</pre>
-        </div>
-        
-        <div class="section">
-            <h2>3. Test d'import</h2>
-            <pre>{import_test}</pre>
-        </div>
-        
-        <div class="section">
-            <h2>4. Base de données</h2>
-            <pre>{db_info}</pre>
-        </div>
-        
-        <div class="section">
-            <h2>5. Dernières images uploadées</h2>
-            <pre>{recent_images}</pre>
-        </div>
-    </body>
-    </html>
-    """
+    html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloudinary Debug</title>
+    <style>
+        body {{ font-family: monospace; padding: 20px; background: #f5f5f5; }}
+        .section {{ background: white; padding: 20px; margin: 10px 0; border-radius: 5px; }}
+        .ok {{ color: green; }}
+        .error {{ color: red; }}
+        pre {{ background: #f0f0f0; padding: 10px; overflow-x: auto; }}
+    </style>
+</head>
+<body>
+    <h1>🔍 Diagnostic Cloudinary</h1>
+    
+    <div class="section">
+        <h2>1. Variables d'environnement</h2>
+        <pre>CLOUDINARY_CLOUD_NAME: {cloud_name}</pre>
+        <pre>CLOUDINARY_API_KEY: {api_key}</pre>
+        <pre>CLOUDINARY_API_SECRET: {api_secret_masked}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>2. Configuration Django</h2>
+        <pre>DEFAULT_FILE_STORAGE: {default_storage}</pre>
+        <pre>CLOUDINARY_STORAGE: {cloudinary_storage}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>3. Test d'import</h2>
+        <pre>{import_test}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>4. Base de données</h2>
+        <pre>{db_info}</pre>
+    </div>
+    
+    <div class="section">
+        <h2>5. Dernières images uploadées</h2>
+        <pre>{recent_images}</pre>
+    </div>
+</body>
+</html>"""
     
     # Variables d'environnement
     cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME', '❌ NON DÉFINI')
