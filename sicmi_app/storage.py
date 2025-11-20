@@ -1,57 +1,51 @@
 """
 Custom Supabase Storage Backend for Django
-Permet de stocker les fichiers media sur Supabase Storage
 """
+import os
+import mimetypes
 from django.core.files.storage import Storage
 from django.conf import settings
 from supabase import create_client
-from django.core.files.base import ContentFile
-import os
-from urllib.parse import urljoin
 
 
 class SupabaseStorage(Storage):
-    """
-    Custom storage backend pour Supabase Storage
-    """
+    """Custom storage backend for Supabase Storage"""
     
     def __init__(self):
         self.supabase_url = settings.SUPABASE_URL
         self.supabase_key = settings.SUPABASE_KEY
         self.bucket_name = settings.SUPABASE_BUCKET
-        
-        # Initialiser le client Supabase
         self.client = create_client(self.supabase_url, self.supabase_key)
-        
+    
     def _open(self, name, mode='rb'):
         """
-        Récupère un fichier depuis Supabase Storage
+        Retrieve a file from Supabase Storage
         """
+        from django.core.files.base import ContentFile
         try:
-            response = self.client.storage.from_(self.bucket_name).download(name)
-            return ContentFile(response)
+            data = self.client.storage.from_(self.bucket_name).download(name)
+            return ContentFile(data)
         except Exception as e:
-            raise IOError(f"Erreur lors de l'ouverture du fichier {name}: {str(e)}")
+            raise IOError(f"Error opening file {name}: {e}")
     
     def _save(self, name, content):
         """
-        Sauvegarde un fichier sur Supabase Storage
+        Save a file to Supabase Storage
         """
         try:
-            # Lire le contenu du fichier
+            # Read the file content
             content.seek(0)
             file_data = content.read()
             
-            # Upload sur Supabase
+            # Upload to Supabase
             self.client.storage.from_(self.bucket_name).upload(
                 path=name,
                 file=file_data,
                 file_options={"content-type": self._guess_content_type(name)}
             )
-            
             return name
         except Exception as e:
-            # Si le fichier existe déjà, le mettre à jour
+            # If upload fails (file exists), try update instead
             try:
                 content.seek(0)
                 file_data = content.read()
@@ -62,58 +56,66 @@ class SupabaseStorage(Storage):
                 )
                 return name
             except Exception as update_error:
-                raise IOError(f"Erreur lors de la sauvegarde du fichier {name}: {str(e)}, {str(update_error)}")
+                raise IOError(f"Error saving {name}: {e}, {update_error}")
     
     def exists(self, name):
         """
-        Vérifie si un fichier existe dans Supabase Storage
+        Check if a file exists in Supabase Storage
         """
         try:
-            files = self.client.storage.from_(self.bucket_name).list(path=os.path.dirname(name))
-            filename = os.path.basename(name)
-            return any(f['name'] == filename for f in files)
-        except:
+            # List files in the bucket and check if our file exists
+            path_parts = name.split('/')
+            directory = '/'.join(path_parts[:-1]) if len(path_parts) > 1 else ''
+            filename = path_parts[-1]
+            
+            files = self.client.storage.from_(self.bucket_name).list(path=directory)
+            
+            for file in files:
+                if file['name'] == filename:
+                    return True
+            return False
+        except Exception:
             return False
     
     def delete(self, name):
         """
-        Supprime un fichier de Supabase Storage
+        Delete a file from Supabase Storage
         """
         try:
             self.client.storage.from_(self.bucket_name).remove([name])
         except Exception as e:
-            print(f"Erreur lors de la suppression du fichier {name}: {str(e)}")
+            raise IOError(f"Error deleting {name}: {e}")
     
     def url(self, name):
         """
-        Retourne l'URL publique du fichier
+        Return the URL for accessing the file
         """
         try:
-            # Obtenir l'URL publique
-            response = self.client.storage.from_(self.bucket_name).get_public_url(name)
-            return response
+            return self.client.storage.from_(self.bucket_name).get_public_url(name)
         except Exception as e:
-            print(f"Erreur lors de la récupération de l'URL pour {name}: {str(e)}")
-            return None
+            raise IOError(f"Error getting URL for {name}: {e}")
     
     def size(self, name):
         """
-        Retourne la taille du fichier en bytes
+        Return the size of a file in bytes
         """
         try:
-            files = self.client.storage.from_(self.bucket_name).list(path=os.path.dirname(name))
-            filename = os.path.basename(name)
-            for f in files:
-                if f['name'] == filename:
-                    return f.get('metadata', {}).get('size', 0)
+            path_parts = name.split('/')
+            directory = '/'.join(path_parts[:-1]) if len(path_parts) > 1 else ''
+            filename = path_parts[-1]
+            
+            files = self.client.storage.from_(self.bucket_name).list(path=directory)
+            
+            for file in files:
+                if file['name'] == filename:
+                    return file.get('metadata', {}).get('size', 0)
             return 0
-        except:
+        except Exception:
             return 0
     
     def _guess_content_type(self, name):
         """
-        Devine le type MIME du fichier basé sur son extension
+        Guess the content type of a file based on its name
         """
-        import mimetypes
         content_type, _ = mimetypes.guess_type(name)
         return content_type or 'application/octet-stream'

@@ -128,9 +128,7 @@ SUPABASE_URL = config('SUPABASE_URL', default='')
 SUPABASE_KEY = config('SUPABASE_KEY', default='')
 SUPABASE_BUCKET = config('SUPABASE_BUCKET', default='media')
 
-# Use Supabase for media files if configured
 if SUPABASE_URL and SUPABASE_KEY:
     DEFAULT_FILE_STORAGE = 'sicmi_app.storage.SupabaseStorage'
 else:
-    # Fallback to local storage for development
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
