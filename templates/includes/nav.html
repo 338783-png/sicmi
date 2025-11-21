@@ -22,44 +22,10 @@
                     </a>
                 </li>
                 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
-                       href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link {% if 'services' in request.path %}active{% endif %}" href="{% url 'services' %}">
                         Services
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}">
-                                <i class="fas fa-list me-2"></i>Tous nos services
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}?category=Constructions neuves">
-                                <i class="fas fa-industry me-2"></i>Constructions neuves
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}?category=Maintenance industrielle">
-                                <i class="fas fa-tools me-2"></i>Maintenance industrielle
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}?category=Accompagnement">
-                                <i class="fas fa-hands-helping me-2"></i>Accompagnement
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}?category=Travaux de façade">
-                                <i class="fas fa-building me-2"></i>Travaux de façade
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'services' %}?category=Rénovation">
-                                <i class="fas fa-paint-roller me-2"></i>Rénovation
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 
                 <li class="nav-item">
