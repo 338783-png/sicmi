@@ -49,7 +49,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'APP_DIRS': False if not DEBUG else True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -62,10 +62,7 @@ TEMPLATES = [
                     'django.template.loaders.filesystem.Loader',
                     'django.template.loaders.app_directories.Loader',
                 ]),
-            ] if not DEBUG else [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ],
+            ] if not DEBUG else None,
         },
     },
 ]
