@@ -113,39 +113,10 @@ def contact(request):
             # Les messages sont quand même sauvegardés dans la base de données
             # et accessibles via l'admin Django
             
-            # # Envoyer un email de notification
-            # subject = f'Nouveau message de contact - {contact_request.subject}'
-            # message = f"""
-# Nouveau message reçu depuis le site SICMI:
-
-# Nom: {contact_request.name}
-# Entreprise: {contact_request.company}
-# Email: {contact_request.email}
-# Téléphone: {contact_request.phone}
-# Sujet: {contact_request.subject}
-
-# Message:
-# {contact_request.message}
-
-# ---
-# Date: {contact_request.created_at.strftime('%d/%m/%Y %H:%M')}
-# """
-            
-            # try:
-            #     send_mail(
-            #         subject,
-            #         message,
-            #         settings.DEFAULT_FROM_EMAIL,
-            #         ['jordanietane2@gmail.com'],
-            #         fail_silently=False,
-            #     )
-            #     messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
-            # except Exception as e:
-            #     # En cas d'erreur d'envoi, le message est quand même sauvegardé
-            #     messages.success(request, 'Votre message a été enregistré. Nous vous contacterons bientôt.')
-            
             messages.success(request, 'Votre message a été enregistré avec succès. Nous vous contacterons bientôt.')
-            return redirect('contact')
+            
+            # Rediriger vers la page de confirmation avec les détails
+            return redirect('contact_confirmation', contact_id=contact_request.id)
     else:
         form = ContactForm()
 
@@ -153,6 +124,15 @@ def contact(request):
         'form': form,
     }
     return render(request, 'contact.html', context)
+
+def contact_confirmation(request, contact_id):
+    """Page de confirmation après envoi d'un message de contact"""
+    contact_request = get_object_or_404(ContactRequest, id=contact_id)
+    
+    context = {
+        'contact': contact_request,
+    }
+    return render(request, 'contact_confirmation.html', context)
 
 def qhse_policy(request):
     """Page statique de la politique QHSE & RSE combinée"""
