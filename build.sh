@@ -14,4 +14,7 @@ python manage.py migrate
 echo "👤 Création du superutilisateur..."
 python manage.py create_admin
 
+echo "👥 Chargement des membres de l'équipe..."
+python manage.py load_team_members
+
 echo "✅ Build terminé avec succès!"
