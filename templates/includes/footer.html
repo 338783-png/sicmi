@@ -281,19 +281,26 @@
         text-align: left;
         margin-bottom: 0;
         margin-top: 2px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px 8px;
     }
     
     #site-footer ul li {
-        margin-bottom: 1px;
+        margin-bottom: 0;
         text-align: left;
         line-height: 1.2;
     }
     
     #site-footer ul li a {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 1px 0;
         display: inline-block;
         text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
     
     /* Section Contact - TOUT À GAUCHE - très compact */
