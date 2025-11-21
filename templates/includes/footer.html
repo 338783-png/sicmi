@@ -185,7 +185,7 @@
     #site-footer {
         padding-top: 2.5rem !important;
         padding-bottom: 1rem !important;
-        text-align: center;
+        text-align: left;
     }
     
     #site-footer .container {
@@ -193,49 +193,49 @@
         padding-right: 15px !important;
     }
     
-    /* Toutes les colonnes centrées */
+    /* Toutes les colonnes alignées à gauche */
     #site-footer .row > [class*="col-"] {
-        text-align: center !important;
+        text-align: left !important;
         margin-bottom: 25px;
     }
     
-    /* Logo et titre en colonne sur mobile */
+    /* Logo et titre en ligne sur mobile */
     #site-footer .col-lg-4:first-child .d-flex {
-        flex-direction: column;
-        text-align: center !important;
-        align-items: center !important;
-        justify-content: center !important;
+        flex-direction: row;
+        text-align: left !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
     }
     
     #site-footer .logo {
-        margin-bottom: 15px !important;
-        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        margin-right: 15px !important;
     }
     
     #site-footer .logo-img {
         height: 45px !important;
     }
     
-    /* Titre et sous-titre centrés */
+    /* Titre et sous-titre alignés à gauche */
     #site-footer h5,
     #site-footer h6,
     #site-footer small {
-        text-align: center !important;
+        text-align: left !important;
         display: block;
     }
     
-    /* Texte descriptif plus court sur mobile */
+    /* Texte descriptif aligné à gauche */
     #site-footer .col-lg-4:first-child p {
         font-size: 0.85rem;
         line-height: 1.5;
         margin-bottom: 20px;
-        text-align: center !important;
+        text-align: left !important;
     }
     
-    /* Centrer les icônes sociales sur mobile */
+    /* Aligner les icônes sociales à gauche */
     #site-footer .social-links,
     #site-footer .contact-icons {
-        justify-content: center !important;
+        justify-content: flex-start !important;
         margin-bottom: 15px;
         display: flex !important;
         flex-wrap: wrap;
@@ -246,13 +246,13 @@
         width: 42px;
         height: 42px;
         font-size: 18px;
-        margin: 0 5px;
+        margin: 0 8px 0 0;
     }
     
     /* Colonnes de liens */
     #site-footer .col-lg-2,
     #site-footer .col-md-6 {
-        text-align: center !important;
+        text-align: left !important;
         margin-bottom: 25px;
     }
     
@@ -262,64 +262,60 @@
         border-bottom: 2px solid #007bff;
         padding-bottom: 8px;
         display: inline-block;
-        text-align: center;
+        text-align: left;
     }
     
     #site-footer ul {
         padding-left: 0;
         list-style: none;
-        text-align: center;
+        text-align: left;
     }
     
     #site-footer ul li {
         margin-bottom: 8px;
-        text-align: center;
+        text-align: left;
     }
     
     #site-footer ul li a {
         font-size: 0.9rem;
-        padding: 5px 10px;
+        padding: 5px 0;
         display: inline-block;
-        text-align: center;
+        text-align: left;
     }
     
-    /* Section Contact - TOUT CENTRÉ */
+    /* Section Contact - TOUT À GAUCHE */
     #site-footer .col-lg-4:last-child {
-        text-align: center !important;
+        text-align: left !important;
     }
     
     #site-footer .col-lg-4:last-child .mb-3 {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        text-align: left;
+        display: block;
     }
     
     #site-footer .col-lg-4:last-child .d-flex {
-        justify-content: center !important;
-        text-align: center !important;
-        margin: 0 auto;
-        display: inline-flex;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        display: flex;
     }
     
     #site-footer .col-lg-4:last-child small {
         font-size: 0.85rem;
-        text-align: center !important;
+        text-align: left !important;
         display: block;
     }
     
     #site-footer .col-lg-4:last-child .fas {
-        margin: 0 auto;
+        margin-right: 8px;
     }
     
-    /* Bouton contact en pleine largeur sur mobile */
+    /* Bouton contact aligné à gauche */
     #site-footer .btn {
-        width: 100%;
-        max-width: 280px;
+        width: auto;
         padding: 12px 20px;
         font-size: 1rem;
-        margin: 15px auto 0 !important;
-        display: block;
+        margin: 15px 0 0 0 !important;
+        display: inline-block;
         text-align: center;
     }
     
@@ -330,18 +326,18 @@
     
     /* Copyright section */
     #site-footer .row.align-items-center {
-        text-align: center !important;
+        text-align: left !important;
     }
     
     #site-footer .row.align-items-center .col-md-6 {
-        text-align: center !important;
+        text-align: left !important;
         margin-bottom: 10px;
     }
     
     #site-footer .row.align-items-center small {
         font-size: 0.8rem;
         display: block;
-        text-align: center !important;
+        text-align: left !important;
     }
 }
 
