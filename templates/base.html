@@ -30,6 +30,20 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/static/images/logo.png">
+    
+    <!-- Google Analytics 4 -->
+    {% if not debug %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+    </script>
+    {% endif %}
 </head>
 <body>
     {% include 'includes/header.html' %}
@@ -99,6 +113,12 @@
         }
     });
     </script>
+    
+    <!-- Google Analytics Events Tracking -->
+    {% if not debug %}
+    <script src="{% static 'js/google-analytics.js' %}"></script>
+    {% endif %}
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>
