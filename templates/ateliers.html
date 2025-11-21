@@ -5,12 +5,62 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section position-relative text-white d-flex align-items-center" style="min-height: 400px; background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);">
+<section class="hero-section position-relative text-white d-flex align-items-center" style="min-height: 500px; background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-4 fw-bold mb-3">Ateliers & Équipements</h1>
-                <p class="lead">Découvrez nos installations modernes et notre parc machine de pointe qui nous permettent de réaliser vos projets avec excellence.</p>
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="display-3 fw-bold mb-4">Ateliers & Équipements de Pointe</h1>
+                <p class="lead mb-4">Des installations modernes et un parc machine performant pour garantir l'excellence de vos projets industriels</p>
+                <div class="d-flex justify-content-center gap-4 flex-wrap mt-4">
+                    <div class="stat-box">
+                        <h3 class="fw-bold mb-0">2000m²</h3>
+                        <small>Surface totale d'ateliers</small>
+                    </div>
+                    <div class="stat-box">
+                        <h3 class="fw-bold mb-0">50+</h3>
+                        <small>Machines & équipements</small>
+                    </div>
+                    <div class="stat-box">
+                        <h3 class="fw-bold mb-0">100%</h3>
+                        <small>Maintenance préventive</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Indicators Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="trust-indicator p-4">
+                    <i class="fas fa-industry fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-bold">Ateliers Modernes</h5>
+                    <p class="text-muted small mb-0">Installations conformes aux normes industrielles les plus strictes</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="trust-indicator p-4">
+                    <i class="fas fa-cogs fa-3x text-success mb-3"></i>
+                    <h5 class="fw-bold">Machines Performantes</h5>
+                    <p class="text-muted small mb-0">Équipements de dernière génération régulièrement renouvelés</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="trust-indicator p-4">
+                    <i class="fas fa-shield-alt fa-3x text-info mb-3"></i>
+                    <h5 class="fw-bold">Sécurité Maximale</h5>
+                    <p class="text-muted small mb-0">Respect des normes QHSE dans tous nos ateliers</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="trust-indicator p-4">
+                    <i class="fas fa-certificate fa-3x text-warning mb-3"></i>
+                    <h5 class="fw-bold">Certifications</h5>
+                    <p class="text-muted small mb-0">Processus certifiés ISO 9001, ISO 45001</p>
+                </div>
             </div>
         </div>
     </div>
@@ -19,6 +69,10 @@
 <!-- Ateliers Grid -->
 <section class="py-5">
     <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Nos Installations & Équipements</h2>
+            <p class="lead text-muted">4 espaces dédiés pour une production complète et maîtrisée</p>
+        </div>
         <div class="row g-4">
             {% for atelier in ateliers %}
             <div class="col-md-6 col-lg-3">
@@ -51,10 +105,140 @@
     </div>
 </section>
 
+<!-- Pourquoi Nos Ateliers Font la Différence -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3">Pourquoi Nos Ateliers Font la Différence</h2>
+            <p class="lead text-muted">Des installations pensées pour l'excellence industrielle</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="advantage-card p-4 h-100 bg-white rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Capacité de Production Élevée</h5>
+                            <p class="text-muted mb-0">Nos ateliers permettent de gérer simultanément plusieurs projets de grande envergure tout en respectant les délais les plus stricts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="advantage-card p-4 h-100 bg-white rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Contrôle Qualité Intégré</h5>
+                            <p class="text-muted mb-0">Chaque atelier dispose d'un système de contrôle qualité avec des équipements de mesure professionnels (Elcometer, instruments de contrôle dimensionnel).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="advantage-card p-4 h-100 bg-white rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Polyvalence & Flexibilité</h5>
+                            <p class="text-muted mb-0">De la pièce unitaire à la série, nos installations s'adaptent à tous types de besoins : chaudronnerie, tuyauterie, usinage, assemblage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="advantage-card p-4 h-100 bg-white rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        <div class="advantage-icon me-3">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Environnement Sécurisé</h5>
+                            <p class="text-muted mb-0">Tous nos ateliers respectent les normes de sécurité industrielle : zones de circulation balisées, équipements de protection, ventilation adaptée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <h2 class="fw-bold mb-3">Visitez Nos Ateliers</h2>
+                <p class="lead mb-0">Découvrez nos installations et notre parc machine lors d'une visite guidée. Constatez par vous-même notre capacité à réaliser vos projets les plus exigeants.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-5">
+                    <i class="fas fa-calendar-alt me-2"></i>Planifier une Visite
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <style>
-.atelier-card {
+.stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.stat-box small {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.trust-indicator {
+    background: white;
+    border-radius: 15px;
     transition: all 0.3s ease;
 }
+
+.trust-indicator:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.trust-indicator i {
+    transition: transform 0.3s ease;
+}
+
+.trust-indicator:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.advantage-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.advantage-card:hover {
+    border-color: #28a745;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.advantage-icon {
+    flex-shrink: 0;
+}
+
+.atelier-card {
+    transition: all 0.3s ease;
 
 .atelier-card:hover {
     transform: translateY(-10px);

@@ -17,4 +17,7 @@ python manage.py create_admin
 echo "👥 Chargement des membres de l'équipe..."
 python manage.py load_team_members
 
+echo "🏭 Chargement des ateliers et équipements..."
+python manage.py load_ateliers
+
 echo "✅ Build terminé avec succès!"
