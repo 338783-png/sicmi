@@ -31,17 +31,33 @@ def about(request):
     return render(request, 'about.html', context)
 
 def services(request):
-    # Raggruppa servizi per categoria
-    services_by_category = {}
+    # Filtre par catégorie si fourni
+    category_filter = request.GET.get('category')
+    
+    # Récupérer toutes les catégories
     categories = ServiceCategory.objects.all().prefetch_related('services')
     
-    for category in categories:
-        services_list = category.services.all()
-        if services_list.exists():
-            services_by_category[category.name] = services_list
+    # Regrouper services par catégorie
+    services_by_category = {}
+    
+    if category_filter:
+        # Filtrer par catégorie spécifique
+        category = ServiceCategory.objects.filter(name=category_filter).first()
+        if category:
+            services_list = category.services.all()
+            if services_list.exists():
+                services_by_category[category.name] = services_list
+    else:
+        # Afficher toutes les catégories
+        for category in categories:
+            services_list = category.services.all()
+            if services_list.exists():
+                services_by_category[category.name] = services_list
 
     context = {
         'services_by_category': services_by_category,
+        'current_category': category_filter,
+        'all_categories': categories,
     }
     return render(request, 'services.html', context)
 
