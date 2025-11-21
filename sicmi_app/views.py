@@ -58,6 +58,24 @@ def service_detail(request, service_id):
 def projects(request):
     try:
         projects_list = Project.objects.all().prefetch_related('images')
+        
+        # Filtre par service
+        service_filter = request.GET.get('service')
+        if service_filter:
+            # Mapper les slugs aux catégories de services
+            service_mapping = {
+                'construction': 'Constructions neuves',
+                'maintenance': 'Maintenance industrielle',
+                'accompagnement': 'Accompagnement',
+                'facade': 'Travaux de façade',
+                'renovation': 'Rénovation'
+            }
+            
+            if service_filter in service_mapping:
+                service_name = service_mapping[service_filter]
+                # Filtrer les projets dont le service contient ce nom
+                projects_list = projects_list.filter(service__icontains=service_name)
+        
         paginator = Paginator(projects_list, 6)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -67,6 +85,7 @@ def projects(request):
 
     context = {
         'page_obj': page_obj,
+        'current_filter': service_filter if service_filter else 'all',
     }
     return render(request, 'projects.html', context)
 
