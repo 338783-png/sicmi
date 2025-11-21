@@ -1,0 +1,38 @@
+# GitHub Actions workflow to keep SICMI site alive
+# Pings the site every 5 minutes to prevent Render free tier from sleeping
+
+name: Keep SICMI Site Alive
+
+on:
+  schedule:
+    # Runs every 5 minutes
+    - cron: '*/5 * * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  ping-site:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping SICMI Site
+        run: |
+          echo "🔄 Pinging SICMI site..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}|%{time_total}" https://sicmi-site.onrender.com)
+          STATUS_CODE=$(echo $RESPONSE | cut -d'|' -f1)
+          TIME=$(echo $RESPONSE | cut -d'|' -f2)
+          
+          echo "📊 Status: $STATUS_CODE"
+          echo "⏱️ Response time: ${TIME}s"
+          
+          if [ "$STATUS_CODE" = "200" ]; then
+            echo "✅ Site is alive and responding!"
+          else
+            echo "⚠️ Unusual status code: $STATUS_CODE"
+            exit 1
+          fi
+      
+      - name: Log Results
+        if: always()
+        run: |
+          echo "Ping completed at $(date)"
