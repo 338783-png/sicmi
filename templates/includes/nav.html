@@ -26,7 +26,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
                        href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cogs me-1"></i>{% trans "Services" %}
+                        {% trans "Services" %}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                         <li>
@@ -65,19 +65,19 @@
                 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/projets/' %}active{% endif %}" href="{% url 'projects' %}">
-                        <i class="fas fa-project-diagram me-1"></i>{% trans "Réalisations" %}
+                        {% trans "Réalisations" %}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
-                        <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
+                        {% trans "Contact" %}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
-                        <i class="fas fa-info-circle me-1"></i>{% trans "À Propos" %}
+                        {% trans "À Propos" %}
                     </a>
                 </li>
 
@@ -85,7 +85,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if 'qhse_policy' in request.path %}active{% endif %}" 
                        href="#" id="qhseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-shield-alt me-1"></i>QHSE & RSE
+                        QHSE & RSE
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="qhseDropdown">
                         <li>
@@ -119,7 +119,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/equipe/' %}active{% endif %}" href="{% url 'team' %}">
-                        <i class="fas fa-users me-1"></i>{% trans "Notre Équipe" %}
+                        {% trans "Notre Équipe" %}
                     </a>
                 </li>
             </ul>
