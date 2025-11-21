@@ -8,12 +8,12 @@ from .models import Service, ServiceCategory, Project, TeamMember, ServiceImage,
 from .forms import ContactForm
 
 def home(request):
-    services = Service.objects.all()[:6]
-    recent_projects = Project.objects.all()[:3]
-    ateliers = Atelier.objects.all()[:4]
+    services = Service.objects.select_related('category').all()[:6]
+    recent_projects = Project.objects.prefetch_related('images').all()[:3]
+    ateliers = Atelier.objects.prefetch_related('images').all()[:4]
     
     # Récupérer les images de fond pour l'héros
-    hero_images = ProjectImage.objects.filter(is_primary=True)[:5]
+    hero_images = ProjectImage.objects.filter(is_primary=True).select_related('project')[:5]
     
     context = {
         'services': services,

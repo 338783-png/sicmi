@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',  # Compressione GZIP
     'django.contrib.sessions.middleware.SessionMiddleware',
     # LocaleMiddleware removed to keep site only in French
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +56,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ]),
+            ] if not DEBUG else [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
@@ -126,7 +136,30 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='jordanietane2@gmail.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = 'SICMI Sarl <jordanietane2@gmail.com>'
-ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
+# Disabilito ADMINS per evitare timeout su errori (Render free tier troppo lento con SMTP)
+# ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
+
+# Logging Configuration - Disable email notifications for errors (too slow on Render free tier)
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 
 # Cloudinary Configuration
 CLOUDINARY_STORAGE = {

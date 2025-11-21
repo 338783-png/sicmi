@@ -1,5 +1,4 @@
 {% load static %}
-{% load i18n %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container">
@@ -19,45 +18,45 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
-                        {% trans "Accueil" %}
+                        Accueil
                     </a>
                 </li>
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {% if 'services' in request.path %}active{% endif %}" 
                        href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% trans "Services" %}
+                        Services
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}">
-                                <i class="fas fa-list me-2"></i>{% trans "Tous nos services" %}
+                                <i class="fas fa-list me-2"></i>Tous nos services
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}#construction">
-                                <i class="fas fa-industry me-2"></i>{% trans "Constructions neuves" %}
+                                <i class="fas fa-industry me-2"></i>Constructions neuves
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}#maintenance">
-                                <i class="fas fa-tools me-2"></i>{% trans "Maintenance industrielle" %}
+                                <i class="fas fa-tools me-2"></i>Maintenance industrielle
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}#accompagnement">
-                                <i class="fas fa-hands-helping me-2"></i>{% trans "Accompagnement" %}
+                                <i class="fas fa-hands-helping me-2"></i>Accompagnement
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}#facade">
-                                <i class="fas fa-building me-2"></i>{% trans "Travaux de façade" %}
+                                <i class="fas fa-building me-2"></i>Travaux de façade
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'services' %}#renovation">
-                                <i class="fas fa-paint-roller me-2"></i>{% trans "Rénovation" %}
+                                <i class="fas fa-paint-roller me-2"></i>Rénovation
                             </a>
                         </li>
                     </ul>
@@ -65,19 +64,19 @@
                 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/projets/' %}active{% endif %}" href="{% url 'projects' %}">
-                        {% trans "Réalisations" %}
+                        Réalisations
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">
-                        {% trans "Contact" %}
+                        Contact
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/a-propos/' %}active{% endif %}" href="{% url 'about' %}">
-                        {% trans "À Propos" %}
+                        À Propos
                     </a>
                 </li>
 
@@ -119,7 +118,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == '/equipe/' %}active{% endif %}" href="{% url 'team' %}">
-                        {% trans "Notre Équipe" %}
+                        Notre Équipe
                     </a>
                 </li>
             </ul>
