@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: sicmi-site
+    env: python
+    region: frankfurt
+    plan: free
+    branch: main
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn sicmi_site.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
