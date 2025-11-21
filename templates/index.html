@@ -702,7 +702,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 9999; /* Augmenté pour être au-dessus de tout */
 }
 
 .chatbot-toggle {
@@ -992,7 +992,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Chatbot functionality
+// Chatbot functionality with AI
 document.addEventListener('DOMContentLoaded', function() {
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotContainer = document.getElementById('chatbot-container');
@@ -1002,21 +1002,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatbotMessages = document.getElementById('chatbot-messages');
     const quickActionBtns = document.querySelectorAll('.quick-action-btn');
 
-    // Bot responses
-    const botResponses = {
-        'salut': 'Bonjour ! Comment puis-je vous aider aujourd\'hui ?',
-        'bonjour': 'Bonjour ! Je suis ravi de vous aider. Que souhaitez-vous savoir sur SICMI SARL ?',
-        'services': 'Nous proposons : Construction industrielle, Maintenance, Installation d\'équipements, Conseil technique, et bien plus. Souhaitez-vous plus de détails sur un service spécifique ?',
-        'contact': 'Vous pouvez nous contacter au +237 675948524, par email à sicmisarl@gmail.com, ou via notre formulaire de contact. Nous sommes à Bonaberi, Douala.',
-        'localisation': 'Nous sommes situés à Bonaberi, Douala, Cameroun. Notre zone d\'intervention couvre toute la région du Littoral et au-delà.',
-        'projets': 'Nous avons réalisé plus de 50 projets pour 15 clients satisfaits. Découvrez nos réalisations dans la section "Projets" de notre site.',
-        'qhse': 'Nous avons une politique QHSE stricte qui couvre la Qualité, l\'Hygiène, la Sécurité et l\'Environnement. La satisfaction client et la sécurité sont nos priorités.',
-        'default': 'Je comprends que vous souhaitez en savoir plus sur {{ question }}. Pour une réponse précise, je vous recommande de nous contacter directement. Nos experts se feront un plaisir de vous aider !'
-    };
+    // Load AI script if not already loaded
+    if (typeof analyzeMessage === 'undefined') {
+        const script = document.createElement('script');
+        script.src = '/static/js/chatbot-ai.js';
+        document.head.appendChild(script);
+    }
 
     // Toggle chatbot
     chatbotToggle.addEventListener('click', function() {
         chatbotContainer.classList.toggle('open');
+        if (chatbotContainer.classList.contains('open')) {
+            chatbotInput.focus();
+        }
     });
 
     chatbotClose.addEventListener('click', function() {
@@ -1030,11 +1028,18 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage(message, 'user');
             chatbotInput.value = '';
             
-            // Bot response with delay
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Bot response with realistic delay
             setTimeout(() => {
+                hideTypingIndicator();
                 const response = getBotResponse(message);
                 addMessage(response, 'bot');
-            }, 1000);
+                
+                // Update quick actions based on context
+                updateQuickActions(response);
+            }, 800 + Math.random() * 700); // Random delay 800-1500ms
         }
     }
 
@@ -1070,7 +1075,8 @@ document.addEventListener('DOMContentLoaded', function() {
         content.className = 'message-content';
         
         const messageText = document.createElement('p');
-        messageText.textContent = text;
+        // Support markdown-like formatting
+        messageText.innerHTML = formatMessage(text);
         
         const time = document.createElement('small');
         time.textContent = 'À l\'instant';
@@ -1078,25 +1084,117 @@ document.addEventListener('DOMContentLoaded', function() {
         content.appendChild(messageText);
         content.appendChild(time);
         
-        messageDiv.appendChild(avatar);
-        messageDiv.appendChild(content);
+        if (sender === 'user') {
+            messageDiv.appendChild(content);
+            messageDiv.appendChild(avatar);
+        } else {
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+        }
         
         chatbotMessages.appendChild(messageDiv);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    // Get bot response
+    // Format message with simple markdown support
+    function formatMessage(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold
+            .replace(/\n/g, '<br>')  // Line breaks
+            .replace(/•/g, '&bull;');  // Bullets
+    }
+
+    // Get bot response using AI
     function getBotResponse(message) {
-        const lowerMessage = message.toLowerCase();
-        
-        for (const [key, response] of Object.entries(botResponses)) {
-            if (lowerMessage.includes(key)) {
-                return response;
-            }
+        // Use AI if available, otherwise fallback
+        if (typeof analyzeMessage !== 'undefined') {
+            return analyzeMessage(message);
         }
         
-        return botResponses['default'].replace('{{ question }}', message);
+        // Fallback simple responses
+        const lowerMessage = message.toLowerCase();
+        if (lowerMessage.includes('service')) {
+            return "🔧 Nous offrons : Chaudronnerie, Maintenance industrielle, Structures métalliques, Tuyauterie. Que voulez-vous savoir ?";
+        } else if (lowerMessage.includes('contact')) {
+            return "📞 Appelez-nous au +237 675 948 524 ou écrivez à sicmisarl@gmail.com";
+        }
+        return "Je suis là pour vous aider ! Posez-moi des questions sur nos services, devis, contact, etc.";
+    }
+
+    // Typing indicator
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot-message typing-indicator';
+        typingDiv.id = 'typing-indicator';
+        typingDiv.innerHTML = `
+            <div class="message-avatar"><i class="fas fa-robot"></i></div>
+            <div class="message-content">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        `;
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
+    }
+
+    // Update quick actions dynamically
+    function updateQuickActions(lastResponse) {
+        if (typeof getSmartSuggestions === 'undefined') return;
+        
+        const suggestions = getSmartSuggestions(lastResponse);
+        const container = document.querySelector('.chatbot-quick-actions');
+        
+        if (container && suggestions.length > 0) {
+            container.innerHTML = suggestions.map(suggestion => 
+                `<button class="quick-action-btn" data-question="${suggestion}">${suggestion}</button>`
+            ).join('');
+            
+            // Re-attach event listeners
+            container.querySelectorAll('.quick-action-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    chatbotInput.value = question;
+                    sendMessage();
+                });
+            });
+        }
     }
 });
+
+// Add CSS for typing indicator
+const style = document.createElement('style');
+style.textContent = `
+    .typing-dots {
+        display: flex;
+        gap: 4px;
+        padding: 8px 0;
+    }
+    .typing-dots span {
+        width: 8px;
+        height: 8px;
+        background: #007bff;
+        border-radius: 50%;
+        animation: typing 1.4s infinite;
+    }
+    .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-10px); }
+    }
+`;
+document.head.appendChild(style);
 </script>
 {% endblock %}
