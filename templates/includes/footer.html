@@ -183,8 +183,8 @@
 /* Footer Mobile Optimizations */
 @media (max-width: 768px) {
     #site-footer {
-        padding-top: 2rem !important;
-        padding-bottom: 1rem !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 0.8rem !important;
         text-align: left;
     }
     
@@ -193,97 +193,109 @@
         padding-right: 15px !important;
     }
     
-    /* Toutes les colonnes alignées à gauche */
+    /* Toutes les colonnes alignées à gauche avec espacement minimal */
     #site-footer .row > [class*="col-"] {
         text-align: left !important;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
     }
     
-    /* Logo et titre en ligne sur mobile */
+    /* Logo et titre en ligne sur mobile - très compact */
     #site-footer .col-lg-4:first-child .d-flex {
         flex-direction: row;
         text-align: left !important;
         align-items: flex-start !important;
         justify-content: flex-start !important;
+        margin-bottom: 5px;
     }
     
     #site-footer .logo {
         margin-bottom: 0 !important;
-        margin-right: 15px !important;
+        margin-right: 10px !important;
     }
     
     #site-footer .logo-img {
-        height: 45px !important;
+        height: 40px !important;
     }
     
-    /* Titre et sous-titre alignés à gauche */
+    /* Titre et sous-titre alignés à gauche - très compact */
     #site-footer h5,
     #site-footer h6,
     #site-footer small {
         text-align: left !important;
         display: block;
+        margin-bottom: 2px !important;
+        line-height: 1.2 !important;
     }
     
-    /* Texte descriptif aligné à gauche */
+    #site-footer h5 {
+        margin-bottom: 0 !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Texte descriptif aligné à gauche - très compact */
     #site-footer .col-lg-4:first-child p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-        margin-bottom: 12px;
+        font-size: 0.8rem;
+        line-height: 1.3;
+        margin-bottom: 6px;
         text-align: left !important;
+        margin-top: 4px;
     }
     
-    /* Aligner les icônes sociales à gauche */
+    /* Aligner les icônes sociales à gauche - très compact */
     #site-footer .social-links,
     #site-footer .contact-icons {
         justify-content: flex-start !important;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         display: flex !important;
         flex-wrap: wrap;
     }
     
     #site-footer .social-links a,
     #site-footer .contact-icons a {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
-        margin: 0 8px 0 0;
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        margin: 0 6px 0 0;
     }
     
-    /* Colonnes de liens */
+    /* Colonnes de liens - très compact */
     #site-footer .col-lg-2,
     #site-footer .col-md-6 {
         text-align: left !important;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
     }
     
     #site-footer h6 {
-        font-size: 1rem;
-        margin-bottom: 10px;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
         border-bottom: 2px solid #007bff;
-        padding-bottom: 6px;
+        padding-bottom: 4px;
         display: inline-block;
         text-align: left;
+        line-height: 1.2;
     }
     
     #site-footer ul {
         padding-left: 0;
         list-style: none;
         text-align: left;
+        margin-bottom: 4px;
     }
     
     #site-footer ul li {
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         text-align: left;
+        line-height: 1.3;
     }
     
     #site-footer ul li a {
-        font-size: 0.9rem;
-        padding: 5px 0;
+        font-size: 0.85rem;
+        padding: 2px 0;
         display: inline-block;
         text-align: left;
     }
     
-    /* Section Contact - TOUT À GAUCHE */
+    /* Section Contact - TOUT À GAUCHE - très compact */
     #site-footer .col-lg-4:last-child {
         text-align: left !important;
     }
@@ -291,53 +303,64 @@
     #site-footer .col-lg-4:last-child .mb-3 {
         text-align: left;
         display: block;
+        margin-bottom: 6px !important;
     }
     
     #site-footer .col-lg-4:last-child .d-flex {
         justify-content: flex-start !important;
         text-align: left !important;
         display: flex;
+        margin-bottom: 3px !important;
+        align-items: flex-start !important;
     }
     
     #site-footer .col-lg-4:last-child small {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         text-align: left !important;
         display: block;
+        line-height: 1.3;
     }
     
     #site-footer .col-lg-4:last-child .fas {
-        margin-right: 8px;
+        margin-right: 6px;
+        margin-top: 2px;
+        font-size: 0.85rem;
     }
     
-    /* Bouton contact aligné à gauche */
+    #site-footer .col-lg-4:last-child .mb-2 {
+        margin-bottom: 3px !important;
+    }
+    
+    /* Bouton contact aligné à gauche - compact */
     #site-footer .btn {
         width: auto;
-        padding: 10px 18px;
-        font-size: 0.95rem;
-        margin: 10px 0 0 0 !important;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        margin: 6px 0 0 0 !important;
         display: inline-block;
         text-align: center;
     }
     
-    /* Ligne de séparation */
+    /* Ligne de séparation - très réduite */
     #site-footer hr {
-        margin: 1.5rem 0 !important;
+        margin: 1rem 0 0.6rem 0 !important;
     }
     
-    /* Copyright section */
+    /* Copyright section - très compact */
     #site-footer .row.align-items-center {
         text-align: left !important;
     }
     
     #site-footer .row.align-items-center .col-md-6 {
         text-align: left !important;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
     }
     
     #site-footer .row.align-items-center small {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         display: block;
         text-align: left !important;
+        line-height: 1.3;
     }
 }
 
