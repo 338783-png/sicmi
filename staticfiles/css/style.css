@@ -47,14 +47,14 @@
     }
 }
 
-.hero-section::before {
+.cta-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/static/images/pattern.png');
+    /* background: url('/static/images/pattern.png'); */
     opacity: 0.1;
 }
 
@@ -318,15 +318,15 @@ footer {
     overflow: hidden;
 }
 
-footer::before {
+.project-grid::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/static/images/pattern.png');
-    opacity: 0.05;
+    /* background: url('/static/images/pattern.png'); */
+    opacity: 0.03;
 }
 
 .social-links a {
