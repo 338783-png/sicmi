@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Service, ServiceCategory, Project, TeamMember, ServiceImage, ProjectImage, Atelier, AtelierImage
+from .models import Service, ServiceCategory, Project, TeamMember, ServiceImage, ProjectImage, Atelier, AtelierImage, ContactRequest
 from .forms import ContactForm
 
 def home(request):
