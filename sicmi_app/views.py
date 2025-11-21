@@ -90,37 +90,42 @@ def contact(request):
         if form.is_valid():
             contact_request = form.save()
             
-            # Envoyer un email de notification
-            subject = f'Nouveau message de contact - {contact_request.subject}'
-            message = f"""
-Nouveau message reçu depuis le site SICMI:
-
-Nom: {contact_request.name}
-Entreprise: {contact_request.company}
-Email: {contact_request.email}
-Téléphone: {contact_request.phone}
-Sujet: {contact_request.subject}
-
-Message:
-{contact_request.message}
-
----
-Date: {contact_request.created_at.strftime('%d/%m/%Y %H:%M')}
-"""
+            # NOTE: Envoi d'email désactivé temporairement car trop lent sur Render free tier
+            # Les messages sont quand même sauvegardés dans la base de données
+            # et accessibles via l'admin Django
             
-            try:
-                send_mail(
-                    subject,
-                    message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    ['jordanietane2@gmail.com'],
-                    fail_silently=False,
-                )
-                messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
-            except Exception as e:
-                # En cas d'erreur d'envoi, le message est quand même sauvegardé
-                messages.success(request, 'Votre message a été enregistré. Nous vous contacterons bientôt.')
+            # # Envoyer un email de notification
+            # subject = f'Nouveau message de contact - {contact_request.subject}'
+            # message = f"""
+# Nouveau message reçu depuis le site SICMI:
+
+# Nom: {contact_request.name}
+# Entreprise: {contact_request.company}
+# Email: {contact_request.email}
+# Téléphone: {contact_request.phone}
+# Sujet: {contact_request.subject}
+
+# Message:
+# {contact_request.message}
+
+# ---
+# Date: {contact_request.created_at.strftime('%d/%m/%Y %H:%M')}
+# """
             
+            # try:
+            #     send_mail(
+            #         subject,
+            #         message,
+            #         settings.DEFAULT_FROM_EMAIL,
+            #         ['jordanietane2@gmail.com'],
+            #         fail_silently=False,
+            #     )
+            #     messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
+            # except Exception as e:
+            #     # En cas d'erreur d'envoi, le message est quand même sauvegardé
+            #     messages.success(request, 'Votre message a été enregistré. Nous vous contacterons bientôt.')
+            
+            messages.success(request, 'Votre message a été enregistré avec succès. Nous vous contacterons bientôt.')
             return redirect('contact')
     else:
         form = ContactForm()
