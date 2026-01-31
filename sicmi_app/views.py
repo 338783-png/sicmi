@@ -75,22 +75,8 @@ def projects(request):
     try:
         projects_list = Project.objects.all().prefetch_related('images')
         
-        # Filtre par service
-        service_filter = request.GET.get('service')
-        if service_filter:
-            # Mapper les slugs aux catégories de services
-            service_mapping = {
-                'construction': 'Constructions neuves',
-                'maintenance': 'Maintenance industrielle',
-                'accompagnement': 'Accompagnement',
-                'facade': 'Travaux de façade',
-                'renovation': 'Rénovation'
-            }
-            
-            if service_filter in service_mapping:
-                service_name = service_mapping[service_filter]
-                # Filtrer les projets dont le service contient ce nom
-                projects_list = projects_list.filter(service__icontains=service_name)
+        # Note: Filtrage par service désactivé - le modèle Project n'a pas de champ service
+        # Pour réactiver, ajouter un ForeignKey vers Service dans le modèle Project
         
         paginator = Paginator(projects_list, 6)
         page_number = request.GET.get('page')
@@ -101,7 +87,6 @@ def projects(request):
 
     context = {
         'page_obj': page_obj,
-        'current_filter': service_filter if service_filter else 'all',
     }
     return render(request, 'projects.html', context)
 
@@ -109,8 +94,8 @@ def project_detail(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     project_images = project.images.all()
     
-    # Autres projets pour la section similaire
-    other_projects = Project.objects.exclude(id=project.id)[:3]
+    # Autres projets pour la section similaire (avec prefetch pour éviter N+1)
+    other_projects = Project.objects.exclude(id=project.id).prefetch_related('images')[:3]
     
     context = {
         'project': project,
@@ -172,8 +157,8 @@ def atelier_detail(request, atelier_id):
     atelier = get_object_or_404(Atelier, id=atelier_id)
     atelier_images = atelier.images.all()
     
-    # Autres ateliers pour la section similaire
-    other_ateliers = Atelier.objects.exclude(id=atelier.id)[:3]
+    # Autres ateliers pour la section similaire (avec prefetch pour éviter N+1)
+    other_ateliers = Atelier.objects.exclude(id=atelier.id).prefetch_related('images')[:3]
     
     context = {
         'atelier': atelier,

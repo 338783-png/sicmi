@@ -1,6 +1,6 @@
 from django.urls import path
+from django.conf import settings
 from . import views
-from .views_debug import cloudinary_debug
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -13,8 +13,14 @@ urlpatterns = [
     path('contact/confirmation/<int:contact_id>/', views.contact_confirmation, name='contact_confirmation'),
     path('politique-qhse/', views.qhse_policy, name='qhse_policy'),
     path('ateliers/', views.ateliers, name='ateliers'),
-    path('ateliers/<slug:atelier_id>/', views.atelier_detail, name='atelier_detail'),
+    path('ateliers/<int:atelier_id>/', views.atelier_detail, name='atelier_detail'),
     path('recherche/', views.search, name='search'),
     path('equipe/', views.team, name='team'),
-    path('debug/cloudinary/', cloudinary_debug, name='cloudinary_debug'),
 ]
+
+# Debug endpoints only available in DEBUG mode
+if settings.DEBUG:
+    from .views_debug import cloudinary_debug
+    urlpatterns += [
+        path('debug/cloudinary/', cloudinary_debug, name='cloudinary_debug'),
+    ]
