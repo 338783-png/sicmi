@@ -17,13 +17,13 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
-    default='localhost,127.0.0.1,.onrender.com,sicmisarl.com,www.sicmisarl.com',
+    default='sicmisarl.com,www.sicmisarl.com',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='https://sicmi-site.onrender.com,https://sicmisarl.com,https://www.sicmisarl.com',
+    default='https://sicmisarl.com,https://www.sicmisarl.com',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
