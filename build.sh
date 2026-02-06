@@ -20,13 +20,4 @@ python manage.py load_team_members
 echo "🏭 Chargement des ateliers et équipements..."
 python manage.py load_ateliers
 
-echo "📦 Chargement des services..."
-python manage.py load_services
-
-echo "🏗️ Chargement des projets..."
-python manage.py load_projects
-
-echo "🖼️ Migration des images vers Cloudinary..."
-python manage.py migrate_images_to_cloudinary || echo "⚠️ Migration images ignorée (pas de fichiers locaux en production)"
-
 echo "✅ Build terminé avec succès!"
