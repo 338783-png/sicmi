@@ -28,8 +28,12 @@
     <meta property="og:description" content="{% block og_description %}Solutions complètes en construction et maintenance industrielle{% endblock %}">
     <meta property="og:image" content="{% block og_image %}/static/images/logo.png{% endblock %}">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <!-- Favicon — toutes tailles pour Google, navigateurs, mobiles -->
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="manifest" href="/static/images/site.webmanifest">
 </head>
 <body>
     {% include 'includes/header.html' %}
