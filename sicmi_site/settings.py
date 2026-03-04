@@ -150,16 +150,16 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
-# Email Configuration
+# Email Configuration — Gmail SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='sicmisarl@gmail.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='SICMI Sarl <contact@sicmisarl.com>')
-# Disabilito ADMINS per evitare timeout su errori (Render free tier troppo lento con SMTP)
-# ADMINS = [('SICMI Admin', 'jordanietane2@gmail.com')]
+DEFAULT_FROM_EMAIL = 'SICMI Sarl <sicmisarl@gmail.com>'
+CONTACT_EMAIL = config('CONTACT_EMAIL', default='sicmisarl@gmail.com')
+EMAIL_TIMEOUT = 10  # Timeout 10 secondes pour éviter les blocages
 
 # Logging Configuration - Disable email notifications for errors (too slow on Render free tier)
 LOGGING = {

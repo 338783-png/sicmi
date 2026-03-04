@@ -1,3 +1,6 @@
+import logging
+import threading
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -6,6 +9,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Service, ServiceCategory, Project, TeamMember, ServiceImage, ProjectImage, Atelier, AtelierImage, ContactRequest
 from .forms import ContactForm
+
+logger = logging.getLogger(__name__)
 
 def home(request):
     services = Service.objects.select_related('category').all()[:6]
@@ -104,17 +109,55 @@ def project_detail(request, project_id):
     }
     return render(request, 'project_detail.html', context)
 
+def _send_contact_email(contact_request):
+    """Envoie l'email de notification en arrière-plan (thread séparé)."""
+    try:
+        subject = f'[SICMI Contact] {contact_request.subject}'
+        message = (
+            f'Nouveau message de contact reçu sur le site SICMI\n'
+            f'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n'
+            f'Nom : {contact_request.name}\n'
+            f'Entreprise : {contact_request.company or "Non renseignée"}\n'
+            f'Email : {contact_request.email}\n'
+            f'Téléphone : {contact_request.phone}\n'
+            f'Sujet : {contact_request.subject}\n\n'
+            f'Message :\n{contact_request.message}\n\n'
+            f'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n'
+            f'Reçu le : {contact_request.created_at.strftime("%d/%m/%Y à %H:%M")}\n'
+            f'ID : #{contact_request.id}\n'
+            f'Répondre directement à : {contact_request.email}\n'
+        )
+        
+        recipient = getattr(settings, 'CONTACT_EMAIL', 'sicmisarl@gmail.com')
+        
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[recipient],
+            fail_silently=False,
+        )
+        logger.info(f'Email de contact #{contact_request.id} envoyé à {recipient}')
+    except Exception as e:
+        logger.error(f'Erreur envoi email contact #{contact_request.id}: {e}')
+
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            # 1. Sauvegarder dans la base de données
             contact_request = form.save()
             
-            # NOTE: Envoi d'email désactivé temporairement car trop lent sur Render free tier
-            # Les messages sont quand même sauvegardés dans la base de données
-            # et accessibles via l'admin Django
+            # 2. Envoyer l'email en arrière-plan (ne bloque pas la réponse)
+            email_thread = threading.Thread(
+                target=_send_contact_email,
+                args=(contact_request,),
+                daemon=True,
+            )
+            email_thread.start()
             
-            messages.success(request, 'Votre message a été enregistré avec succès. Nous vous contacterons bientôt.')
+            messages.success(request, 'Votre message a été envoyé avec succès. Nous vous contacterons bientôt.')
             
             # Rediriger vers la page de confirmation avec les détails
             return redirect('contact_confirmation', contact_id=contact_request.id)
