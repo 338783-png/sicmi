@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf import settings
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -16,9 +17,13 @@ urlpatterns = [
     path('ateliers/<int:atelier_id>/', views.atelier_detail, name='atelier_detail'),
     path('recherche/', views.search, name='search'),
     path('equipe/', views.team, name='team'),
+    
+    # Redirections pour les anciennes URLs
+    path('qhse/', RedirectView.as_view(pattern_name='qhse_policy', permanent=True)),
+    path('engagement-rse/', RedirectView.as_view(pattern_name='qhse_policy', permanent=True)),
 ]
 
-# Debug endpoints only available in DEBUG mode
+# Debug endpoints
 if settings.DEBUG:
     from .views_debug import cloudinary_debug
     urlpatterns += [

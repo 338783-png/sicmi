@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Accueil - SICMI Sarl{% endblock %}
+{% block description %}SICMI SARL - Expert en ingénierie, construction et maintenance industrielle au Cameroun. Chaudronnerie, tuyauterie, structures métalliques à Douala.{% endblock %}
 
 {% block content %}
 <!-- Hero Section avec Background Dynamique -->
@@ -323,19 +324,19 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-3 col-md-6 mb-4 fade-in">
-                <h2 class="display-4 fw-bold counter" data-target="50">0</h2>
+                <h2 class="display-4 fw-bold"><span class="counter" data-target="50">0</span>+</h2>
                 <p class="lead">Projets Réalisés</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.2s;">
-                <h2 class="display-4 fw-bold counter" data-target="15">0</h2>
+                <h2 class="display-4 fw-bold"><span class="counter" data-target="15">0</span>+</h2>
                 <p class="lead">Clients Satisfaits</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.4s;">
-                <h2 class="display-4 fw-bold counter" data-target="6">0</h2>
+                <h2 class="display-4 fw-bold"><span class="counter" data-target="6">0</span></h2>
                 <p class="lead">Années d'Expérience</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.6s;">
-                <h2 class="display-4 fw-bold counter" data-target="24">0</h2>
+                <h2 class="display-4 fw-bold"><span class="counter" data-target="37">0</span></h2>
                 <p class="lead">Spécialistes</p>
             </div>
         </div>
@@ -945,34 +946,38 @@
 // Animation des compteurs
 document.addEventListener('DOMContentLoaded', function() {
     const counters = document.querySelectorAll('.counter');
-    const speed = 200;
 
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
+    function animateCounter(counter) {
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000; // 2 secondes
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Easing: ease-out
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.innerText = Math.round(eased * target);
             
-            const inc = target / speed;
-            
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 1);
+            if (progress < 1) {
+                requestAnimationFrame(update);
             } else {
                 counter.innerText = target;
             }
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    updateCount();
-                    observer.unobserve(entry.target);
-                }
-            });
+        }
+        requestAnimationFrame(update);
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
         });
-        
-        observer.observe(counter);
-    });
+    }, { threshold: 0.3 });
+    
+    counters.forEach(counter => observer.observe(counter));
 });
 
 // Appliquer les images de background
